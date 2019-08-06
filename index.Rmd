@@ -1,6 +1,6 @@
 --- 
-title: "A Minimal Book Example"
-author: "Yihui Xie"
+title: "Introducción al Análisis de Datos"
+author: "Matías Alfonso"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
@@ -8,14 +8,14 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: rstudio/bookdown-demo
+github-repo: https://github.com/mentoldo/introduccion_analisis_datos
 description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
 lang: es
 ---
 
 # (PART) Programación en R {-}
 
-# Preliminares {#intro}
+# Preliminares {#prelim}
 
 R es un lenguaje de programación desarrollado inicialmente por Ross Ihaka y Robert Gentleman en el departamento de Estadística de la Universidad de Auckland en 1993. Está orientado específicamente con un enfoque al análisis estadístico.  
 R se desarrolla a partir de un lenguaje denominado S, desarrollado por John Chambers en 1976, disponible a partir del software comercial S-PLUS.  
