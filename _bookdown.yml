@@ -4,3 +4,4 @@ language:
     chapter_name: "Capítulo "
     part_name: "Parte "
 delete_merged_file: true
+output_dir: "docs"

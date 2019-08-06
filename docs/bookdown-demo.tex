@@ -1,0 +1,707 @@
+\documentclass[spanish,]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Introducción al Análisis de Datos},
+            pdfauthor={Matías Alfonso},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[shorthands=off,main=spanish]{babel}
+\else
+  \usepackage{polyglossia}
+  \setmainlanguage[]{spanish}
+\fi
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Introducción al Análisis de Datos}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{Matías Alfonso}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{2019-08-06}
+
+\usepackage{booktabs}
+\usepackage{amsthm}
+\makeatletter
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+\makeatother
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\part{Programación en R}\label{part-programacion-en-r}
+
+\chapter{Preliminares}\label{prelim}
+
+R es un lenguaje de programación desarrollado inicialmente por Ross
+Ihaka y Robert Gentleman en el departamento de Estadística de la
+Universidad de Auckland en 1993. Está orientado específicamente con un
+enfoque al análisis estadístico.\\
+R se desarrolla a partir de un lenguaje denominado S, desarrollado por
+John Chambers en 1976, disponible a partir del software comercial
+S-PLUS.\\
+Es un lenguaje interactivo, permite la ejecución de instrucciónes en
+líneas de comando en una consola.
+
+\section{¿Por qué R?}\label{por-que-r}
+
+R puede ser ejecutado en múltiples plataformas y en la gran mayoría de
+los sistemas operativos. Puede ser ejecutado en tablets, teléfonos o
+computadoras. La utilización de scripts permite compartir fácilmente los
+análisis con los colegas, así como asegurar la reproductibilidad de los
+resultados. Todo lo que realizamos mediante una interfaz gráfica con el
+mouse no deja registros de nuestro trabajo e impide que podamos repasar
+nuestro trabajo para corregir errores.\\
+La versatilidad y la potencia que otorga un lenguaje de programación es
+mucho mayor que la que podemos obtener con softwares estadísticos de
+interfaz gráfica.\\
+La comunidad de usuarios y desarrolladores de R está en constante
+crecimiento en los últimos años. Hay una enorme cantidad de gente
+realizando nuevos desarrollos en R cada día, que están a la vanguardia
+de la ciencia computacional y estadística.
+
+\section{Software Libre}\label{software-libre}
+
+La mayor ventaja que tiene R con respecto a otros softwares de análisis
+estadístico es que es un software libre. ¿Qué quiere decir eso? Por un
+lado, que es gratuito. Por otro, que el código fuente con el que R fue
+desarrollado está abierto, se puede descargar y está diponible online.
+Actualmente el copyrigth de R lo posee la
+\href{https://www.r-project.org/foundation/}{R Foundation}. R forma
+parte del \href{https://es.wikipedia.org/wiki/GNU}{sistema GNU},
+desarrollado por la {[}Free Software Foundation{]}(. De acuerdo a la
+\href{https://es.wikipedia.org/wiki/Free_Software_Foundation}{Free
+Software Foundation}, con el software libre se garantizan cuatro
+libertades fundamentales:
+
+\begin{itemize}
+\tightlist
+\item
+  La libertad de ejecutar el programa para cualquier propósito.
+  (Libertad 0)
+\item
+  La libertad de estudiar cómo el programa funciona y adaptarlo a tus
+  propias necesidades. (Libertad 1)
+\item
+  La libertad de redistribuir copias de manera que puedas ayudar a
+  alguien. (Libertad 2)
+\item
+  La libertad de mejorar el programa, y liberar tus mejoras al público,
+  de manera que se beneficie toda la comunidad. (Libertad 3)
+\end{itemize}
+
+\section{Sistema de Paquetes}\label{sistema-de-paquetes}
+
+El sistema de funcionalidades de R se encuentra agrupado en paquetes. La
+mayor parte de los paquetes se encuentran disponibles en
+\href{https://cran.r-project.org/}{Comprehensive R Archive Network
+(CRAN)}. Hay un conjunto de paquetes principales, de base, que incluye
+todos los paquetes que se instalan por defecto cuando instalamos R.
+Luego, tenemos un montón de paquetes con funcionalidades específicas que
+podemos instalar en función de nuestras necesidades.
+
+\chapter{Primeros pasos}\label{primeros-pasos}
+
+\section{Asignación de datos y
+evaluación.}\label{asignacion-de-datos-y-evaluacion.}
+
+R es un \emph{lenguaje interpretado}. Esto quiere decir que le podemos
+ir pasando instrucciones y el programama las irá interpretando. Cuando
+ejecutamos el programa, nos encontramos con el prompt a la espera de
+intrucciones:
+
+\begin{verbatim}
+>
+\end{verbatim}
+
+Una de las operaciones más sencillas que podemos realizar es la
+asignación de valores a las variables. El operador de asignación es
+\texttt{\textless{}-}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}
+\KeywordTok{print}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{texto <-}\StringTok{ "hola mundo"}
+\NormalTok{texto}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "hola mundo"
+\end{verbatim}
+
+Podemos imprimir el valor de una variable con la función
+\texttt{print()} o directamente escribiendo la variable.
+
+Tenemos dos formas de interactuar con R:
+
+\begin{itemize}
+\tightlist
+\item
+  Tipear directamente los comandos en el prompt y ejecutarlos.
+\item
+  Escribir un archivo de texto con todas las intrucciones y luego
+  ejecutarlo. Este archivo se denomina script.
+\end{itemize}
+
+\section{Working directory}\label{working-directory}
+
+Lo primero que debemos hacer cuando comenzamos a trabajar en R es
+configurar el directorio de trabajo. Una buena costumbre es crear un
+directorio nuevo de trabajo cuando comenzamos un proyecto nuevo. Luego
+configuramos esa carpeta como directorio de trabajo. Colocamos allí
+todos los archivos vinculados a ese proyecto. Para determinar en qué
+directorio estamos parados, podemos utilizar el comando
+\texttt{getwd()}. Para configurar el directorio de trabajo, utilizamos
+
+\begin{verbatim}
+setwd(#RUTA-A-DIRECTORIO)
+\end{verbatim}
+
+\section{Comentarios}\label{comentarios}
+
+Todo lo que escribamos luego de un \texttt{\#} en una intrucción, no
+será evaluado.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{## Esto no se ejecuta}
+
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 4 5
+\end{verbatim}
+
+Ello nos permite comentar el código que escribimos, a manera de
+documentación.
+
+\section{Objetos básicos en R}\label{objetos-basicos-en-r}
+
+Casi todo lo que encontremos en R, se denominan \emph{objetos}. Hay 5
+tipos de objetos básicos o atómicos:
+
+\begin{itemize}
+\tightlist
+\item
+  lógico
+\item
+  numérico
+\item
+  entero
+\item
+  complejo
+\item
+  caracter
+\end{itemize}
+
+Veamos algunos ejemplos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Logico}
+\OtherTok{TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OtherTok{FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Numérico}
+\KeywordTok{c}\NormalTok{(}\FloatTok{1.509}\NormalTok{, }\FloatTok{2.859}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.509 2.859
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Enteros}
+\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Caracter}
+\StringTok{"casa"}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "casa"
+\end{verbatim}
+
+Existen muchos más clases de objetos en R. Para averiguar de que tipo es
+un objeto, podemos utilizar la función \texttt{class()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\KeywordTok{class}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "integer"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(}\StringTok{"TRUE"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+Para preguntar por la clase de un objeto, podemos utilizar el comando
+\texttt{class()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}\OperatorTok{:}\DecValTok{10}
+\KeywordTok{class}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "integer"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y <-}\StringTok{ "casa"}
+\KeywordTok{class}\NormalTok{(y)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\section{Cómo buscar ayuda}\label{como-buscar-ayuda}
+
+R tiene un sistema de ayuda integrado. Si queremos saber para qué sirve
+un comando determinado o como pasarle los argumentos, podemos utilizar
+\texttt{?} o \texttt{help()}. Supongamos que queremos saber cómo se
+utiliza la función \texttt{sum()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{help}\NormalTok{(sum)}
+
+\NormalTok{?vector}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter{Estructuras de datos}\label{estructuras-de-datos}
+
+\subsection{Vectores}\label{vectores}
+
+La forma más elemental de almacenar datos en R es en un vector. Un
+\textbf{vector} es una concatenación de objetos del mismo tipo. Podemos
+utilizar la función \texttt{c()} para crear vectores.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\FloatTok{2.5}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\OtherTok{FALSE}\NormalTok{)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(T, F)}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"casa"}\NormalTok{, }\StringTok{"árbol"}\NormalTok{, }\StringTok{"patio"}\NormalTok{)}
+
+\NormalTok{## También podemos utilizar la función vector.}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{vector}\NormalTok{(}\DataTypeTok{mode =} \StringTok{"numeric"}\NormalTok{, }\DataTypeTok{length =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Si concatenamos elementos de diferente clase, R realizará una coerción
+automática de la clase de los objetos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"casa"}\NormalTok{, }\DecValTok{2}\NormalTok{) ## character}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\OtherTok{TRUE}\NormalTok{, }\DecValTok{2}\NormalTok{) ## numeric}
+
+\KeywordTok{class}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\section{Listas}\label{listas}
+
+Las listas también son una concatenación de elementos, pero pueden
+contener elementos de diferente clase. Para crear una lista, podemos
+utilizar \texttt{list()}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{list}\NormalTok{(}\StringTok{"peso"}\NormalTok{, }\DecValTok{2}\NormalTok{, }\StringTok{"altura"}\NormalTok{, }\DecValTok{3}\NormalTok{, }\OtherTok{TRUE}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "peso"
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [1] "altura"
+## 
+## [[4]]
+## [1] 3
+## 
+## [[5]]
+## [1] TRUE
+\end{verbatim}
+
+\section{Factores}\label{factores}
+
+Los factores son básicamente objetos de clase entero, pero con
+etiquetas. Son datos categóricos y pueden estar ordenados o no.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"si"}\NormalTok{, }\StringTok{"si"}\NormalTok{, }\StringTok{"no"}\NormalTok{, }\StringTok{"si"}\NormalTok{))}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] si si no si
+## Levels: no si
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"bajo"}\NormalTok{, }\StringTok{"bajo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{),}
+            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"bajo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{),}
+            \DataTypeTok{ordered =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Matrices}\label{matrices}
+
+Las matrices son vectores, pero con un atributo de dimensión. La
+dimensión en sí es un vector de enteros de largo 2.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{m <-}\StringTok{ }\KeywordTok{matrix}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{9}\NormalTok{, }\DataTypeTok{nrow =} \DecValTok{3}\NormalTok{)}
+\NormalTok{m}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dim}\NormalTok{(m)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3 3
+\end{verbatim}
+
+Al igual que los vectores, contienen objetos de la misma clase. Las
+matrices tienen algunas propiedades matemáticas interesantes, pues se
+pueden realizar operaciones especiales con ellas, por ejemplo, se pueden
+sumar o multiplicar.
+
+\section{Data frames}\label{data-frames}
+
+Los data frames son datos tabulados. Son tablas, donde cada columna
+puede ser de una clase diferente. Es un objeto particularmente útil para
+el análisis estadístico.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{Id =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{),}
+           \DataTypeTok{Nombre =} \KeywordTok{c}\NormalTok{(}\StringTok{"Juan"}\NormalTok{, }\StringTok{"Carlos"}\NormalTok{, }\StringTok{"Ramona"}\NormalTok{),}
+           \DataTypeTok{Altura =} \KeywordTok{c}\NormalTok{(}\FloatTok{1.76}\NormalTok{, }\FloatTok{1.80}\NormalTok{, }\FloatTok{1.65}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Id Nombre Altura
+## 1  1   Juan   1.76
+## 2  2 Carlos   1.80
+## 3  3 Ramona   1.65
+\end{verbatim}
+
+\section{Valores faltantes}\label{valores-faltantes}
+
+Existen dos tipos de valores faltantes en R:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{NA}
+\item
+  \texttt{NaN}
+\end{itemize}
+
+\chapter{Obteniendo datos}\label{obteniendo-datos}
+
+Existen una enorme cantidad de funciones para abrir archivos de diversos
+tipos.
+
+\section{Datos tabulares}\label{datos-tabulares}
+
+Un formato estándar y abierto para guardar información en forma de
+tablas son archivos separados por comas (.csv) Para leer estos datos
+podemos utilizar:
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{read.table}
+\item
+  \texttt{read.csv}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Leemos los datos desde un archivo y los guardamos en la variable base}
+\NormalTok{base <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/titanic.csv"}\NormalTok{)}
+
+\NormalTok{## Imprimimos las primeras 5 filas de la base}
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(base))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{r|r|r|l|l|r|r|r|l|r|l|l}
+\hline
+PassengerId & Survived & Pclass & Name & Sex & Age & SibSp & Parch & Ticket & Fare & Cabin & Embarked\\
+\hline
+1 & 0 & 3 & Braund, Mr. Owen Harris & male & 22 & 1 & 0 & A/5 21171 & 7.2500 &  & S\\
+\hline
+2 & 1 & 1 & Cumings, Mrs. John Bradley (Florence Briggs Thayer) & female & 38 & 1 & 0 & PC 17599 & 71.2833 & C85 & C\\
+\hline
+3 & 1 & 3 & Heikkinen, Miss. Laina & female & 26 & 0 & 0 & STON/O2. 3101282 & 7.9250 &  & S\\
+\hline
+4 & 1 & 1 & Futrelle, Mrs. Jacques Heath (Lily May Peel) & female & 35 & 1 & 0 & 113803 & 53.1000 & C123 & S\\
+\hline
+5 & 0 & 3 & Allen, Mr. William Henry & male & 35 & 0 & 0 & 373450 & 8.0500 &  & S\\
+\hline
+6 & 0 & 3 & Moran, Mr. James & male & NA & 0 & 0 & 330877 & 8.4583 &  & Q\\
+\hline
+\end{tabular}
+
+También podemos leer datos directamente de la web
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Datos Abiertos}
+\NormalTok{## Consulta de Medicamentos esenciales}
+\NormalTok{salud <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"http://datos.salud.gob.ar/dataset/5fcacd04-58eb-4b43-89a0-55231c58f1b4/resource/ed9e418f-9858-44df-8ce7-a74fde738684/download/consultas-medicamentos-esenciales.csv"}\NormalTok{)}
+
+\KeywordTok{head}\NormalTok{(salud)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   provincia_id                  provincia_desc      año consultas_cantidad
+## 1            2 Ciudad Autonoma de Buenos Aires año_2003             559785
+## 2            6                    Buenos Aires año_2003            9544395
+## 3           10                       Catamarca año_2003             372199
+## 4           14                         Cordoba año_2003            3491961
+## 5           18                      Corrientes año_2003             764887
+## 6           22                           Chaco año_2003            1476825
+\end{verbatim}
+
+\part{Introducción al análisis
+estadístico}\label{part-introduccion-al-analisis-estadistico}
+
+\chapter{Applications}\label{applications}
+
+Some \emph{significant} applications are demonstrated in this chapter.
+
+\section{Example one}\label{example-one}
+
+\section{Example two}\label{example-two}
+
+\part{Parte II}\label{part-parte-ii}
+
+\chapter{Final Words}\label{final-words}
+
+We have finished a nice book.
+
+\bibliography{book.bib,packages.bib}
+
+
+\end{document}
