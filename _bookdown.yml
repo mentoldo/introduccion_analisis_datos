@@ -1,0 +1,6 @@
+book_filename: "bookdown-demo"
+language:
+  ui:
+    chapter_name: "Capítulo "
+    part_name: "Parte "
+delete_merged_file: true
