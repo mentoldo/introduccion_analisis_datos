@@ -1,0 +1,105 @@
+# Primeros pasos
+
+## Asignación de datos y evaluación.
+
+R es un *lenguaje interpretado*. Esto quiere decir que le podemos ir pasando instrucciones y el programama las irá interpretando. Cuando ejecutamos el programa, nos encontramos con el prompt a la espera de intrucciones:
+
+```
+>
+```
+
+Una de las operaciones más sencillas que podemos realizar es la asignación de valores a las variables. El operador de asignación es `<-`.
+
+```{r}
+x <- 1
+print(x)
+x
+texto <- "hola mundo"
+texto
+```
+
+Podemos imprimir el valor de una variable con la función `print()` o directamente escribiendo la variable.
+
+Tenemos dos formas de interactuar con R:
+
+- Tipear directamente los comandos en el prompt y ejecutarlos.
+- Escribir un archivo de texto con todas las intrucciones y luego ejecutarlo. Este archivo se denomina script.
+
+## Working directory
+
+Lo primero que debemos hacer cuando comenzamos a trabajar en R es configurar el directorio de trabajo. Una buena costumbre es crear un directorio nuevo de trabajo cuando comenzamos un proyecto nuevo. Luego configuramos esa carpeta como directorio de trabajo. Colocamos allí todos los archivos vinculados a ese proyecto. Para determinar en qué directorio estamos parados, podemos utilizar el comando `getwd()`. Para configurar el directorio de trabajo, utilizamos
+
+```
+setwd(#RUTA-A-DIRECTORIO)
+```
+
+## Comentarios
+
+Todo lo que escribamos luego de un `#` en una intrucción, no será evaluado.
+
+```{r}
+x <- c(3, 4, 5)
+## Esto no se ejecuta
+
+x
+```
+
+Ello nos permite comentar el código que escribimos, a manera de documentación.
+
+## Objetos básicos en R
+
+Casi todo lo que encontremos en R, se denominan *objetos*. Hay 5 tipos de objetos básicos o atómicos:
+
+* lógico
+* numérico
+* entero
+* complejo
+* caracter
+
+Veamos algunos ejemplos:
+
+```{r}
+## Logico
+TRUE
+FALSE
+
+## Numérico
+c(1.509, 2.859)
+
+## Enteros
+1:10
+
+## Caracter
+"casa"
+```
+
+Existen muchos más clases de objetos en R. Para averiguar de que tipo es un objeto, podemos utilizar la función `class()`
+
+```{r}
+x <- 1:10
+class(x)
+
+class("TRUE")
+```
+
+Para preguntar por la clase de un objeto, podemos utilizar el comando `class()`
+
+```{r}
+x <- 1:10
+class(x)
+
+y <- "casa"
+class(y)
+```
+
+## Cómo buscar ayuda
+
+R tiene un sistema de ayuda integrado. Si queremos saber para qué sirve un comando determinado o como pasarle los argumentos, podemos utilizar `?` o `help()`. Supongamos que queremos saber cómo se utiliza la función `sum()`
+
+```{r}
+help(sum)
+
+?vector
+```
+
+

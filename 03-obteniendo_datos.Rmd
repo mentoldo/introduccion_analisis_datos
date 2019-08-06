@@ -1,0 +1,30 @@
+# Obteniendo datos
+
+Existen una enorme cantidad de funciones para abrir archivos de diversos tipos.
+
+## Datos tabulares
+
+Un formato estándar y abierto para guardar información en forma de tablas son archivos separados por comas (.csv)
+Para leer estos datos podemos utilizar:  
+
+* `read.table`
+* `read.csv`
+
+```{r}
+## Leemos los datos desde un archivo y los guardamos en la variable base
+base <- read.csv("data/titanic.csv")
+
+## Imprimimos las primeras 5 filas de la base
+knitr::kable(head(base))
+```
+
+También podemos leer datos directamente de la web
+
+```{r}
+## Datos Abiertos
+## Consulta de Medicamentos esenciales
+salud <- read.csv("http://datos.salud.gob.ar/dataset/5fcacd04-58eb-4b43-89a0-55231c58f1b4/resource/ed9e418f-9858-44df-8ce7-a74fde738684/download/consultas-medicamentos-esenciales.csv")
+
+head(salud)
+```
+

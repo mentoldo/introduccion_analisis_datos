@@ -24,7 +24,6 @@ Es un lenguaje interactivo, permite la ejecución de instrucciónes en líneas d
 ## ¿Por qué R?
 
 R puede ser ejecutado en múltiples plataformas y en la gran mayoría de los sistemas operativos. Puede ser ejecutado en tablets, teléfonos o computadoras.
-
 La utilización de scripts permite compartir fácilmente los análisis con los colegas, así como asegurar la reproductibilidad de los resultados. Todo lo que realizamos mediante una interfaz gráfica con el mouse no deja registros de nuestro trabajo e impide que podamos repasar nuestro trabajo para corregir errores.  
 La versatilidad y la potencia que otorga un lenguaje de programación es mucho mayor que la que podemos obtener con softwares estadísticos de interfaz gráfica.   
 La comunidad de usuarios y desarrolladores de R está en constante crecimiento en los últimos años. Hay una enorme cantidad de gente realizando nuevos desarrollos en R cada día, que están a la vanguardia de la ciencia computacional y estadística.
@@ -32,7 +31,7 @@ La comunidad de usuarios y desarrolladores de R está en constante crecimiento e
 ## Software Libre
 
 La mayor ventaja que tiene R con respecto a otros softwares de análisis estadístico es que es un software libre. ¿Qué quiere decir eso? Por un lado, que es gratuito. Por otro, que el código fuente con el que R fue desarrollado está abierto, se puede descargar y está diponible online.
-Actualmente el copyrigth de R lo posee la R Foundation. R forma parte del sistema GNU, desarrollado por la Free Software Foundation. De acuerdo a la Free Software Foundation, con el software libre se garantizan cuatro libertades fundamentales:
+Actualmente el copyrigth de R lo posee la [R Foundation](https://www.r-project.org/foundation/). R forma parte del [sistema GNU](https://es.wikipedia.org/wiki/GNU), desarrollado por la [Free Software Foundation](. De acuerdo a la [Free Software Foundation](https://es.wikipedia.org/wiki/Free_Software_Foundation), con el software libre se garantizan cuatro libertades fundamentales:
 
 * La libertad de ejecutar el programa para cualquier propósito. (Libertad 0)
 * La libertad de estudiar cómo el programa funciona y adaptarlo a tus propias necesidades. (Libertad 1)
@@ -41,7 +40,7 @@ Actualmente el copyrigth de R lo posee la R Foundation. R forma parte del sistem
 
 ## Sistema de Paquetes
 
-El sistema de funcionalidades de R se encuentra agrupado en paquetes. La mayor parte de los paquetes se encuentran disponibles en Comprehensive R Archive Network (CRAN). Hay un conjunto de paquetes principales, de base, que incluye todos los paquetes que se instalan por defecto cuando instalamos R.
+El sistema de funcionalidades de R se encuentra agrupado en paquetes. La mayor parte de los paquetes se encuentran disponibles en [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/). Hay un conjunto de paquetes principales, de base, que incluye todos los paquetes que se instalan por defecto cuando instalamos R.
 Luego, tenemos un montón de paquetes con funcionalidades específicas que podemos instalar en función de nuestras necesidades.
 
 ```{r include=FALSE}

@@ -1,0 +1,77 @@
+# Estructuras de datos
+
+### Vectores
+
+La forma más elemental de almacenar datos en R es en un vector. Un **vector** es una concatenación de objetos del mismo tipo. Podemos utilizar la función `c()` para crear vectores.
+
+```{r}
+x <- c(1, 2, 3, 2.5)
+x <- c(TRUE, FALSE)
+x <- c(T, F)
+x <- c("casa", "árbol", "patio")
+
+## También podemos utilizar la función vector.
+x <- vector(mode = "numeric", length = 10)
+```
+
+Si concatenamos elementos de diferente clase, R realizará una coerción automática de la clase de los objetos.
+
+```{r}
+x <- c("casa", 2) ## character
+x <- c(TRUE, 2) ## numeric
+
+class(x)
+```
+
+## Listas
+
+Las listas también son una concatenación de elementos, pero pueden contener elementos de diferente clase. Para crear una lista, podemos utilizar `list()`
+
+```{r}
+x <- list("peso", 2, "altura", 3, TRUE)
+x
+```
+
+## Factores
+Los factores son básicamente objetos de clase entero, pero con etiquetas. Son datos categóricos y pueden estar ordenados o no.
+
+```{r}
+f <- factor(c("si", "si", "no", "si"))
+f
+
+f <- factor(c("bajo", "bajo", "medio", "alto"),
+            levels = c("bajo", "medio", "alto"),
+            ordered = TRUE)
+```
+
+
+## Matrices
+Las matrices son vectores, pero con un atributo de dimensión. La dimensión en sí es un vector de enteros de largo 2.
+
+```{r}
+m <- matrix(1:9, nrow = 3)
+m
+
+dim(m)
+```
+
+Al igual que los vectores, contienen objetos de la misma clase. Las matrices tienen algunas propiedades matemáticas interesantes, pues se pueden realizar operaciones especiales con ellas, por ejemplo, se pueden sumar o multiplicar.
+
+
+## Data frames
+
+Los data frames son datos tabulados. Son tablas, donde cada columna puede ser de una clase diferente. Es un objeto particularmente útil para el análisis estadístico.
+
+```{r}
+data.frame(Id = c(1, 2, 3),
+           Nombre = c("Juan", "Carlos", "Ramona"),
+           Altura = c(1.76, 1.80, 1.65))
+
+```
+
+
+## Valores faltantes
+Existen dos tipos de valores faltantes en R:  
+
+* `NA`
+* `NaN`
