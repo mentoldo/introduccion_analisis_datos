@@ -130,7 +130,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-08-06}
+    \date{2019-08-07}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -442,6 +442,37 @@ Para preguntar por la clase de un objeto, podemos utilizar el comando
 ## [1] "character"
 \end{verbatim}
 
+\section{Factores}\label{factores}
+
+Los factores son básicamente objetos de clase entero, pero con
+etiquetas. Son datos categóricos y pueden estar ordenados o no.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"si"}\NormalTok{, }\StringTok{"si"}\NormalTok{, }\StringTok{"no"}\NormalTok{, }\StringTok{"si"}\NormalTok{))}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] si si no si
+## Levels: no si
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{f <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"bajo"}\NormalTok{, }\StringTok{"bajo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{),}
+            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"bajo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{),}
+            \DataTypeTok{ordered =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{f}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] bajo  bajo  medio alto 
+## Levels: bajo < medio < alto
+\end{verbatim}
+
 \section{Cómo buscar ayuda}\label{como-buscar-ayuda}
 
 R tiene un sistema de ayuda integrado. Si queremos saber para qué sirve
@@ -522,31 +553,6 @@ utilizar \texttt{list()}
 ## [[5]]
 ## [1] TRUE
 \end{verbatim}
-
-\section{Factores}\label{factores}
-
-Los factores son básicamente objetos de clase entero, pero con
-etiquetas. Son datos categóricos y pueden estar ordenados o no.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{f <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"si"}\NormalTok{, }\StringTok{"si"}\NormalTok{, }\StringTok{"no"}\NormalTok{, }\StringTok{"si"}\NormalTok{))}
-\NormalTok{f}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-## [1] si si no si
-## Levels: no si
-\end{verbatim}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{f <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\StringTok{"bajo"}\NormalTok{, }\StringTok{"bajo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{),}
-            \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\StringTok{"bajo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{),}
-            \DataTypeTok{ordered =} \OtherTok{TRUE}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \section{Matrices}\label{matrices}
 
@@ -629,9 +635,9 @@ podemos utilizar:
 \begin{itemize}
 \tightlist
 \item
-  \texttt{read.table}
+  \texttt{read.tables()}
 \item
-  \texttt{read.csv}
+  \texttt{read.csv()}
 \end{itemize}
 
 \begin{Shaded}
@@ -640,27 +646,26 @@ podemos utilizar:
 \NormalTok{base <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/titanic.csv"}\NormalTok{)}
 
 \NormalTok{## Imprimimos las primeras 5 filas de la base}
-\NormalTok{knitr}\OperatorTok{::}\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(base))}
+\KeywordTok{head}\NormalTok{(base)[, }\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
-\begin{tabular}{r|r|r|l|l|r|r|r|l|r|l|l}
-\hline
-PassengerId & Survived & Pclass & Name & Sex & Age & SibSp & Parch & Ticket & Fare & Cabin & Embarked\\
-\hline
-1 & 0 & 3 & Braund, Mr. Owen Harris & male & 22 & 1 & 0 & A/5 21171 & 7.2500 &  & S\\
-\hline
-2 & 1 & 1 & Cumings, Mrs. John Bradley (Florence Briggs Thayer) & female & 38 & 1 & 0 & PC 17599 & 71.2833 & C85 & C\\
-\hline
-3 & 1 & 3 & Heikkinen, Miss. Laina & female & 26 & 0 & 0 & STON/O2. 3101282 & 7.9250 &  & S\\
-\hline
-4 & 1 & 1 & Futrelle, Mrs. Jacques Heath (Lily May Peel) & female & 35 & 1 & 0 & 113803 & 53.1000 & C123 & S\\
-\hline
-5 & 0 & 3 & Allen, Mr. William Henry & male & 35 & 0 & 0 & 373450 & 8.0500 &  & S\\
-\hline
-6 & 0 & 3 & Moran, Mr. James & male & NA & 0 & 0 & 330877 & 8.4583 &  & Q\\
-\hline
-\end{tabular}
+\begin{verbatim}
+##   PassengerId Survived Pclass
+## 1           1        0      3
+## 2           2        1      1
+## 3           3        1      3
+## 4           4        1      1
+## 5           5        0      3
+## 6           6        0      3
+##                                                  Name
+## 1                             Braund, Mr. Owen Harris
+## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)
+## 3                              Heikkinen, Miss. Laina
+## 4        Futrelle, Mrs. Jacques Heath (Lily May Peel)
+## 5                            Allen, Mr. William Henry
+## 6                                    Moran, Mr. James
+\end{verbatim}
 
 También podemos leer datos directamente de la web
 
@@ -687,19 +692,28 @@ También podemos leer datos directamente de la web
 \part{Introducción al análisis
 estadístico}\label{part-introduccion-al-analisis-estadistico}
 
-\chapter{Applications}\label{applications}
+\chapter{Operaciones básicas}\label{operaciones-basicas}
 
-Some \emph{significant} applications are demonstrated in this chapter.
+Comencemos calculando una proporción. Supongamos que realizamos 10
+mediciones para la variables rendimiento escolar. La variable puede
+tomar tres valores: bajo, medio y alto.
 
-\section{Example one}\label{example-one}
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rendimiento <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{)}
 
-\section{Example two}\label{example-two}
+\NormalTok{rendimiento <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(rendimiento,}
+                      \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"bajo"}\NormalTok{, }\StringTok{"medio"}\NormalTok{, }\StringTok{"alto"}\NormalTok{),}
+                      \DataTypeTok{ordered =} \OtherTok{TRUE}\NormalTok{)}
 
-\part{Parte II}\label{part-parte-ii}
+\NormalTok{rendimiento}
+\end{Highlighting}
+\end{Shaded}
 
-\chapter{Final Words}\label{final-words}
-
-We have finished a nice book.
+\begin{verbatim}
+##  [1] bajo  alto  bajo  medio medio bajo  medio medio alto  medio
+## Levels: bajo < medio < alto
+\end{verbatim}
 
 \bibliography{book.bib,packages.bib}
 

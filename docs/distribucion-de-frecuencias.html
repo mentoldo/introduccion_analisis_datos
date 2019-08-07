@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 4 Obteniendo datos | Introducción al Análisis de Datos</title>
+  <title>Capítulo 5 Distribución de frecuencias | Introducción al Análisis de Datos</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 4 Obteniendo datos | Introducción al Análisis de Datos" />
+  <meta property="og:title" content="Capítulo 5 Distribución de frecuencias | Introducción al Análisis de Datos" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/mentoldo/introduccion_analisis_datos" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 4 Obteniendo datos | Introducción al Análisis de Datos" />
+  <meta name="twitter:title" content="Capítulo 5 Distribución de frecuencias | Introducción al Análisis de Datos" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="estructuras-de-datos.html">
-<link rel="next" href="operaciones-basicas.html">
+<link rel="prev" href="obteniendo-datos.html">
+<link rel="next" href="final-words.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -128,7 +128,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html#datos-tabulares"><i class="fa fa-check"></i><b>4.1</b> Datos tabulares</a></li>
 </ul></li>
 <li class="part"><span><b>II Introducción al análisis estadístico</b></span></li>
-<li class="chapter" data-level="5" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html"><i class="fa fa-check"></i><b>5</b> Operaciones básicas</a></li>
+<li class="chapter" data-level="5" data-path="distribucion-de-frecuencias.html"><a href="distribucion-de-frecuencias.html"><i class="fa fa-check"></i><b>5</b> Distribución de frecuencias</a></li>
+<li class="part"><span><b>III Parte II</b></span></li>
+<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -149,50 +152,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="obteniendo-datos" class="section level1">
-<h1><span class="header-section-number">Capítulo 4</span> Obteniendo datos</h1>
-<p>Existen una enorme cantidad de funciones para abrir archivos de diversos tipos.</p>
-<div id="datos-tabulares" class="section level2">
-<h2><span class="header-section-number">4.1</span> Datos tabulares</h2>
-<p>Un formato estándar y abierto para guardar información en forma de tablas son archivos separados por comas (.csv) Para leer estos datos podemos utilizar:</p>
-<ul>
-<li><code>read.tables()</code></li>
-<li><code>read.csv()</code></li>
-</ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Leemos los datos desde un archivo y los guardamos en la variable base
-base &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/titanic.csv&quot;</span>)
+<div id="distribucion-de-frecuencias" class="section level1">
+<h1><span class="header-section-number">Capítulo 5</span> Distribución de frecuencias</h1>
 
-## Imprimimos las primeras 5 filas de la base
-<span class="kw">head</span>(base)[, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</code></pre></div>
-<pre><code>##   PassengerId Survived Pclass
-## 1           1        0      3
-## 2           2        1      1
-## 3           3        1      3
-## 4           4        1      1
-## 5           5        0      3
-## 6           6        0      3
-##                                                  Name
-## 1                             Braund, Mr. Owen Harris
-## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)
-## 3                              Heikkinen, Miss. Laina
-## 4        Futrelle, Mrs. Jacques Heath (Lily May Peel)
-## 5                            Allen, Mr. William Henry
-## 6                                    Moran, Mr. James</code></pre>
-<p>También podemos leer datos directamente de la web</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Datos Abiertos
-## Consulta de Medicamentos esenciales
-salud &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;http://datos.salud.gob.ar/dataset/5fcacd04-58eb-4b43-89a0-55231c58f1b4/resource/ed9e418f-9858-44df-8ce7-a74fde738684/download/consultas-medicamentos-esenciales.csv&quot;</span>)
-
-<span class="kw">head</span>(salud)</code></pre></div>
-<pre><code>##   provincia_id                  provincia_desc      año consultas_cantidad
-## 1            2 Ciudad Autonoma de Buenos Aires año_2003             559785
-## 2            6                    Buenos Aires año_2003            9544395
-## 3           10                       Catamarca año_2003             372199
-## 4           14                         Cordoba año_2003            3491961
-## 5           18                      Corrientes año_2003             764887
-## 6           22                           Chaco año_2003            1476825</code></pre>
-
-</div>
 </div>
 
 
@@ -202,8 +164,8 @@ salud &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class
           </div>
         </div>
       </div>
-<a href="estructuras-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="operaciones-basicas.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="obteniendo-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="final-words.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -233,7 +195,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/03-obteniendo_datos.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-distribucion_frecuencia.Rmd",
 "text": "Edit"
 },
 "history": {

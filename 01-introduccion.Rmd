@@ -92,6 +92,20 @@ y <- "casa"
 class(y)
 ```
 
+## Factores
+Los factores son básicamente objetos de clase entero, pero con etiquetas. Son datos categóricos y pueden estar ordenados o no.
+
+```{r}
+f <- factor(c("si", "si", "no", "si"))
+f
+
+f <- factor(c("bajo", "bajo", "medio", "alto"),
+            levels = c("bajo", "medio", "alto"),
+            ordered = TRUE)
+f
+```
+
+
 ## Cómo buscar ayuda
 
 R tiene un sistema de ayuda integrado. Si queremos saber para qué sirve un comando determinado o como pasarle los argumentos, podemos utilizar `?` o `help()`. Supongamos que queremos saber cómo se utiliza la función `sum()`

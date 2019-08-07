@@ -32,19 +32,6 @@ x <- list("peso", 2, "altura", 3, TRUE)
 x
 ```
 
-## Factores
-Los factores son básicamente objetos de clase entero, pero con etiquetas. Son datos categóricos y pueden estar ordenados o no.
-
-```{r}
-f <- factor(c("si", "si", "no", "si"))
-f
-
-f <- factor(c("bajo", "bajo", "medio", "alto"),
-            levels = c("bajo", "medio", "alto"),
-            ordered = TRUE)
-```
-
-
 ## Matrices
 Las matrices son vectores, pero con un atributo de dimensión. La dimensión en sí es un vector de enteros de largo 2.
 

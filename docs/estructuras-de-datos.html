@@ -24,7 +24,7 @@
 <meta name="author" content="Matías Alfonso" />
 
 
-<meta name="date" content="2019-08-06" />
+<meta name="date" content="2019-08-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -114,27 +114,21 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.2" data-path="primeros-pasos.html"><a href="primeros-pasos.html#working-directory"><i class="fa fa-check"></i><b>2.2</b> Working directory</a></li>
 <li class="chapter" data-level="2.3" data-path="primeros-pasos.html"><a href="primeros-pasos.html#comentarios"><i class="fa fa-check"></i><b>2.3</b> Comentarios</a></li>
 <li class="chapter" data-level="2.4" data-path="primeros-pasos.html"><a href="primeros-pasos.html#objetos-basicos-en-r"><i class="fa fa-check"></i><b>2.4</b> Objetos básicos en R</a></li>
-<li class="chapter" data-level="2.5" data-path="primeros-pasos.html"><a href="primeros-pasos.html#como-buscar-ayuda"><i class="fa fa-check"></i><b>2.5</b> Cómo buscar ayuda</a></li>
+<li class="chapter" data-level="2.5" data-path="primeros-pasos.html"><a href="primeros-pasos.html#factores"><i class="fa fa-check"></i><b>2.5</b> Factores</a></li>
+<li class="chapter" data-level="2.6" data-path="primeros-pasos.html"><a href="primeros-pasos.html#como-buscar-ayuda"><i class="fa fa-check"></i><b>2.6</b> Cómo buscar ayuda</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3</b> Estructuras de datos</a><ul>
 <li class="chapter" data-level="3.0.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.0.1</b> Vectores</a></li>
 <li class="chapter" data-level="3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.1</b> Listas</a></li>
-<li class="chapter" data-level="3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#factores"><i class="fa fa-check"></i><b>3.2</b> Factores</a></li>
-<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#matrices"><i class="fa fa-check"></i><b>3.3</b> Matrices</a></li>
-<li class="chapter" data-level="3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data frames</a></li>
-<li class="chapter" data-level="3.5" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#valores-faltantes"><i class="fa fa-check"></i><b>3.5</b> Valores faltantes</a></li>
+<li class="chapter" data-level="3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#matrices"><i class="fa fa-check"></i><b>3.2</b> Matrices</a></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3</b> Data frames</a></li>
+<li class="chapter" data-level="3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#valores-faltantes"><i class="fa fa-check"></i><b>3.4</b> Valores faltantes</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html"><i class="fa fa-check"></i><b>4</b> Obteniendo datos</a><ul>
 <li class="chapter" data-level="4.1" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html#datos-tabulares"><i class="fa fa-check"></i><b>4.1</b> Datos tabulares</a></li>
 </ul></li>
 <li class="part"><span><b>II Introducción al análisis estadístico</b></span></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
-</ul></li>
-<li class="part"><span><b>III Parte II</b></span></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="5" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html"><i class="fa fa-check"></i><b>5</b> Operaciones básicas</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -194,19 +188,8 @@ x</code></pre></div>
 ## [[5]]
 ## [1] TRUE</code></pre>
 </div>
-<div id="factores" class="section level2">
-<h2><span class="header-section-number">3.2</span> Factores</h2>
-<p>Los factores son básicamente objetos de clase entero, pero con etiquetas. Son datos categóricos y pueden estar ordenados o no.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;si&quot;</span>, <span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;si&quot;</span>))
-f</code></pre></div>
-<pre><code>## [1] si si no si
-## Levels: no si</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">f &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="kw">c</span>(<span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>),
-            <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>),
-            <span class="dt">ordered =</span> <span class="ot">TRUE</span>)</code></pre></div>
-</div>
 <div id="matrices" class="section level2">
-<h2><span class="header-section-number">3.3</span> Matrices</h2>
+<h2><span class="header-section-number">3.2</span> Matrices</h2>
 <p>Las matrices son vectores, pero con un atributo de dimensión. La dimensión en sí es un vector de enteros de largo 2.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)
 m</code></pre></div>
@@ -219,7 +202,7 @@ m</code></pre></div>
 <p>Al igual que los vectores, contienen objetos de la misma clase. Las matrices tienen algunas propiedades matemáticas interesantes, pues se pueden realizar operaciones especiales con ellas, por ejemplo, se pueden sumar o multiplicar.</p>
 </div>
 <div id="data-frames" class="section level2">
-<h2><span class="header-section-number">3.4</span> Data frames</h2>
+<h2><span class="header-section-number">3.3</span> Data frames</h2>
 <p>Los data frames son datos tabulados. Son tablas, donde cada columna puede ser de una clase diferente. Es un objeto particularmente útil para el análisis estadístico.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data.frame</span>(<span class="dt">Id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),
            <span class="dt">Nombre =</span> <span class="kw">c</span>(<span class="st">&quot;Juan&quot;</span>, <span class="st">&quot;Carlos&quot;</span>, <span class="st">&quot;Ramona&quot;</span>),
@@ -230,7 +213,7 @@ m</code></pre></div>
 ## 3  3 Ramona   1.65</code></pre>
 </div>
 <div id="valores-faltantes" class="section level2">
-<h2><span class="header-section-number">3.5</span> Valores faltantes</h2>
+<h2><span class="header-section-number">3.4</span> Valores faltantes</h2>
 <p>Existen dos tipos de valores faltantes en R:</p>
 <ul>
 <li><code>NA</code></li>
