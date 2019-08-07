@@ -118,11 +118,11 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.6" data-path="primeros-pasos.html"><a href="primeros-pasos.html#como-buscar-ayuda"><i class="fa fa-check"></i><b>2.6</b> Cómo buscar ayuda</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3</b> Estructuras de datos</a><ul>
-<li class="chapter" data-level="3.0.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.0.1</b> Vectores</a></li>
-<li class="chapter" data-level="3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.1</b> Listas</a></li>
-<li class="chapter" data-level="3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#matrices"><i class="fa fa-check"></i><b>3.2</b> Matrices</a></li>
-<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.3</b> Data frames</a></li>
-<li class="chapter" data-level="3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#valores-faltantes"><i class="fa fa-check"></i><b>3.4</b> Valores faltantes</a></li>
+<li class="chapter" data-level="3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#matrices"><i class="fa fa-check"></i><b>3.3</b> Matrices</a></li>
+<li class="chapter" data-level="3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data frames</a></li>
+<li class="chapter" data-level="3.5" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#valores-faltantes"><i class="fa fa-check"></i><b>3.5</b> Valores faltantes</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html"><i class="fa fa-check"></i><b>4</b> Obteniendo datos</a><ul>
 <li class="chapter" data-level="4.1" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html#datos-tabulares"><i class="fa fa-check"></i><b>4.1</b> Datos tabulares</a></li>
@@ -151,8 +151,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="estructuras-de-datos" class="section level1">
 <h1><span class="header-section-number">Capítulo 3</span> Estructuras de datos</h1>
-<div id="vectores" class="section level3">
-<h3><span class="header-section-number">3.0.1</span> Vectores</h3>
+<div id="vectores" class="section level2">
+<h2><span class="header-section-number">3.1</span> Vectores</h2>
 <p>La forma más elemental de almacenar datos en R es en un vector. Un <strong>vector</strong> es una concatenación de objetos del mismo tipo. Podemos utilizar la función <code>c()</code> para crear vectores.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="fl">2.5</span>)
 x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">FALSE</span>)
@@ -169,7 +169,7 @@ x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE<
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 </div>
 <div id="listas" class="section level2">
-<h2><span class="header-section-number">3.1</span> Listas</h2>
+<h2><span class="header-section-number">3.2</span> Listas</h2>
 <p>Las listas también son una concatenación de elementos, pero pueden contener elementos de diferente clase. Para crear una lista, podemos utilizar <code>list()</code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="st">&quot;peso&quot;</span>, <span class="dv">2</span>, <span class="st">&quot;altura&quot;</span>, <span class="dv">3</span>, <span class="ot">TRUE</span>)
 x</code></pre></div>
@@ -189,7 +189,7 @@ x</code></pre></div>
 ## [1] TRUE</code></pre>
 </div>
 <div id="matrices" class="section level2">
-<h2><span class="header-section-number">3.2</span> Matrices</h2>
+<h2><span class="header-section-number">3.3</span> Matrices</h2>
 <p>Las matrices son vectores, pero con un atributo de dimensión. La dimensión en sí es un vector de enteros de largo 2.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>, <span class="dt">nrow =</span> <span class="dv">3</span>)
 m</code></pre></div>
@@ -202,7 +202,7 @@ m</code></pre></div>
 <p>Al igual que los vectores, contienen objetos de la misma clase. Las matrices tienen algunas propiedades matemáticas interesantes, pues se pueden realizar operaciones especiales con ellas, por ejemplo, se pueden sumar o multiplicar.</p>
 </div>
 <div id="data-frames" class="section level2">
-<h2><span class="header-section-number">3.3</span> Data frames</h2>
+<h2><span class="header-section-number">3.4</span> Data frames</h2>
 <p>Los data frames son datos tabulados. Son tablas, donde cada columna puede ser de una clase diferente. Es un objeto particularmente útil para el análisis estadístico.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data.frame</span>(<span class="dt">Id =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),
            <span class="dt">Nombre =</span> <span class="kw">c</span>(<span class="st">&quot;Juan&quot;</span>, <span class="st">&quot;Carlos&quot;</span>, <span class="st">&quot;Ramona&quot;</span>),
@@ -213,7 +213,7 @@ m</code></pre></div>
 ## 3  3 Ramona   1.65</code></pre>
 </div>
 <div id="valores-faltantes" class="section level2">
-<h2><span class="header-section-number">3.4</span> Valores faltantes</h2>
+<h2><span class="header-section-number">3.5</span> Valores faltantes</h2>
 <p>Existen dos tipos de valores faltantes en R:</p>
 <ul>
 <li><code>NA</code></li>
