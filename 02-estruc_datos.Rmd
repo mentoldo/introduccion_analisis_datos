@@ -1,6 +1,6 @@
 # Estructuras de datos
 
-### Vectores
+## Vectores
 
 La forma más elemental de almacenar datos en R es en un vector. Un **vector** es una concatenación de objetos del mismo tipo. Podemos utilizar la función `c()` para crear vectores.
 
