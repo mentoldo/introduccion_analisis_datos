@@ -1,0 +1,15 @@
+Ministerio de Salud de la Nación		INDEC
+
+Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas - Año de referencia 2011
+
+
+ACLARACIÓN PARA LA UTILIZACIÓN DE LA BASE DE DATOS DE USUARIO:
+
+- El archivo está en formato texto (.txt). 
+- En el primer renglón están los nombres de los campos. 
+- Los campos están separados por el caracter "pipe" (alt+179). 
+- Los decimales están separados por punto (.), asegúrese de que así figure en su configuración regional.
+
+
+
+

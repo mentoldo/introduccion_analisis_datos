@@ -1,0 +1,20 @@
+# Operaciones básicas
+
+## Subsetting. Selección de elementos.
+
+Podemos seleccionar elementos o subconjuntos específicos de un objeto de R.
+
+### Vectores
+```{r}
+## Creamos un vector con las primeras 10 letras del abecedario.
+letras <- letters[1:10]
+
+letras
+
+## Por posición
+letters[2]
+letters[2:3]
+```
+
+### Matrices
+

@@ -10,21 +10,42 @@ Para leer estos datos podemos utilizar:
 * `read.tables()`
 * `read.csv()`
 
+Podemos descargar la base de datos del Titanic del siguiente link [titanic.csv](../data/titanic.csv). Descargamos y colocamos el archivo en una carpeta `data`, dentro del directorio de trabajo:
+
 ```{r}
 ## Leemos los datos desde un archivo y los guardamos en la variable base
 base <- read.csv("data/titanic.csv")
 
 ## Imprimimos las primeras 5 filas de la base
-head(base)[, 1:4]
+head(base)[, 1:3]
+
 ```
 
 También podemos leer datos directamente de la web
 
 ```{r}
 ## Datos Abiertos
-## Consulta de Medicamentos esenciales
-salud <- read.csv("http://datos.salud.gob.ar/dataset/5fcacd04-58eb-4b43-89a0-55231c58f1b4/resource/ed9e418f-9858-44df-8ce7-a74fde738684/download/consultas-medicamentos-esenciales.csv")
+## Cantidad de consultas médicas y odontológicas en centros de Salud del Primer nivel 2003 - 2019.
+consultas <- read.csv("http://datos.salud.gob.ar/dataset/5fcacd04-58eb-4b43-89a0-55231c58f1b4/resource/ed9e418f-9858-44df-8ce7-a74fde738684/download/consultas-medicamentos-esenciales.csv")
 
-head(salud)
+
+head(consultas)
+
+## Recetas de medicamentos escenciales 2003-2019
+recetas <- read.csv("http://datos.salud.gob.ar/dataset/dff3bf69-3514-42a3-a2aa-041495895ab2/resource/3b1a2d9e-ac15-484c-aacf-3f3ce79729af/download/recetas-medicamentos-esenciales.csv")
 ```
+
+### Excel
+
+Podemos leer archivos Excel importando la librería `readxl`
+
+```{r}
+library(readxl)
+
+## Excel
+memoria <- read_xls("./data/EXP1.xls")
+
+head(memoria)[1:3]
+```
+
 

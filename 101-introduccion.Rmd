@@ -1,0 +1,25 @@
+# (PART) Introducción al análisis estadístico {-}
+
+# Introducción
+
+La estadística sirve para resumir la información cuando trabajamos con muchos datos. Podemos hacer una división entre:
+
+* Estadística descriptiva  
+* Estadística inferencial
+
+En la **estadística descriptiva** abordaremos diferentes técnicas que nos permitan resumir un conjunto de datos datos. Cuando trabajemos con **estadística inferencial**, intentaremos estimar parámetros o medidas de variables de una **población** a partir de una **muestra**.
+
+
+## Datos primarios y secundarios
+
+* **Datos primarios**: Es el registro primitivo de la información. Son tablas de doble entrada en el que cada **fila** representa una **unidad de observación** y cada **columna** una **variable**.
+
+* **Datos secundarios**: Implican algún procesamiento de los datos primarios. Podemos incluir aquí las tablas de distribución de frecuencia y las tablas cruzadas o tablas de contingencia.
+
+## Resumen de la información
+
+Resumiremos la infomación a través de:
+
+* Tablas
+* Gráficos
+* Medidas de resumen (estadísticos).

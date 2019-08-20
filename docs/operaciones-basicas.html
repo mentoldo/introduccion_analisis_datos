@@ -24,7 +24,7 @@
 <meta name="author" content="Matías Alfonso" />
 
 
-<meta name="date" content="2019-08-07" />
+<meta name="date" content="2019-08-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="obteniendo-datos.html">
-
+<link rel="next" href="introduccion.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -100,7 +100,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Análisis de Datos con R</a></li>
+<li><a href="./index.html">Análisis de Datos con R</a></li>
 
 <li class="divider"></li>
 <li class="part"><span><b>I Programación en R</b></span></li>
@@ -125,10 +125,28 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.5" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#valores-faltantes"><i class="fa fa-check"></i><b>3.5</b> Valores faltantes</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html"><i class="fa fa-check"></i><b>4</b> Obteniendo datos</a><ul>
-<li class="chapter" data-level="4.1" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html#datos-tabulares"><i class="fa fa-check"></i><b>4.1</b> Datos tabulares</a></li>
+<li class="chapter" data-level="4.1" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html#datos-tabulares"><i class="fa fa-check"></i><b>4.1</b> Datos tabulares</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html#excel"><i class="fa fa-check"></i><b>4.1.1</b> Excel</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html"><i class="fa fa-check"></i><b>5</b> Operaciones básicas</a><ul>
+<li class="chapter" data-level="5.1" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#subsetting.-seleccion-de-elementos."><i class="fa fa-check"></i><b>5.1</b> Subsetting. Selección de elementos.</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#vectores-1"><i class="fa fa-check"></i><b>5.1.1</b> Vectores</a></li>
+<li class="chapter" data-level="5.1.2" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#matrices-1"><i class="fa fa-check"></i><b>5.1.2</b> Matrices</a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Introducción al análisis estadístico</b></span></li>
-<li class="chapter" data-level="5" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html"><i class="fa fa-check"></i><b>5</b> Operaciones básicas</a></li>
+<li class="chapter" data-level="6" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>6</b> Introducción</a><ul>
+<li class="chapter" data-level="6.1" data-path="introduccion.html"><a href="introduccion.html#datos-primarios-y-secundarios"><i class="fa fa-check"></i><b>6.1</b> Datos primarios y secundarios</a></li>
+<li class="chapter" data-level="6.2" data-path="introduccion.html"><a href="introduccion.html#resumen-de-la-informacion"><i class="fa fa-check"></i><b>6.2</b> Resumen de la información</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="bases-de-datos.html"><a href="bases-de-datos.html"><i class="fa fa-check"></i><b>7</b> Bases de datos</a><ul>
+<li class="chapter" data-level="7.1" data-path="bases-de-datos.html"><a href="bases-de-datos.html#enprecosp"><i class="fa fa-check"></i><b>7.1</b> EnPreCoSP</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>8</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="8.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#frecuencias-absolutas-simples"><i class="fa fa-check"></i><b>8.1</b> Frecuencias absolutas simples</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="operaciones-basicas-1.html"><a href="operaciones-basicas-1.html"><i class="fa fa-check"></i><b>9</b> Operaciones básicas</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -151,25 +169,38 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="operaciones-basicas" class="section level1">
 <h1><span class="header-section-number">Capítulo 5</span> Operaciones básicas</h1>
-<p>Comencemos calculando una proporción. Supongamos que realizamos 10 mediciones para la variables rendimiento escolar. La variable puede tomar tres valores: bajo, medio y alto.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">rendimiento &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">2</span>)
+<div id="subsetting.-seleccion-de-elementos." class="section level2">
+<h2><span class="header-section-number">5.1</span> Subsetting. Selección de elementos.</h2>
+<p>Podemos seleccionar elementos o subconjuntos específicos de un objeto de R.</p>
+<div id="vectores-1" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Vectores</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Creamos un vector con las primeras 10 letras del abecedario.
+letras &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]
 
-rendimiento &lt;-<span class="st"> </span><span class="kw">factor</span>(rendimiento,
-                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;bajo&quot;</span>, <span class="st">&quot;medio&quot;</span>, <span class="st">&quot;alto&quot;</span>),
-                      <span class="dt">ordered =</span> <span class="ot">TRUE</span>)
-
-rendimiento</code></pre></div>
-<pre><code>##  [1] bajo  alto  bajo  medio medio bajo  medio medio alto  medio
-## Levels: bajo &lt; medio &lt; alto</code></pre>
+letras</code></pre></div>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Por posición
+letters[<span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] &quot;b&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">letters[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
+<pre><code>## [1] &quot;b&quot; &quot;c&quot;</code></pre>
+</div>
+<div id="matrices-1" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Matrices</h3>
 
 </div>
+</div>
+</div>
+
+
+
             </section>
 
           </div>
         </div>
       </div>
-<a href="obteniendo-datos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="obteniendo-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="introduccion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -199,7 +230,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-distribucion_frecuencia.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-operaciones_basicas.Rmd",
 "text": "Edit"
 },
 "history": {

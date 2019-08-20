@@ -1,0 +1,25 @@
+# Distribuciones de frecuencia
+
+## Frecuencias absolutas simples
+
+Es la cantidad de casos que asumen determinado valor de variable.
+
+```{r}
+
+```
+
+
+# Operaciones básicas
+
+Comencemos calculando una proporción. Supongamos que realizamos 10 mediciones para la variables rendimiento escolar. La variable puede tomar tres valores: bajo, medio y alto.
+
+```{r}
+rendimiento <- c(1, 3, 1, 2, 2, 1, 2, 2, 3, 2)
+
+rendimiento <- factor(rendimiento,
+                      labels = c("bajo", "medio", "alto"),
+                      ordered = TRUE)
+
+rendimiento
+```
+

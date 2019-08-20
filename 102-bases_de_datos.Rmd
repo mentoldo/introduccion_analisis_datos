@@ -1,0 +1,14 @@
+# Bases de datos
+
+Para trabajar en las siguientes unidades haremos uso de las siguientes bases de datos:
+
+## EnPreCoSP
+Base de Datos de consumo de sustancias psicoactivas. Indec
+Disponible en: "https://www.indec.gob.ar/ftp/cuadros/menusuperior/enprecosp/bases_enprecosp2011.rar"
+
+Agregar un '|' en la última columna de la primer file para poder leerlo correctamente. Datos corregidos: 
+
+```{r}
+enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
+```
+

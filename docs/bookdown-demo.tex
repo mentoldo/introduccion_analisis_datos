@@ -130,7 +130,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-08-07}
+    \date{2019-08-20}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -640,13 +640,17 @@ podemos utilizar:
   \texttt{read.csv()}
 \end{itemize}
 
+Podemos descargar la base de datos del Titanic del siguiente link
+\href{../data/titanic.csv}{titanic.csv}. Descargamos y colocamos el
+archivo en una carpeta \texttt{data}, dentro del directorio de trabajo:
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{## Leemos los datos desde un archivo y los guardamos en la variable base}
 \NormalTok{base <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"data/titanic.csv"}\NormalTok{)}
 
 \NormalTok{## Imprimimos las primeras 5 filas de la base}
-\KeywordTok{head}\NormalTok{(base)[, }\DecValTok{1}\OperatorTok{:}\DecValTok{4}\NormalTok{]}
+\KeywordTok{head}\NormalTok{(base)[, }\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
 \end{Highlighting}
 \end{Shaded}
 
@@ -658,13 +662,6 @@ podemos utilizar:
 ## 4           4        1      1
 ## 5           5        0      3
 ## 6           6        0      3
-##                                                  Name
-## 1                             Braund, Mr. Owen Harris
-## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer)
-## 3                              Heikkinen, Miss. Laina
-## 4        Futrelle, Mrs. Jacques Heath (Lily May Peel)
-## 5                            Allen, Mr. William Henry
-## 6                                    Moran, Mr. James
 \end{verbatim}
 
 También podemos leer datos directamente de la web
@@ -672,10 +669,11 @@ También podemos leer datos directamente de la web
 \begin{Shaded}
 \begin{Highlighting}[]
 \NormalTok{## Datos Abiertos}
-\NormalTok{## Consulta de Medicamentos esenciales}
-\NormalTok{salud <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"http://datos.salud.gob.ar/dataset/5fcacd04-58eb-4b43-89a0-55231c58f1b4/resource/ed9e418f-9858-44df-8ce7-a74fde738684/download/consultas-medicamentos-esenciales.csv"}\NormalTok{)}
+\NormalTok{## Cantidad de consultas médicas y odontológicas en centros de Salud del Primer nivel 2003 - 2019.}
+\NormalTok{consultas <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"http://datos.salud.gob.ar/dataset/5fcacd04-58eb-4b43-89a0-55231c58f1b4/resource/ed9e418f-9858-44df-8ce7-a74fde738684/download/consultas-medicamentos-esenciales.csv"}\NormalTok{)}
 
-\KeywordTok{head}\NormalTok{(salud)}
+
+\KeywordTok{head}\NormalTok{(consultas)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -689,10 +687,166 @@ También podemos leer datos directamente de la web
 ## 6           22                           Chaco año_2003            1476825
 \end{verbatim}
 
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Recetas de medicamentos escenciales 2003-2019}
+\NormalTok{recetas <-}\StringTok{ }\KeywordTok{read.csv}\NormalTok{(}\StringTok{"http://datos.salud.gob.ar/dataset/dff3bf69-3514-42a3-a2aa-041495895ab2/resource/3b1a2d9e-ac15-484c-aacf-3f3ce79729af/download/recetas-medicamentos-esenciales.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Excel}\label{excel}
+
+Podemos leer archivos Excel importando la librería \texttt{readxl}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(readxl)}
+
+\NormalTok{## Excel}
+\NormalTok{memoria <-}\StringTok{ }\KeywordTok{read_xls}\NormalTok{(}\StringTok{"./data/EXP1.xls"}\NormalTok{)}
+
+\KeywordTok{head}\NormalTok{(memoria)[}\DecValTok{1}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   Sujeto  NPD1  NPD2
+##    <dbl> <dbl> <dbl>
+## 1      1    17    16
+## 2      4     9    10
+## 3      7    11    15
+## 4     10    13    14
+## 5     13    11    17
+## 6     16    12    16
+\end{verbatim}
+
+\chapter{Operaciones básicas}\label{operaciones-basicas}
+
+\section{Subsetting. Selección de
+elementos.}\label{subsetting.-seleccion-de-elementos.}
+
+Podemos seleccionar elementos o subconjuntos específicos de un objeto de
+R.
+
+\subsection{Vectores}\label{vectores-1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Creamos un vector con las primeras 10 letras del abecedario.}
+\NormalTok{letras <-}\StringTok{ }\NormalTok{letters[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+
+\NormalTok{letras}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "a" "b" "c" "d" "e" "f" "g" "h" "i" "j"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Por posición}
+\NormalTok{letters[}\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "b"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letters[}\DecValTok{2}\OperatorTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "b" "c"
+\end{verbatim}
+
+\subsection{Matrices}\label{matrices-1}
+
 \part{Introducción al análisis
 estadístico}\label{part-introduccion-al-analisis-estadistico}
 
-\chapter{Operaciones básicas}\label{operaciones-basicas}
+\chapter{Introducción}\label{introduccion}
+
+La estadística sirve para resumir la información cuando trabajamos con
+muchos datos. Podemos hacer una división entre:
+
+\begin{itemize}
+\tightlist
+\item
+  Estadística descriptiva\\
+\item
+  Estadística inferencial
+\end{itemize}
+
+En la \textbf{estadística descriptiva} abordaremos diferentes técnicas
+que nos permitan resumir un conjunto de datos datos. Cuando trabajemos
+con \textbf{estadística inferencial}, intentaremos estimar parámetros o
+medidas de variables de una \textbf{población} a partir de una
+\textbf{muestra}.
+
+\section{Datos primarios y
+secundarios}\label{datos-primarios-y-secundarios}
+
+\begin{itemize}
+\item
+  \textbf{Datos primarios}: Es el registro primitivo de la información.
+  Son tablas de doble entrada en el que cada \textbf{fila} representa
+  una \textbf{unidad de observación} y cada \textbf{columna} una
+  \textbf{variable}.
+\item
+  \textbf{Datos secundarios}: Implican algún procesamiento de los datos
+  primarios. Podemos incluir aquí las tablas de distribución de
+  frecuencia y las tablas cruzadas o tablas de contingencia.
+\end{itemize}
+
+\section{Resumen de la información}\label{resumen-de-la-informacion}
+
+Resumiremos la infomación a través de:
+
+\begin{itemize}
+\tightlist
+\item
+  Tablas
+\item
+  Gráficos
+\item
+  Medidas de resumen (estadísticos).
+\end{itemize}
+
+\chapter{Bases de datos}\label{bases-de-datos}
+
+Para trabajar en las siguientes unidades haremos uso de las siguientes
+bases de datos:
+
+\section{EnPreCoSP}\label{enprecosp}
+
+Base de Datos de consumo de sustancias psicoactivas. Indec Disponible
+en:
+``\url{https://www.indec.gob.ar/ftp/cuadros/menusuperior/enprecosp/bases_enprecosp2011.rar}''
+
+Agregar un `\textbar{}' en la última columna de la primer file para
+poder leerlo correctamente. Datos corregidos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{enprecosp <-}\StringTok{ }\KeywordTok{read.table}\NormalTok{(}\StringTok{"data/enprecosp_2011.txt"}\NormalTok{, }\DataTypeTok{header =} \OtherTok{TRUE}\NormalTok{, }\DataTypeTok{sep =} \StringTok{"|"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\chapter{Distribuciones de
+frecuencia}\label{distribuciones-de-frecuencia}
+
+\section{Frecuencias absolutas
+simples}\label{frecuencias-absolutas-simples}
+
+Es la cantidad de casos que asumen determinado valor de variable.
+
+\chapter{Operaciones básicas}\label{operaciones-basicas-1}
 
 Comencemos calculando una proporción. Supongamos que realizamos 10
 mediciones para la variables rendimiento escolar. La variable puede
