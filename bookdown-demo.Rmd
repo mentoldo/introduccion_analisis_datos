@@ -1,0 +1,406 @@
+--- 
+title: "Introducción al Análisis de Datos"
+author: "Matías Alfonso"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: https://github.com/mentoldo/introduccion_analisis_datos
+description: "This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook."
+lang: es
+---
+
+# (PART) Programación en R {-}
+
+# Preliminares {#prelim}
+
+R es un lenguaje de programación desarrollado inicialmente por Ross Ihaka y Robert Gentleman en el departamento de Estadística de la Universidad de Auckland en 1993. Está orientado específicamente con un enfoque al análisis estadístico.  
+R se desarrolla a partir de un lenguaje denominado S, desarrollado por John Chambers en 1976, disponible a partir del software comercial S-PLUS.  
+Es un lenguaje interactivo, permite la ejecución de instrucciónes en líneas de comando en una consola. 
+
+## ¿Por qué R?
+
+R puede ser ejecutado en múltiples plataformas y en la gran mayoría de los sistemas operativos. Puede ser ejecutado en tablets, teléfonos o computadoras.
+La utilización de scripts permite compartir fácilmente los análisis con los colegas, así como asegurar la reproductibilidad de los resultados. Todo lo que realizamos mediante una interfaz gráfica con el mouse no deja registros de nuestro trabajo e impide que podamos repasar nuestro trabajo para corregir errores.  
+La versatilidad y la potencia que otorga un lenguaje de programación es mucho mayor que la que podemos obtener con softwares estadísticos de interfaz gráfica.   
+La comunidad de usuarios y desarrolladores de R está en constante crecimiento en los últimos años. Hay una enorme cantidad de gente realizando nuevos desarrollos en R cada día, que están a la vanguardia de la ciencia computacional y estadística.
+
+## Software Libre
+
+La mayor ventaja que tiene R con respecto a otros softwares de análisis estadístico es que es un software libre. ¿Qué quiere decir eso? Por un lado, que es gratuito. Por otro, que el código fuente con el que R fue desarrollado está abierto, se puede descargar y está diponible online.
+Actualmente el copyrigth de R lo posee la [R Foundation](https://www.r-project.org/foundation/). R forma parte del [sistema GNU](https://es.wikipedia.org/wiki/GNU), desarrollado por la [Free Software Foundation](. De acuerdo a la [Free Software Foundation](https://es.wikipedia.org/wiki/Free_Software_Foundation), con el software libre se garantizan cuatro libertades fundamentales:
+
+* La libertad de ejecutar el programa para cualquier propósito. (Libertad 0)
+* La libertad de estudiar cómo el programa funciona y adaptarlo a tus propias necesidades. (Libertad 1)
+* La libertad de redistribuir copias de manera que puedas ayudar a alguien. (Libertad 2)
+* La libertad de mejorar el programa, y liberar tus mejoras al público, de manera que se beneficie toda la comunidad. (Libertad 3)
+
+## Sistema de Paquetes
+
+El sistema de funcionalidades de R se encuentra agrupado en paquetes. La mayor parte de los paquetes se encuentran disponibles en [Comprehensive R Archive Network (CRAN)](https://cran.r-project.org/). Hay un conjunto de paquetes principales, de base, que incluye todos los paquetes que se instalan por defecto cuando instalamos R.
+Luego, tenemos un montón de paquetes con funcionalidades específicas que podemos instalar en función de nuestras necesidades.
+
+```{r include=FALSE}
+# automatically create a bib database for R packages
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown'
+), 'packages.bib')
+```
+
+<!--chapter:end:index.Rmd-->
+
+# Primeros pasos
+
+## Asignación de datos y evaluación.
+
+R es un *lenguaje interpretado*. Esto quiere decir que le podemos ir pasando instrucciones y el programama las irá interpretando. Cuando ejecutamos el programa, nos encontramos con el prompt a la espera de intrucciones:
+
+```
+>
+```
+
+Una de las operaciones más sencillas que podemos realizar es la asignación de valores a las variables. El operador de asignación es `<-`.
+
+```{r}
+x <- 1
+print(x)
+x
+texto <- "hola mundo"
+texto
+```
+
+Podemos imprimir el valor de una variable con la función `print()` o directamente escribiendo la variable.
+
+Tenemos dos formas de interactuar con R:
+
+- Tipear directamente los comandos en el prompt y ejecutarlos.
+- Escribir un archivo de texto con todas las intrucciones y luego ejecutarlo. Este archivo se denomina script.
+
+## Working directory
+
+Lo primero que debemos hacer cuando comenzamos a trabajar en R es configurar el directorio de trabajo. Una buena costumbre es crear un directorio nuevo de trabajo cuando comenzamos un proyecto nuevo. Luego configuramos esa carpeta como directorio de trabajo. Colocamos allí todos los archivos vinculados a ese proyecto. Para determinar en qué directorio estamos parados, podemos utilizar el comando `getwd()`. Para configurar el directorio de trabajo, utilizamos
+
+```
+setwd(#RUTA-A-DIRECTORIO)
+```
+
+## Comentarios
+
+Todo lo que escribamos luego de un `#` en una intrucción, no será evaluado.
+
+```{r}
+x <- c(3, 4, 5)
+## Esto no se ejecuta
+
+x
+```
+
+Ello nos permite comentar el código que escribimos, a manera de documentación.
+
+## Objetos básicos en R
+
+Casi todo lo que encontremos en R, se denominan *objetos*. Hay 5 tipos de objetos básicos o atómicos:
+
+* lógico
+* numérico
+* entero
+* complejo
+* caracter
+
+Veamos algunos ejemplos:
+
+```{r}
+## Logico
+TRUE
+FALSE
+
+## Numérico
+c(1.509, 2.859)
+
+## Enteros
+1:10
+
+## Caracter
+"casa"
+```
+
+Existen muchos más clases de objetos en R. Para averiguar de que tipo es un objeto, podemos utilizar la función `class()`
+
+```{r}
+x <- 1:10
+class(x)
+
+class("TRUE")
+```
+
+Para preguntar por la clase de un objeto, podemos utilizar el comando `class()`
+
+```{r}
+x <- 1:10
+class(x)
+
+y <- "casa"
+class(y)
+```
+
+## Factores
+Los factores son básicamente objetos de clase entero, pero con etiquetas. Son datos categóricos y pueden estar ordenados o no.
+
+```{r}
+f <- factor(c("si", "si", "no", "si"))
+f
+
+f <- factor(c("bajo", "bajo", "medio", "alto"),
+            levels = c("bajo", "medio", "alto"),
+            ordered = TRUE)
+f
+```
+
+
+## Cómo buscar ayuda
+
+R tiene un sistema de ayuda integrado. Si queremos saber para qué sirve un comando determinado o como pasarle los argumentos, podemos utilizar `?` o `help()`. Supongamos que queremos saber cómo se utiliza la función `sum()`
+
+```{r}
+help(sum)
+
+?vector
+```
+
+
+
+<!--chapter:end:01-introduccion.Rmd-->
+
+# Estructuras de datos
+
+## Vectores
+
+La forma más elemental de almacenar datos en R es en un vector. Un **vector** es una concatenación de objetos del mismo tipo. Podemos utilizar la función `c()` para crear vectores.
+
+```{r}
+x <- c(1, 2, 3, 2.5)
+x <- c(TRUE, FALSE)
+x <- c(T, F)
+x <- c("casa", "árbol", "patio")
+
+## También podemos utilizar la función vector.
+x <- vector(mode = "numeric", length = 10)
+```
+
+Si concatenamos elementos de diferente clase, R realizará una coerción automática de la clase de los objetos.
+
+```{r}
+x <- c("casa", 2) ## character
+x <- c(TRUE, 2) ## numeric
+
+class(x)
+```
+
+## Listas
+
+Las listas también son una concatenación de elementos, pero pueden contener elementos de diferente clase. Para crear una lista, podemos utilizar `list()`
+
+```{r}
+x <- list("peso", 2, "altura", 3, TRUE)
+x
+```
+
+## Matrices
+Las matrices son vectores, pero con un atributo de dimensión. La dimensión en sí es un vector de enteros de largo 2.
+
+```{r}
+m <- matrix(1:9, nrow = 3)
+m
+
+dim(m)
+```
+
+Al igual que los vectores, contienen objetos de la misma clase. Las matrices tienen algunas propiedades matemáticas interesantes, pues se pueden realizar operaciones especiales con ellas, por ejemplo, se pueden sumar o multiplicar.
+
+
+## Data frames
+
+Los data frames son datos tabulados. Son tablas, donde cada columna puede ser de una clase diferente. Es un objeto particularmente útil para el análisis estadístico.
+
+```{r}
+data.frame(Id = c(1, 2, 3),
+           Nombre = c("Juan", "Carlos", "Ramona"),
+           Altura = c(1.76, 1.80, 1.65))
+
+```
+
+
+## Valores faltantes
+Existen dos tipos de valores faltantes en R:  
+
+* `NA`
+* `NaN`
+
+<!--chapter:end:02-estruc_datos.Rmd-->
+
+# Obteniendo datos
+
+Existen una enorme cantidad de funciones para abrir archivos de diversos tipos.
+
+## Datos tabulares
+
+Un formato estándar y abierto para guardar información en forma de tablas son archivos separados por comas (.csv)
+Para leer estos datos podemos utilizar:  
+
+* `read.tables()`
+* `read.csv()`
+
+Podemos descargar la base de datos del Titanic del siguiente link [titanic.csv](../data/titanic.csv). Descargamos y colocamos el archivo en una carpeta `data`, dentro del directorio de trabajo:
+
+```{r}
+## Leemos los datos desde un archivo y los guardamos en la variable base
+base <- read.csv("data/titanic.csv")
+
+## Imprimimos las primeras 5 filas de la base
+head(base)[, 1:3]
+
+```
+
+También podemos leer datos directamente de la web
+
+```{r}
+## Datos Abiertos
+## Cantidad de consultas médicas y odontológicas en centros de Salud del Primer nivel 2003 - 2019.
+consultas <- read.csv("http://datos.salud.gob.ar/dataset/5fcacd04-58eb-4b43-89a0-55231c58f1b4/resource/ed9e418f-9858-44df-8ce7-a74fde738684/download/consultas-medicamentos-esenciales.csv")
+
+
+head(consultas)
+
+## Recetas de medicamentos escenciales 2003-2019
+recetas <- read.csv("http://datos.salud.gob.ar/dataset/dff3bf69-3514-42a3-a2aa-041495895ab2/resource/3b1a2d9e-ac15-484c-aacf-3f3ce79729af/download/recetas-medicamentos-esenciales.csv")
+```
+
+### Excel
+
+Podemos leer archivos Excel importando la librería `readxl`
+
+```{r}
+library(readxl)
+
+## Excel
+memoria <- read_xls("./data/EXP1.xls")
+
+head(memoria)[1:3]
+```
+
+
+
+<!--chapter:end:03-obteniendo_datos.Rmd-->
+
+# Operaciones básicas
+
+## Subsetting. Selección de elementos.
+
+Podemos seleccionar elementos o subconjuntos específicos de un objeto de R.
+
+### Vectores
+```{r}
+## Creamos un vector con las primeras 10 letras del abecedario.
+letras <- letters[1:10]
+
+letras
+
+## Por posición
+letters[2]
+letters[2:3]
+```
+
+### Matrices
+
+
+<!--chapter:end:04-operaciones_basicas.Rmd-->
+
+# (PART) Introducción al análisis estadístico {-}
+
+# Introducción
+
+La estadística sirve para resumir la información cuando trabajamos con muchos datos. Podemos hacer una división entre:
+
+* Estadística descriptiva  
+* Estadística inferencial
+
+En la **estadística descriptiva** abordaremos diferentes técnicas que nos permitan resumir un conjunto de datos datos. Cuando trabajemos con **estadística inferencial**, intentaremos estimar parámetros o medidas de variables de una **población** a partir de una **muestra**.
+
+
+## Datos primarios y secundarios
+
+* **Datos primarios**: Es el registro primitivo de la información. Son tablas de doble entrada en el que cada **fila** representa una **unidad de observación** y cada **columna** una **variable**.
+
+* **Datos secundarios**: Implican algún procesamiento de los datos primarios. Podemos incluir aquí las tablas de distribución de frecuencia y las tablas cruzadas o tablas de contingencia.
+
+## Resumen de la información
+
+Resumiremos la infomación a través de:
+
+* Tablas
+* Gráficos
+* Medidas de resumen (estadísticos).
+
+<!--chapter:end:101-introduccion.Rmd-->
+
+# Bases de datos
+
+Para trabajar en las siguientes unidades haremos uso de las siguientes bases de datos:
+
+## EnPreCoSP
+Base de Datos de consumo de sustancias psicoactivas. Indec
+Disponible en: "https://www.indec.gob.ar/ftp/cuadros/menusuperior/enprecosp/bases_enprecosp2011.rar"
+
+Agregar un '|' en la última columna de la primer file para poder leerlo correctamente. Datos corregidos: 
+
+Base corregida: [enprecosp](data/enprecosp_2011.txt)
+
+```{r}
+enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
+```
+
+## Memoria
+
+Base de memoria. [experimento](data/EXP1.xls)
+
+## Titanic
+
+[Titanic](data/titanic.csv)
+
+## Base prácticos
+
+[Prácticos](data/base2019.txt)
+
+<!--chapter:end:102-bases_de_datos.Rmd-->
+
+# Distribuciones de frecuencia
+
+## Frecuencias absolutas simples
+
+Es la cantidad de casos que asumen determinado valor de variable.
+
+```{r}
+
+```
+
+
+# Operaciones básicas
+
+Comencemos calculando una proporción. Supongamos que realizamos 10 mediciones para la variables rendimiento escolar. La variable puede tomar tres valores: bajo, medio y alto.
+
+```{r}
+rendimiento <- c(1, 3, 1, 2, 2, 1, 2, 2, 3, 2)
+
+rendimiento <- factor(rendimiento,
+                      labels = c("bajo", "medio", "alto"),
+                      ordered = TRUE)
+
+rendimiento
+```
+
+
+<!--chapter:end:103-distribución_frecuencia.Rmd-->
+

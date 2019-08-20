@@ -1,0 +1,20 @@
+letras<-letters[1:5]
+letras
+letras[3]
+  letras[c(2,5)]
+i<-c(2,5)
+letras[i]
+m<-matrix(1:9,nrow=3)
+m
+m[1:2,]
+lista<-list(nombre=c("Pedro","Juan","Ramona"),
+            sexo=c("Masculino","Masculino","Femenino"),
+            edad=c("25","18","23"))
+lista
+str(lista)
+lista$nombre
+lista1<-lista[1]
+lista2<-lista[[1]]
+class(lista1)
+class(lista2)
+lista3<-lista[[3]]

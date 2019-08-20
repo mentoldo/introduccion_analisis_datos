@@ -8,7 +8,20 @@ Disponible en: "https://www.indec.gob.ar/ftp/cuadros/menusuperior/enprecosp/base
 
 Agregar un '|' en la última columna de la primer file para poder leerlo correctamente. Datos corregidos: 
 
+Base corregida: [enprecosp](data/enprecosp_2011.txt)
+
 ```{r}
 enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
 ```
 
+## Memoria
+
+Base de memoria. [experimento](data/EXP1.xls)
+
+## Titanic
+
+[Titanic](data/titanic.csv)
+
+## Base prácticos
+
+[Prácticos](data/base2019.txt)
