@@ -24,7 +24,7 @@
 <meta name="author" content="Matías Alfonso" />
 
 
-<meta name="date" content="2019-08-20" />
+<meta name="date" content="2019-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -133,7 +133,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#subsetting.-seleccion-de-elementos."><i class="fa fa-check"></i><b>5.1</b> Subsetting. Selección de elementos.</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#vectores-1"><i class="fa fa-check"></i><b>5.1.1</b> Vectores</a></li>
 <li class="chapter" data-level="5.1.2" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#matrices-1"><i class="fa fa-check"></i><b>5.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="5.1.3" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#listas-1"><i class="fa fa-check"></i><b>5.1.3</b> Listas</a></li>
+<li class="chapter" data-level="5.1.4" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#data-frames-1"><i class="fa fa-check"></i><b>5.1.4</b> Data frames</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#operaciones-vectorizadas"><i class="fa fa-check"></i><b>5.2</b> Operaciones vectorizadas</a></li>
 </ul></li>
 <li class="part"><span><b>II Introducción al análisis estadístico</b></span></li>
 <li class="chapter" data-level="6" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>6</b> Introducción</a><ul>
@@ -142,6 +145,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="7" data-path="bases-de-datos.html"><a href="bases-de-datos.html"><i class="fa fa-check"></i><b>7</b> Bases de datos</a><ul>
 <li class="chapter" data-level="7.1" data-path="bases-de-datos.html"><a href="bases-de-datos.html#enprecosp"><i class="fa fa-check"></i><b>7.1</b> EnPreCoSP</a></li>
+<li class="chapter" data-level="7.2" data-path="bases-de-datos.html"><a href="bases-de-datos.html#memoria"><i class="fa fa-check"></i><b>7.2</b> Memoria</a></li>
+<li class="chapter" data-level="7.3" data-path="bases-de-datos.html"><a href="bases-de-datos.html#titanic"><i class="fa fa-check"></i><b>7.3</b> Titanic</a></li>
+<li class="chapter" data-level="7.4" data-path="bases-de-datos.html"><a href="bases-de-datos.html#base-practicos"><i class="fa fa-check"></i><b>7.4</b> Base prácticos</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>8</b> Distribuciones de frecuencia</a><ul>
 <li class="chapter" data-level="8.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#frecuencias-absolutas-simples"><i class="fa fa-check"></i><b>8.1</b> Frecuencias absolutas simples</a></li>
@@ -171,24 +177,117 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Capítulo 5</span> Operaciones básicas</h1>
 <div id="subsetting.-seleccion-de-elementos." class="section level2">
 <h2><span class="header-section-number">5.1</span> Subsetting. Selección de elementos.</h2>
-<p>Podemos seleccionar elementos o subconjuntos específicos de un objeto de R.</p>
+<p>Podemos seleccionar elementos o subconjuntos específicos de un objeto de R. Hay diferentes operadores: <code>[</code>, <code>[[</code>, <code>$</code></p>
 <div id="vectores-1" class="section level3">
 <h3><span class="header-section-number">5.1.1</span> Vectores</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Creamos un vector con las primeras 10 letras del abecedario.
 letras &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]
-
 letras</code></pre></div>
 <pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Por posición
-letters[<span class="dv">2</span>]</code></pre></div>
+letras[<span class="dv">2</span>]</code></pre></div>
 <pre><code>## [1] &quot;b&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">letters[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">letras[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</code></pre></div>
 <pre><code>## [1] &quot;b&quot; &quot;c&quot;</code></pre>
+<p>Si los elementos están etiquetados, podemos recuperar los elementos del vector por sus nombres.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">peso &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">Juan =</span> <span class="dv">70</span>, <span class="dt">Pedro =</span> <span class="dv">85</span>, <span class="dt">Ramona =</span> <span class="dv">65</span>)
+peso[<span class="st">&quot;Juan&quot;</span>]</code></pre></div>
+<pre><code>## Juan 
+##   70</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">peso[<span class="kw">c</span>(<span class="st">&quot;Juan&quot;</span>, <span class="st">&quot;Ramona&quot;</span>)]</code></pre></div>
+<pre><code>##   Juan Ramona 
+##     70     65</code></pre>
+<p>También podemos utilizar un vector lógico para recuperar elementos de un vector.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">condicion &lt;-<span class="st"> </span>peso <span class="op">&gt;</span><span class="st"> </span><span class="dv">68</span>
+condicion</code></pre></div>
+<pre><code>##   Juan  Pedro Ramona 
+##   TRUE   TRUE  FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">peso[condicion]</code></pre></div>
+<pre><code>##  Juan Pedro 
+##    70    85</code></pre>
 </div>
 <div id="matrices-1" class="section level3">
 <h3><span class="header-section-number">5.1.2</span> Matrices</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matriz &lt;-<span class="st"> </span><span class="kw">matrix</span>(letters[<span class="dv">1</span><span class="op">:</span><span class="dv">9</span>], <span class="dt">nrow =</span> <span class="dv">3</span>)
 
+## Indicamos el índice de fila y columna.
+matriz[<span class="dv">1</span>, <span class="dv">2</span>]</code></pre></div>
+<pre><code>## [1] &quot;d&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">matriz[<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,] &quot;b&quot;  &quot;e&quot; 
+## [2,] &quot;c&quot;  &quot;f&quot;</code></pre>
 </div>
+<div id="listas-1" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Listas</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">Nombre =</span> <span class="kw">c</span>(<span class="st">&quot;Juan&quot;</span>, <span class="st">&quot;Pedro&quot;</span>, <span class="st">&quot;Ramona&quot;</span>),
+              <span class="dt">Peso =</span> <span class="kw">c</span>(<span class="dv">70</span>, <span class="dv">85</span>, <span class="dv">65</span>),
+              <span class="dt">Altura =</span> <span class="kw">c</span>(<span class="fl">1.70</span>, <span class="fl">1.78</span>, <span class="fl">1.65</span>))
+
+
+## Podemos recuperar los elementos por posición o por nombre
+
+## Devuelve un objeto lista
+lista[<span class="dv">1</span>]</code></pre></div>
+<pre><code>## $Nombre
+## [1] &quot;Juan&quot;   &quot;Pedro&quot;  &quot;Ramona&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista[<span class="st">&quot;Nombre&quot;</span>]</code></pre></div>
+<pre><code>## $Nombre
+## [1] &quot;Juan&quot;   &quot;Pedro&quot;  &quot;Ramona&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Devuelve la clase del objeto seleccionado
+lista[[<span class="dv">1</span>]]</code></pre></div>
+<pre><code>## [1] &quot;Juan&quot;   &quot;Pedro&quot;  &quot;Ramona&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista[[<span class="st">&quot;Nombre&quot;</span>]]</code></pre></div>
+<pre><code>## [1] &quot;Juan&quot;   &quot;Pedro&quot;  &quot;Ramona&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lista<span class="op">$</span>Nombre</code></pre></div>
+<pre><code>## [1] &quot;Juan&quot;   &quot;Pedro&quot;  &quot;Ramona&quot;</code></pre>
+</div>
+<div id="data-frames-1" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> Data frames</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(lista)
+df</code></pre></div>
+<pre><code>##   Nombre Peso Altura
+## 1   Juan   70   1.70
+## 2  Pedro   85   1.78
+## 3 Ramona   65   1.65</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[<span class="dv">1</span>,]</code></pre></div>
+<pre><code>##   Nombre Peso Altura
+## 1   Juan   70    1.7</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[,<span class="dv">1</span>]</code></pre></div>
+<pre><code>## [1] Juan   Pedro  Ramona
+## Levels: Juan Pedro Ramona</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df<span class="op">$</span>Nombre</code></pre></div>
+<pre><code>## [1] Juan   Pedro  Ramona
+## Levels: Juan Pedro Ramona</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[[<span class="st">&quot;Nombre&quot;</span>]]</code></pre></div>
+<pre><code>## [1] Juan   Pedro  Ramona
+## Levels: Juan Pedro Ramona</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">df[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>]</code></pre></div>
+<pre><code>##   Nombre Peso
+## 1   Juan   70
+## 2  Pedro   85</code></pre>
+</div>
+</div>
+<div id="operaciones-vectorizadas" class="section level2">
+<h2><span class="header-section-number">5.2</span> Operaciones vectorizadas</h2>
+<p>Podemos realizar operaciones elemento a elemento en los vectores.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>
+y &lt;-<span class="st"> </span><span class="dv">15</span><span class="op">:</span><span class="dv">6</span>
+x <span class="op">+</span><span class="st"> </span>y</code></pre></div>
+<pre><code>##  [1] 16 16 16 16 16 16 16 16 16 16</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">*</span><span class="st"> </span>y</code></pre></div>
+<pre><code>##  [1] 15 28 39 48 55 60 63 64 63 60</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">/</span><span class="st"> </span>y</code></pre></div>
+<pre><code>##  [1] 0.06666667 0.14285714 0.23076923 0.33333333 0.45454545 0.60000000
+##  [7] 0.77777778 1.00000000 1.28571429 1.66666667</code></pre>
+<p>También podemos realizar operaciones lógicas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">==</span><span class="st"> </span>y</code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">&lt;</span><span class="st"> </span>y</code></pre></div>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x <span class="op">&gt;</span><span class="st"> </span>y</code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE</code></pre>
+
 </div>
 </div>
 
@@ -230,7 +329,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/04-operaciones_basicas.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-operaciones_basicas.Rmd",
 "text": "Edit"
 },
 "history": {

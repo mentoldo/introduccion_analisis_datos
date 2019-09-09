@@ -1,0 +1,100 @@
+# Operaciones básicas
+
+## Subsetting. Selección de elementos.
+
+Podemos seleccionar elementos o subconjuntos específicos de un objeto de R. Hay diferentes operadores: `[`, `[[`, `$`
+
+### Vectores
+```{r}
+## Creamos un vector con las primeras 10 letras del abecedario.
+letras <- letters[1:10]
+letras
+
+## Por posición
+letras[2]
+letras[2:3]
+```
+
+Si los elementos están etiquetados, podemos recuperar los elementos del vector por sus nombres.
+
+```{r}
+peso <- c(Juan = 70, Pedro = 85, Ramona = 65)
+peso["Juan"]
+peso[c("Juan", "Ramona")]
+```
+
+También podemos utilizar un vector lógico para recuperar elementos de un vector.
+
+```{r}
+condicion <- peso > 68
+condicion
+peso[condicion]
+```
+
+
+
+### Matrices
+```{r}
+matriz <- matrix(letters[1:9], nrow = 3)
+
+## Indicamos el índice de fila y columna.
+matriz[1, 2]
+
+matriz[2:3, 1:2]
+```
+
+### Listas
+
+```{r}
+lista <- list(Nombre = c("Juan", "Pedro", "Ramona"),
+              Peso = c(70, 85, 65),
+              Altura = c(1.70, 1.78, 1.65))
+
+
+## Podemos recuperar los elementos por posición o por nombre
+
+## Devuelve un objeto lista
+lista[1]
+lista["Nombre"]
+
+
+## Devuelve la clase del objeto seleccionado
+lista[[1]]
+lista[["Nombre"]]
+lista$Nombre
+```
+
+### Data frames
+
+
+```{r}
+df <- as.data.frame(lista)
+df
+df[1,]
+df[,1]
+df$Nombre
+df[["Nombre"]]
+df[1:2, 1:2]
+```
+
+## Operaciones vectorizadas
+
+Podemos realizar operaciones elemento a elemento en los vectores.
+
+```{r}
+x <- 1:10
+y <- 15:6
+x + y
+x * y
+x / y
+```
+También podemos realizar operaciones lógicas.
+
+```{r}
+x == y
+x < y
+x > y
+```
+
+
+

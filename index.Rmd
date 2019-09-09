@@ -31,7 +31,7 @@ La comunidad de usuarios y desarrolladores de R está en constante crecimiento e
 ## Software Libre
 
 La mayor ventaja que tiene R con respecto a otros softwares de análisis estadístico es que es un software libre. ¿Qué quiere decir eso? Por un lado, que es gratuito. Por otro, que el código fuente con el que R fue desarrollado está abierto, se puede descargar y está diponible online.
-Actualmente el copyrigth de R lo posee la [R Foundation](https://www.r-project.org/foundation/). R forma parte del [sistema GNU](https://es.wikipedia.org/wiki/GNU), desarrollado por la [Free Software Foundation](. De acuerdo a la [Free Software Foundation](https://es.wikipedia.org/wiki/Free_Software_Foundation), con el software libre se garantizan cuatro libertades fundamentales:
+Actualmente el copyrigth de R lo posee la [R Foundation](https://www.r-project.org/foundation/). R forma parte del [sistema GNU](https://es.wikipedia.org/wiki/GNU), desarrollado por la [Free Software Foundation](https://es.wikipedia.org/wiki/Free_Software_Foundation). De acuerdo a la Free Software Foundation, con el software libre se garantizan cuatro libertades fundamentales:
 
 * La libertad de ejecutar el programa para cualquier propósito. (Libertad 0)
 * La libertad de estudiar cómo el programa funciona y adaptarlo a tus propias necesidades. (Libertad 1)
