@@ -14,8 +14,71 @@ edad <- enprecosp$BHCH05
 
 ## Realizamos un histograma.
 hist(edad)
+```
 
+También podemos representar las frecuencias relativas o los porcentajes.
 
-hist(edad, breaks = c(16, 24, 34, 49, 65), freq = F)
+```{r}
+## Realizamos un histograma con las frecuencias relativas
+library(lattice)
+histogram(edad,
+          breaks = 10,
+          ylab = "Porcentaje del Total")
+
+## Cambiamos el número de barras. Agregamos color
+hist(as.numeric(edad),
+     col = "seagreen")
+
+## Estilamos el gráfico
+hist(as.numeric(edad),
+     axes = FALSE,
+     main = "Histograma para edad",
+     xlab = "Edad",
+     ylab = "Frecuencia",
+     # col = "steelblue",
+     xlim = c(10,70),
+     ylim = c(0, 5000),
+     col = rainbow(5))
+axis(1, pos = 0)
+axis(2, pos = 10)
+```
+
+## Gráfico de barras
+
+El gráfivo de barras nos permite visualizar las frecuencias en **variables cualitativas**.
+
+```{r}
+## Seleccionamos BISG02 y la guardamos en una nueva variable
+accidente <- enprecosp$BISG02
+
+## Convertimos a factor y etiquetamos los códigos de valores
+accidente <- factor(accidente,
+                   labels = c("Sí", "No", "Ns/Nc"))
+## Construimos las frecuencias para la variable accidente
+f <- table(accidente)
+frel <- prop.table(f)
+
+## Juntamos todo y armamos una tabla de distribución de freucuencias.
+dfreq <- cbind(f, frel)
+
+barplot(dfreq[,1],
+        col = "steelblue")
+```
+
+## Gráfico de tortas
+Los gráficos de tortas también nos permiten graficar frecuencias. Los gráficos de torta están actualmente desaconsejados. Se aconseja en su lugar el uso de gráfico de barras. Los gráficos de barras permiten visualizar más facilemente las diferencias de proporciones que los gráficos de barras, particularmente cuando representamos más de dos proporciones. Para ver una revisión acerca de la discusión de gráficos de barras y de torta vea @spence2005no.  
+
+```{r}
+## Seleccionamos BISG02 y la guardamos en una nueva variable
+accidente <- enprecosp$BISG02
+
+## Convertimos a factor y etiquetamos los códigos de valores
+accidente <- factor(accidente,
+                   labels = c("Sí", "No", "Ns/Nc"))
+## Construimos las frecuencias para la variable accidente
+f <- table(accidente)
+frel <- prop.table(f)
+
+pie(dfreq[,1])
 ```
 

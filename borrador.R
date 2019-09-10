@@ -39,3 +39,11 @@ write.csv2(cepram, row.names = FALSE, file = "./data/cepram.csv")
 ##
 cepram <- read.csv2("./data/cepram.csv")
 names(cepram)
+
+
+adjfreq <- min(diff(h$breaks)) / diff(h$breaks) * h$counts
+sum(adjfreq/sum(adjfreq))
+
+adjfreq
+
+h$counts/sum(h$counts)/diff(h$breaks)
