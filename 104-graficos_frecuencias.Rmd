@@ -1,0 +1,21 @@
+```{r, echo = FALSE, comment = NULL}
+enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
+```
+
+# Gráficos de frecuencias
+
+## Histogramas
+
+El histograma es una buena manera de observar la distribución de los datos en **variables contínuas**. Realicemos algunos gráficos para las variables trabajadas en el Capítulo \@ref(frec). Veamos como de distribuye la edad de la muestra. Para realizar un histograma, podemos utilizar la función `hist`
+
+```{r}
+## Seleccionamos la edad y la guardamos en una nueva variable
+edad <- enprecosp$BHCH05
+
+## Realizamos un histograma.
+hist(edad)
+
+
+hist(edad, breaks = c(16, 24, 34, 49, 65), freq = F)
+```
+

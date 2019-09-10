@@ -1,6 +1,6 @@
 # Bases de datos
 
-Para trabajar en las siguientes unidades haremos uso de las siguientes bases de datos:
+Para trabajar en las siguientes unidades haremos uso de las siguientes bases de datos:  
 
 ## EnPreCoSP
 Base de Datos de consumo de sustancias psicoactivas. Indec
@@ -25,3 +25,10 @@ Base de memoria. [experimento](data/EXP1.xls)
 ## Base prácticos
 
 [Prácticos](data/base2019.txt)
+
+## CEPRAM
+
+[Base](data/cepram.csv)
+[Libro de Códigos](data/cuestionario/CEPRAM_libro_codigo.pdf)
+
+

@@ -24,7 +24,7 @@
 <meta name="author" content="Matías Alfonso" />
 
 
-<meta name="date" content="2019-08-20" />
+<meta name="date" content="2019-09-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="bases-de-datos.html">
-<link rel="next" href="operaciones-basicas-1.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -133,7 +133,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="5.1" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#subsetting.-seleccion-de-elementos."><i class="fa fa-check"></i><b>5.1</b> Subsetting. Selección de elementos.</a><ul>
 <li class="chapter" data-level="5.1.1" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#vectores-1"><i class="fa fa-check"></i><b>5.1.1</b> Vectores</a></li>
 <li class="chapter" data-level="5.1.2" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#matrices-1"><i class="fa fa-check"></i><b>5.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="5.1.3" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#listas-1"><i class="fa fa-check"></i><b>5.1.3</b> Listas</a></li>
+<li class="chapter" data-level="5.1.4" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#data-frames-1"><i class="fa fa-check"></i><b>5.1.4</b> Data frames</a></li>
 </ul></li>
+<li class="chapter" data-level="5.2" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#operaciones-vectorizadas"><i class="fa fa-check"></i><b>5.2</b> Operaciones vectorizadas</a></li>
 </ul></li>
 <li class="part"><span><b>II Introducción al análisis estadístico</b></span></li>
 <li class="chapter" data-level="6" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>6</b> Introducción</a><ul>
@@ -142,11 +145,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="7" data-path="bases-de-datos.html"><a href="bases-de-datos.html"><i class="fa fa-check"></i><b>7</b> Bases de datos</a><ul>
 <li class="chapter" data-level="7.1" data-path="bases-de-datos.html"><a href="bases-de-datos.html#enprecosp"><i class="fa fa-check"></i><b>7.1</b> EnPreCoSP</a></li>
+<li class="chapter" data-level="7.2" data-path="bases-de-datos.html"><a href="bases-de-datos.html#memoria"><i class="fa fa-check"></i><b>7.2</b> Memoria</a></li>
+<li class="chapter" data-level="7.3" data-path="bases-de-datos.html"><a href="bases-de-datos.html#titanic"><i class="fa fa-check"></i><b>7.3</b> Titanic</a></li>
+<li class="chapter" data-level="7.4" data-path="bases-de-datos.html"><a href="bases-de-datos.html#base-practicos"><i class="fa fa-check"></i><b>7.4</b> Base prácticos</a></li>
+<li class="chapter" data-level="7.5" data-path="bases-de-datos.html"><a href="bases-de-datos.html#cepram"><i class="fa fa-check"></i><b>7.5</b> CEPRAM</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>8</b> Distribuciones de frecuencia</a><ul>
-<li class="chapter" data-level="8.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#frecuencias-absolutas-simples"><i class="fa fa-check"></i><b>8.1</b> Frecuencias absolutas simples</a></li>
+<li class="chapter" data-level="8.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#definiciones"><i class="fa fa-check"></i><b>8.1</b> Definiciones</a></li>
+<li class="chapter" data-level="8.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#aplicaciones"><i class="fa fa-check"></i><b>8.2</b> Aplicaciones</a></li>
+<li class="chapter" data-level="8.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#actividades"><i class="fa fa-check"></i><b>8.3</b> Actividades</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="operaciones-basicas-1.html"><a href="operaciones-basicas-1.html"><i class="fa fa-check"></i><b>9</b> Operaciones básicas</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -169,9 +177,113 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="distribuciones-de-frecuencia" class="section level1">
 <h1><span class="header-section-number">Capítulo 8</span> Distribuciones de frecuencia</h1>
-<div id="frecuencias-absolutas-simples" class="section level2">
-<h2><span class="header-section-number">8.1</span> Frecuencias absolutas simples</h2>
-<p>Es la cantidad de casos que asumen determinado valor de variable.</p>
+<div id="definiciones" class="section level2">
+<h2><span class="header-section-number">8.1</span> Definiciones</h2>
+<p><strong>Frecuencias absolutas simples</strong>. Es la cantidad de casos que asumen determinado valor de variable.</p>
+<p><strong>Frecuencias relativas simples</strong>. Es la proporción de cases que asumen determinado valor.</p>
+<p><strong>Frecuencias absolutas acumuladas</strong>. Es la cantidad de casos que asumen determinado valor o valores inferiores a el.</p>
+<p><strong>Frecuencias relativas acumuladas</strong>. Es la proporción de casos que asumen determinado valor o valores inferiores a el.</p>
+</div>
+<div id="aplicaciones" class="section level2">
+<h2><span class="header-section-number">8.2</span> Aplicaciones</h2>
+<p>Trabajemos con la ENPreCoSP. Veamos como es el estado de salud general subjetiva de la población y construyamos una tabla de distribución de frecuencias para la variable <code>BISG01</code> (En general, ¿usted diría que su salud es…)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos la nueva variable y la guardamos en una nueva variable
+saludsub &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BISG01
+
+## Vemos cuantos casos tenemos en total
+<span class="kw">length</span>(saludsub)</code></pre></div>
+<pre><code>## [1] 34343</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Convertimos a factor y etiquetamos los códigos de valores
+saludsub &lt;-<span class="st"> </span><span class="kw">factor</span>(saludsub,
+                   <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Excelente&quot;</span>, <span class="st">&quot;Muy buena&quot;</span>, <span class="st">&quot;Buena&quot;</span>, <span class="st">&quot;Regular&quot;</span>, <span class="st">&quot;Mala&quot;</span>),
+                   <span class="dt">ordered =</span> <span class="ot">TRUE</span>)
+
+## Calculamos las frecuencias absolutas simples
+f &lt;-<span class="st"> </span><span class="kw">table</span>(saludsub)
+
+## Calculamos las frecuencias relativas simples
+frel &lt;-<span class="st"> </span><span class="kw">prop.table</span>(f)
+
+## Calculamos las frecuencias absolutas acumuladas
+fcum &lt;-<span class="st"> </span><span class="kw">cumsum</span>(f)
+
+## Calculamos las frecuencias relativas acumuladas
+frelcum &lt;-<span class="st"> </span><span class="kw">cumsum</span>(frel)
+
+## Juntamos todo y armamos una tabla de distribución de freucuencias.
+<span class="kw">cbind</span>(f, fcum, frel,frelcum)</code></pre></div>
+<pre><code>##               f  fcum       frel   frelcum
+## Excelente  3919  3919 0.11411350 0.1141135
+## Muy buena  8830 12749 0.25711208 0.3712256
+## Buena     15410 28159 0.44870862 0.8199342
+## Regular    5485 33644 0.15971231 0.9796465
+## Mala        699 34343 0.02035349 1.0000000</code></pre>
+<p>Ahora analicemos las variables <code>BISG02</code> (Ha sufrido algún accidente el útlimo años) y <code>BISG03</code> (Ha sufrido alguna enfermedad el último año)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos BISG02 y la guardamos en una nueva variable
+accidente &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BISG02
+enfermedad &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BISG03
+
+## Convertimos a factor y etiquetamos los códigos de valores
+accidente &lt;-<span class="st"> </span><span class="kw">factor</span>(accidente,
+                   <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Sí&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;Ns/Nc&quot;</span>))
+enfermedad &lt;-<span class="st"> </span><span class="kw">factor</span>(enfermedad,
+                   <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Sí&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;Ns/Nc&quot;</span>))
+
+## Construimos las frecuencias para la variable accidente
+f &lt;-<span class="st"> </span><span class="kw">table</span>(accidente)
+frel &lt;-<span class="st"> </span><span class="kw">prop.table</span>(f)
+
+## Juntamos todo y armamos una tabla de distribución de freucuencias.
+<span class="kw">cbind</span>(f, frel)</code></pre></div>
+<pre><code>##           f         frel
+## Sí     2669 0.0777159829
+## No    31657 0.9217890109
+## Ns/Nc    17 0.0004950063</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Construimos las frecuencias para la variable enfermedad
+f &lt;-<span class="st"> </span><span class="kw">table</span>(enfermedad)
+frel &lt;-<span class="st"> </span><span class="kw">prop.table</span>(f)
+
+## Juntamos todo y armamos una tabla de distribución de freucuencias.
+<span class="kw">cbind</span>(f, frel)</code></pre></div>
+<pre><code>##           f        frel
+## Sí     8009 0.233206185
+## No    26292 0.765570859
+## Ns/Nc    42 0.001222957</code></pre>
+<p>Veamos comos está conformada la edad de la muestra (<code>BHCH05</code>). Como es una variable continua, primero debemos construir los intervalos de clase.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos la edad y la guardamos en una nueva variable
+edad &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BHCH05
+
+## Veamos los valores mínimos y máximos para la edad
+<span class="kw">range</span>(edad)</code></pre></div>
+<pre><code>## [1] 16 65</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">edad_reco &lt;-<span class="st"> </span><span class="kw">cut</span>(edad, <span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">16</span>, <span class="dv">24</span>, <span class="dv">34</span>, <span class="dv">49</span>, <span class="dv">65</span>), <span class="dt">include.lowest =</span> <span class="ot">TRUE</span>)
+
+## Realizamos la tabla de distribución de frecuencias igual que anteriormente
+f &lt;-<span class="st"> </span><span class="kw">table</span>(edad_reco)
+frel &lt;-<span class="st"> </span><span class="kw">prop.table</span>(f)
+fcum &lt;-<span class="st"> </span><span class="kw">cumsum</span>(f)
+frelcum &lt;-<span class="st"> </span><span class="kw">cumsum</span>(frel)
+
+## Juntamos todo y armamos una tabla de distribución de freucuencias.
+<span class="kw">cbind</span>(f, fcum, frel,frelcum)</code></pre></div>
+<pre><code>##             f  fcum      frel   frelcum
+## [16,24]  6592  6592 0.1919460 0.1919460
+## (24,34]  8726 15318 0.2540838 0.4460298
+## (34,49] 10326 25644 0.3006726 0.7467024
+## (49,65]  8699 34343 0.2532976 1.0000000</code></pre>
+</div>
+<div id="actividades" class="section level2">
+<h2><span class="header-section-number">8.3</span> Actividades</h2>
+<!-- # Operaciones básicas -->
+<!-- Comencemos calculando una proporción. Supongamos que realizamos 10 mediciones para la variables rendimiento escolar. La variable puede tomar tres valores: bajo, medio y alto. -->
+<!-- ```{r} -->
+<!-- rendimiento <- c(1, 3, 1, 2, 2, 1, 2, 2, 3, 2) -->
+<!-- rendimiento <- factor(rendimiento, -->
+<!--                       labels = c("bajo", "medio", "alto"), -->
+<!--                       ordered = TRUE) -->
+<!-- rendimiento -->
+<!-- ``` -->
+
 </div>
 </div>
             </section>
@@ -179,8 +291,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="bases-de-datos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="operaciones-basicas-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bases-de-datos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
