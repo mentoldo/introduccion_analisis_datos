@@ -45,7 +45,7 @@ axis(2, pos = 10)
 
 ## Gráfico de barras
 
-El gráfivo de barras nos permite visualizar las frecuencias en **variables cualitativas**.
+El gráfico de barras nos permite visualizar las frecuencias en **variables cualitativas**. Para realizar un gráfico de barras podemo utilizar la función `barplot`
 
 ```{r}
 ## Seleccionamos BISG02 y la guardamos en una nueva variable
@@ -66,7 +66,7 @@ barplot(dfreq[,1],
 ```
 
 ## Gráfico de tortas
-Los gráficos de tortas también nos permiten graficar frecuencias. Los gráficos de torta están actualmente desaconsejados. Se aconseja en su lugar el uso de gráfico de barras. Los gráficos de barras permiten visualizar más facilemente las diferencias de proporciones que los gráficos de barras, particularmente cuando representamos más de dos proporciones. Para ver una revisión acerca de la discusión de gráficos de barras y de torta vea @spence2005no.  
+Los gráficos de tortas también nos permiten graficar frecuencias. Los gráficos de torta están actualmente desaconsejados. Se aconseja en su lugar el uso de gráfico de barras. Los gráficos de barras permiten visualizar más facilemente las diferencias de proporciones que los gráficos de barras, particularmente cuando representamos más de dos proporciones. Para ver una revisión acerca de la discusión de gráficos de barras y de torta vea @spence2005no. Para realizar un gráfico de tortas, podemos utilizar la función `pie`
 
 ```{r}
 ## Seleccionamos BISG02 y la guardamos en una nueva variable
@@ -79,6 +79,26 @@ accidente <- factor(accidente,
 f <- table(accidente)
 frel <- prop.table(f)
 
-pie(dfreq[,1])
+pie(frel)
 ```
+
+Estilamos el gráfico. Agregamos los porcentajes.
+
+```{r}
+## Cargamos librería para formatear los porcentajes
+library(formattable)
+
+## Guardamos la tabla con porcentajes en una nueva variables
+porcentaje <- percent(frel, digits = 2, dec = ",")
+
+## Construimos las etiquetas
+etiq <- paste(names(porcentaje),"; " , round(porcentaje, 4), sep = "")
+
+pie(porcentaje,
+    labels = etiq,
+    radius = 1,
+    col = c("tomato", "whitesmoke", "violetred")
+    )
+```
+
 

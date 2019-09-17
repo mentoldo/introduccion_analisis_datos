@@ -1,0 +1,10 @@
+```{r, echo = FALSE, comment = NULL}
+enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
+```
+
+# Medidas de resumen
+
+## Medidas de posición
+
+Las medidas de posición nos van a dar información acerca de diferentes localizaciones de los datos en una variables. Pueden ser **centrales**, como la *media*, la *mediana* y la *moda*. O **no centrales**, como los percentiles
+

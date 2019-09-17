@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 9 Gráficos de frecuencias | Introducción al Análisis de Datos</title>
+  <title>Capítulo 10 Medidas de resumen | Introducción al Análisis de Datos</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Capítulo 9 Gráficos de frecuencias | Introducción al Análisis de Datos" />
+  <meta property="og:title" content="Capítulo 10 Medidas de resumen | Introducción al Análisis de Datos" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="https://github.com/mentoldo/introduccion_analisis_datos" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 9 Gráficos de frecuencias | Introducción al Análisis de Datos" />
+  <meta name="twitter:title" content="Capítulo 10 Medidas de resumen | Introducción al Análisis de Datos" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="frec.html">
-<link rel="next" href="medidas-de-resumen.html">
+<link rel="prev" href="graficos-de-frecuencias.html">
+<link rel="next" href="references.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -49,43 +49,6 @@
 
 
 
-<style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -184,100 +147,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="graficos-de-frecuencias" class="section level1">
-<h1><span class="header-section-number">Capítulo 9</span> Gráficos de frecuencias</h1>
-<div id="histogramas" class="section level2">
-<h2><span class="header-section-number">9.1</span> Histogramas</h2>
-<p>El histograma es una buena manera de observar la distribución de los datos en <strong>variables contínuas</strong>. Realicemos algunos gráficos para las variables trabajadas en el Capítulo <a href="frec.html#frec">8</a>. Veamos como de distribuye la edad de la muestra. Para realizar un histograma, podemos utilizar la función <code>hist</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos la edad y la guardamos en una nueva variable
-edad &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BHCH05
+<div id="medidas-de-resumen" class="section level1">
+<h1><span class="header-section-number">Capítulo 10</span> Medidas de resumen</h1>
+<div id="medidas-de-posicion" class="section level2">
+<h2><span class="header-section-number">10.1</span> Medidas de posición</h2>
+<p>Las medidas de posición nos van a dar información acerca de diferentes localizaciones de los datos en una variables. Pueden ser <strong>centrales</strong>, como la <em>media</em>, la <em>mediana</em> y la <em>moda</em>. O <strong>no centrales</strong>, como los percentiles</p>
 
-## Realizamos un histograma.
-<span class="kw">hist</span>(edad)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<p>También podemos representar las frecuencias relativas o los porcentajes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Realizamos un histograma con las frecuencias relativas
-<span class="kw">library</span>(lattice)
-<span class="kw">histogram</span>(edad,
-          <span class="dt">breaks =</span> <span class="dv">10</span>,
-          <span class="dt">ylab =</span> <span class="st">&quot;Porcentaje del Total&quot;</span>)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Cambiamos el número de barras. Agregamos color
-<span class="kw">hist</span>(<span class="kw">as.numeric</span>(edad),
-     <span class="dt">col =</span> <span class="st">&quot;seagreen&quot;</span>)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Estilamos el gráfico
-<span class="kw">hist</span>(<span class="kw">as.numeric</span>(edad),
-     <span class="dt">axes =</span> <span class="ot">FALSE</span>,
-     <span class="dt">main =</span> <span class="st">&quot;Histograma para edad&quot;</span>,
-     <span class="dt">xlab =</span> <span class="st">&quot;Edad&quot;</span>,
-     <span class="dt">ylab =</span> <span class="st">&quot;Frecuencia&quot;</span>,
-     <span class="co"># col = &quot;steelblue&quot;,</span>
-     <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">10</span>,<span class="dv">70</span>),
-     <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">5000</span>),
-     <span class="dt">col =</span> <span class="kw">rainbow</span>(<span class="dv">5</span>))
-<span class="kw">axis</span>(<span class="dv">1</span>, <span class="dt">pos =</span> <span class="dv">0</span>)
-<span class="kw">axis</span>(<span class="dv">2</span>, <span class="dt">pos =</span> <span class="dv">10</span>)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
-</div>
-<div id="grafico-de-barras" class="section level2">
-<h2><span class="header-section-number">9.2</span> Gráfico de barras</h2>
-<p>El gráfico de barras nos permite visualizar las frecuencias en <strong>variables cualitativas</strong>. Para realizar un gráfico de barras podemo utilizar la función <code>barplot</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos BISG02 y la guardamos en una nueva variable
-accidente &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BISG02
-
-## Convertimos a factor y etiquetamos los códigos de valores
-accidente &lt;-<span class="st"> </span><span class="kw">factor</span>(accidente,
-                   <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Sí&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;Ns/Nc&quot;</span>))
-## Construimos las frecuencias para la variable accidente
-f &lt;-<span class="st"> </span><span class="kw">table</span>(accidente)
-frel &lt;-<span class="st"> </span><span class="kw">prop.table</span>(f)
-
-## Juntamos todo y armamos una tabla de distribución de freucuencias.
-dfreq &lt;-<span class="st"> </span><span class="kw">cbind</span>(f, frel)
-
-<span class="kw">barplot</span>(dfreq[,<span class="dv">1</span>],
-        <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-</div>
-<div id="grafico-de-tortas" class="section level2">
-<h2><span class="header-section-number">9.3</span> Gráfico de tortas</h2>
-<p>Los gráficos de tortas también nos permiten graficar frecuencias. Los gráficos de torta están actualmente desaconsejados. Se aconseja en su lugar el uso de gráfico de barras. Los gráficos de barras permiten visualizar más facilemente las diferencias de proporciones que los gráficos de barras, particularmente cuando representamos más de dos proporciones. Para ver una revisión acerca de la discusión de gráficos de barras y de torta vea <span class="citation">Spence (<a href="#ref-spence2005no">2005</a>)</span>. Para realizar un gráfico de tortas, podemos utilizar la función <code>pie</code></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos BISG02 y la guardamos en una nueva variable
-accidente &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BISG02
-
-## Convertimos a factor y etiquetamos los códigos de valores
-accidente &lt;-<span class="st"> </span><span class="kw">factor</span>(accidente,
-                   <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Sí&quot;</span>, <span class="st">&quot;No&quot;</span>, <span class="st">&quot;Ns/Nc&quot;</span>))
-## Construimos las frecuencias para la variable accidente
-f &lt;-<span class="st"> </span><span class="kw">table</span>(accidente)
-frel &lt;-<span class="st"> </span><span class="kw">prop.table</span>(f)
-
-<span class="kw">pie</span>(frel)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
-<p>Estilamos el gráfico. Agregamos los porcentajes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Cargamos librería para formatear los porcentajes
-<span class="kw">library</span>(formattable)
-
-## Guardamos la tabla con porcentajes en una nueva variables
-porcentaje &lt;-<span class="st"> </span><span class="kw">percent</span>(frel, <span class="dt">digits =</span> <span class="dv">2</span>, <span class="dt">dec =</span> <span class="st">&quot;,&quot;</span>)
-
-## Construimos las etiquetas
-etiq &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw">names</span>(porcentaje),<span class="st">&quot;; &quot;</span> , <span class="kw">round</span>(porcentaje, <span class="dv">4</span>), <span class="dt">sep =</span> <span class="st">&quot;&quot;</span>)
-
-<span class="kw">pie</span>(porcentaje,
-    <span class="dt">labels =</span> etiq,
-    <span class="dt">radius =</span> <span class="dv">1</span>,
-    <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;tomato&quot;</span>, <span class="st">&quot;whitesmoke&quot;</span>, <span class="st">&quot;violetred&quot;</span>)
-    )</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-
-</div>
-</div>
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-spence2005no">
-<p>Spence, Ian. 2005. «No humble pie: The origins and usage of a statistical chart». <em>Journal of Educational and Behavioral Statistics</em> 30 (4). Sage Publications Sage CA: Los Angeles, CA: 353-68.</p>
 </div>
 </div>
             </section>
@@ -285,8 +160,8 @@ etiq &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="kw
           </div>
         </div>
       </div>
-<a href="frec.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="medidas-de-resumen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="graficos-de-frecuencias.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -316,7 +191,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/104-graficos_frecuencias.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/105-medidas_resumen.Rmd",
 "text": "Edit"
 },
 "history": {
