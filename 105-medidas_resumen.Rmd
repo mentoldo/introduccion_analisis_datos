@@ -1,4 +1,5 @@
 ```{r, echo = FALSE, comment = NULL}
+library(formattable)
 enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
 ```
 
@@ -6,5 +7,80 @@ enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
 
 ## Medidas de posición
 
-Las medidas de posición nos van a dar información acerca de diferentes localizaciones de los datos en una variables. Pueden ser **centrales**, como la *media*, la *mediana* y la *moda*. O **no centrales**, como los percentiles
+Las medidas de posición nos van a dar información acerca de diferentes localizaciones de los datos en una variables. Pueden ser **centrales**, como la *media*, la *mediana* y la *moda*. O **no centrales**, como los **cuartiles** y **percentiles**.
+
+### Proporción
+Es una **frecuencia relativa**. Vimos varios ejemplos de proporciones cuando realizamos las tablas de distribución de frecuencia en el Capítulo \@ref(frec). Calculemos la proporción de personas que alguna vez en la vida consumieron marihuana.
+
+```{r}
+## Proporción de personas que consumieron marihuana alguna vez en la vida (PV_MA)
+marihuana <- enprecosp$PV_MA
+marihuana <- factor(marihuana,
+                    labels = c("Sí", "No")
+                    )
+
+p <- prop.table(table(marihuana))
+p
+```
+
+Entonces, el `r percent(p[1], dec = ",")` de los encuestados consumió alguna vez marihuana en la vida.
+
+### Moda
+Es el valor de la variable que más se repite. Es el valor de la variable que tenga la frecuencia más alta.
+
+```{r}
+## En el periodo en que usted consumía marihuana con
+## mayor frecuencia ¿cada cuánto consumía?
+fconsumo <- enprecosp$BIMA04
+fconsumo <- factor(fconsumo,
+                   levels = c(1:6, 9),
+                   labels = c("Casi todos los días",
+                              "3 0 4 días a la semana",
+                              "1 o 2 días a la semana",
+                              "De 1 a 3 días al mes",
+                              "Menos de una vez al mes",
+                              "Una sola vez",
+                              "Ns/Nc"))
+
+## Calculamos las frecuencias absolutas
+p <- table(fconsumo)
+p
+
+## Buscamos el valor con la frecuencia máxima
+which.max(p)
+```
+
+### Mediana
+Es el valor de la variable que deja por debajo y por arriba, el 50% de los casos. Podemos calcularla a partir de variables de **nivel ordinal**. La podemos observar a partir de las frecuencias relativas acumuladas. Continuando con la frecuencia de consumo de marihuana
+
+```{r}
+## En el periodo en que usted consumía marihuana con
+## mayor frecuencia ¿cada cuánto consumía?
+fconsumo <- enprecosp$BIMA04
+
+## Excluimos el valor 9, Ns/Nc
+fconsumo <- factor(fconsumo,
+                   levels = c(6:1),
+                   labels = c("Una sola vez",
+                              "Menos de una vez al mes",
+                              "De 1 a 3 días al mes",
+                              "1 o 2 días a la semana",
+                              "3 o 4 días a la semana",
+                              "Casi todos los días"
+                              ),
+                   ordered = TRUE)
+
+## Frecuencias absolutas
+frec <- table(fconsumo)
+## Frecuencias relativas
+frel <- prop.table(frec)
+## Frecuencias relativas acumuladas
+cumfrel <- cumsum(frel)
+cumfrel
+```
+
+El primer valor que supera 0.5 es la mediana. En este caso, la mediana es *menos de una vez al mes*.
+
+
+
 

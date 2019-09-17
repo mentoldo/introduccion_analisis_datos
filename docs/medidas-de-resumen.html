@@ -24,7 +24,7 @@
 <meta name="author" content="Matías Alfonso" />
 
 
-<meta name="date" content="2019-09-16" />
+<meta name="date" content="2019-09-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -49,6 +49,43 @@
 
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -124,7 +161,11 @@
 <li class="chapter" data-level="9.3" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html#grafico-de-tortas"><i class="fa fa-check"></i><b>9.3</b> Gráfico de tortas</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html"><i class="fa fa-check"></i><b>10</b> Medidas de resumen</a><ul>
-<li class="chapter" data-level="10.1" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#medidas-de-posicion"><i class="fa fa-check"></i><b>10.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="10.1" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#medidas-de-posicion"><i class="fa fa-check"></i><b>10.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#proporcion"><i class="fa fa-check"></i><b>10.1.1</b> Proporción</a></li>
+<li class="chapter" data-level="10.1.2" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#moda"><i class="fa fa-check"></i><b>10.1.2</b> Moda</a></li>
+<li class="chapter" data-level="10.1.3" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#mediana"><i class="fa fa-check"></i><b>10.1.3</b> Mediana</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -151,8 +192,86 @@
 <h1><span class="header-section-number">Capítulo 10</span> Medidas de resumen</h1>
 <div id="medidas-de-posicion" class="section level2">
 <h2><span class="header-section-number">10.1</span> Medidas de posición</h2>
-<p>Las medidas de posición nos van a dar información acerca de diferentes localizaciones de los datos en una variables. Pueden ser <strong>centrales</strong>, como la <em>media</em>, la <em>mediana</em> y la <em>moda</em>. O <strong>no centrales</strong>, como los percentiles</p>
+<p>Las medidas de posición nos van a dar información acerca de diferentes localizaciones de los datos en una variables. Pueden ser <strong>centrales</strong>, como la <em>media</em>, la <em>mediana</em> y la <em>moda</em>. O <strong>no centrales</strong>, como los <strong>cuartiles</strong> y <strong>percentiles</strong>.</p>
+<div id="proporcion" class="section level3">
+<h3><span class="header-section-number">10.1.1</span> Proporción</h3>
+<p>Es una <strong>frecuencia relativa</strong>. Vimos varios ejemplos de proporciones cuando realizamos las tablas de distribución de frecuencia en el Capítulo <a href="frec.html#frec">8</a>. Calculemos la proporción de personas que alguna vez en la vida consumieron marihuana.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Proporción de personas que consumieron marihuana alguna vez en la vida (PV_MA)
+marihuana &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>PV_MA
+marihuana &lt;-<span class="st"> </span><span class="kw">factor</span>(marihuana,
+                    <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Sí&quot;</span>, <span class="st">&quot;No&quot;</span>)
+                    )
 
+p &lt;-<span class="st"> </span><span class="kw">prop.table</span>(<span class="kw">table</span>(marihuana))
+p</code></pre></div>
+<pre><code>## marihuana
+##         Sí         No 
+## 0.07326093 0.92673907</code></pre>
+<p>Entonces, el 7,33% de los encuestados consumió alguna vez marihuana en la vida.</p>
+</div>
+<div id="moda" class="section level3">
+<h3><span class="header-section-number">10.1.2</span> Moda</h3>
+<p>Es el valor de la variable que más se repite. Es el valor de la variable que tenga la frecuencia más alta.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## En el periodo en que usted consumía marihuana con
+## mayor frecuencia ¿cada cuánto consumía?
+fconsumo &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BIMA04
+fconsumo &lt;-<span class="st"> </span><span class="kw">factor</span>(fconsumo,
+                   <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dv">9</span>),
+                   <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Casi todos los días&quot;</span>,
+                              <span class="st">&quot;3 0 4 días a la semana&quot;</span>,
+                              <span class="st">&quot;1 o 2 días a la semana&quot;</span>,
+                              <span class="st">&quot;De 1 a 3 días al mes&quot;</span>,
+                              <span class="st">&quot;Menos de una vez al mes&quot;</span>,
+                              <span class="st">&quot;Una sola vez&quot;</span>,
+                              <span class="st">&quot;Ns/Nc&quot;</span>))
+
+## Calculamos las frecuencias absolutas
+p &lt;-<span class="st"> </span><span class="kw">table</span>(fconsumo)
+p</code></pre></div>
+<pre><code>## fconsumo
+##     Casi todos los días  3 0 4 días a la semana  1 o 2 días a la semana 
+##                     259                     119                     267 
+##    De 1 a 3 días al mes Menos de una vez al mes            Una sola vez 
+##                     248                     485                    1120 
+##                   Ns/Nc 
+##                      18</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Buscamos el valor con la frecuencia máxima
+<span class="kw">which.max</span>(p)</code></pre></div>
+<pre><code>## Una sola vez 
+##            6</code></pre>
+</div>
+<div id="mediana" class="section level3">
+<h3><span class="header-section-number">10.1.3</span> Mediana</h3>
+<p>Es el valor de la variable que deja por debajo y por arriba, el 50% de los casos. Podemos calcularla a partir de variables de <strong>nivel ordinal</strong>. La podemos observar a partir de las frecuencias relativas acumuladas. Continuando con la frecuencia de consumo de marihuana</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## En el periodo en que usted consumía marihuana con
+## mayor frecuencia ¿cada cuánto consumía?
+fconsumo &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BIMA04
+
+## Excluimos el valor 9, Ns/Nc
+fconsumo &lt;-<span class="st"> </span><span class="kw">factor</span>(fconsumo,
+                   <span class="dt">levels =</span> <span class="kw">c</span>(<span class="dv">6</span><span class="op">:</span><span class="dv">1</span>),
+                   <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Una sola vez&quot;</span>,
+                              <span class="st">&quot;Menos de una vez al mes&quot;</span>,
+                              <span class="st">&quot;De 1 a 3 días al mes&quot;</span>,
+                              <span class="st">&quot;1 o 2 días a la semana&quot;</span>,
+                              <span class="st">&quot;3 o 4 días a la semana&quot;</span>,
+                              <span class="st">&quot;Casi todos los días&quot;</span>
+                              ),
+                   <span class="dt">ordered =</span> <span class="ot">TRUE</span>)
+
+## Frecuencias absolutas
+frec &lt;-<span class="st"> </span><span class="kw">table</span>(fconsumo)
+## Frecuencias relativas
+frel &lt;-<span class="st"> </span><span class="kw">prop.table</span>(frec)
+## Frecuencias relativas acumuladas
+cumfrel &lt;-<span class="st"> </span><span class="kw">cumsum</span>(frel)
+cumfrel</code></pre></div>
+<pre><code>##            Una sola vez Menos de una vez al mes    De 1 a 3 días al mes 
+##               0.4483587               0.6425140               0.7417934 
+##  1 o 2 días a la semana  3 o 4 días a la semana     Casi todos los días 
+##               0.8486789               0.8963171               1.0000000</code></pre>
+
+</div>
 </div>
 </div>
             </section>
