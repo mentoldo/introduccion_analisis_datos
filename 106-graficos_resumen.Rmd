@@ -7,9 +7,10 @@ enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
 ## Gráficos de barras
 
 Los gráficos de barras también sirven para graficar las medias. También podemos agregar las 
-```{r}
+```{r, comment = "", echo = FALSE}
 library(Hmisc)
-
+```
+```{r}
 ## Seleccionamos las variables de edad de inicio de consumo
 ## para tabaco, alcohol y marihuana
 edad_tabaco <- enprecosp$BITA03[enprecosp$BITA03 != 99]
@@ -29,9 +30,26 @@ b <- barplot(m[1,], ylim = c(0, 25), col = "steelblue")
 # errbar(colnames(m), m[1,], m[1,] + m[2,], m[1,] - m[2,])
 arrows(b, m[1,] - m[2,], b, m[1,] + m[2,], length=0.05, angle=90, code=3)
 
-medias <- c(mean(edad_tabaco, na.rm = TRUE),
-            mean(edad_alcohol, na.rm = TRUE),
-            mean(edad_alcohol, na.rm = TRUE)
-)
+
+# x <- factor(c("tabaco", "alcohol", "marihuana"))
+# medias <- c(mean(edad_tabaco, na.rm = TRUE),
+#             mean(edad_alcohol, na.rm = TRUE),
+#             mean(edad_alcohol, na.rm = TRUE))
+# sd <- c(sd(edad_tabaco, na.rm = TRUE),
+#         sd(edad_alcohol, na.rm = TRUE),
+#         sd(edad_alcohol, na.rm = TRUE))
+# 
+# barplot(height = medias, width = 1, col = "steelblue")
+
 ```
+
+## Gráficos de caja
+
+```{r}
+boxplot(list(edad_tabaco, edad_alcohol, edad_marihuana),
+        names = c("tabaco", "alcohol", "marihuana"),
+        col = "tomato",
+        pch = 16)
+```
+
 
