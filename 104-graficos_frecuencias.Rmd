@@ -101,4 +101,30 @@ pie(porcentaje,
     )
 ```
 
+## Ojiva de Galton
+
+La ojiva de Galton nos permite graficar las **frecuencias relativas acumuladas** y buscar **percentiles** y **cuantiles empíricos**. Veamos como se distribuye la edad de inicio de consumo de marihuana en la muestra:
+
+```{r}
+## Seleccionamos la edad y la guardamos en una nueva variable
+## Quito los valores 99, que corresponden a NS/NC
+edad <- enprecosp$BIMA03[enprecosp$BIMA03 != 99]
+
+f <- table(edad)
+frel <- prop.table(f)
+frelcum <- cumsum(frel)
+
+plot(names(frelcum), frelcum,
+     type = "s",
+     ylab = "F'",
+     xlab = "Edad")
+
+## Realizamos un gráfico similar, pero utilizando la función
+## distribución acumulada empírica
+plot(ecdf(edad),
+     main = "Ojiva de Galton",
+     xlab = "Edad")
+```
+
+
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Matías Alfonso" />
 
 
-<meta name="date" content="2019-09-17" />
+<meta name="date" content="2019-10-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,13 +159,23 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="9.1" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html#histogramas"><i class="fa fa-check"></i><b>9.1</b> Histogramas</a></li>
 <li class="chapter" data-level="9.2" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html#grafico-de-barras"><i class="fa fa-check"></i><b>9.2</b> Gráfico de barras</a></li>
 <li class="chapter" data-level="9.3" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html#grafico-de-tortas"><i class="fa fa-check"></i><b>9.3</b> Gráfico de tortas</a></li>
+<li class="chapter" data-level="9.4" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html#ojiva-de-galton"><i class="fa fa-check"></i><b>9.4</b> Ojiva de Galton</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html"><i class="fa fa-check"></i><b>10</b> Medidas de resumen</a><ul>
 <li class="chapter" data-level="10.1" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#medidas-de-posicion"><i class="fa fa-check"></i><b>10.1</b> Medidas de posición</a><ul>
 <li class="chapter" data-level="10.1.1" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#proporcion"><i class="fa fa-check"></i><b>10.1.1</b> Proporción</a></li>
 <li class="chapter" data-level="10.1.2" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#moda"><i class="fa fa-check"></i><b>10.1.2</b> Moda</a></li>
 <li class="chapter" data-level="10.1.3" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#mediana"><i class="fa fa-check"></i><b>10.1.3</b> Mediana</a></li>
+<li class="chapter" data-level="10.1.4" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#cuartiles-y-percentiles"><i class="fa fa-check"></i><b>10.1.4</b> Cuartiles y percentiles</a></li>
+<li class="chapter" data-level="10.1.5" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#media"><i class="fa fa-check"></i><b>10.1.5</b> Media</a></li>
 </ul></li>
+<li class="chapter" data-level="10.2" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#medidas-de-dispersion"><i class="fa fa-check"></i><b>10.2</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#rango-o-recorrido"><i class="fa fa-check"></i><b>10.2.1</b> Rango o recorrido</a></li>
+<li class="chapter" data-level="10.2.2" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#varianza-y-desvio-estandar"><i class="fa fa-check"></i><b>10.2.2</b> Varianza y desvío estándar</a></li>
+<li class="chapter" data-level="10.2.3" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#varibilidad-en-variables-cualitativas"><i class="fa fa-check"></i><b>10.2.3</b> Varibilidad en variables cualitativas</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#medidas-de-forma"><i class="fa fa-check"></i><b>10.3</b> Medidas de forma</a></li>
+<li class="chapter" data-level="10.4" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#estandarizacion"><i class="fa fa-check"></i><b>10.4</b> Estandarización</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -270,8 +280,252 @@ cumfrel</code></pre></div>
 ##               0.4483587               0.6425140               0.7417934 
 ##  1 o 2 días a la semana  3 o 4 días a la semana     Casi todos los días 
 ##               0.8486789               0.8963171               1.0000000</code></pre>
+<p>El primer valor que supera 0.5 es la mediana. En este caso, la mediana es <em>menos de una vez al mes</em>.</p>
+</div>
+<div id="cuartiles-y-percentiles" class="section level3">
+<h3><span class="header-section-number">10.1.4</span> Cuartiles y percentiles</h3>
+<p>Los cuartiles dividen al conjunto de datos en 4. El primer cuartil (<strong>1Q</strong>) es el valor de la variable que deja por debajo el 25% de los casos. El tercer cuartil (<strong>3er cuartil</strong>) es el valor de la variable que deja por debajo el 75% de los casos. El segundo cuartil (<strong>2Q</strong>) es el valor que deja por debajo el 25% de los casos. Es la <strong>mediana</strong>.<br />
+Si dividimos a la distribución de datos en 100, obtenemos los <strong>percentiles</strong>. El <strong>percentil r</strong> es el valor de la variable que deja el r por ciento de los casos por debajo de él. Utilicemos estas medidas para comparar la edad de inicio de consumo de alcohol, tabaco y marihuana.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos las variables de edad de inicio de consumo
+## para tabaco, alcohol y marihuana
+edad_tabaco &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BITA03[enprecosp<span class="op">$</span>BITA03 <span class="op">!=</span><span class="st"> </span><span class="dv">99</span>]
+edad_alcohol &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BIBA03[enprecosp<span class="op">$</span>BIBA03 <span class="op">!=</span><span class="st"> </span><span class="dv">99</span>]
+edad_marihuana &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BIMA03[enprecosp<span class="op">$</span>BIMA03 <span class="op">!=</span><span class="st"> </span><span class="dv">99</span>]
+
+## Calculamos los cuantiles
+<span class="kw">quantile</span>(edad_tabaco, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##   0%  25%  50%  75% 100% 
+##    3   15   16   18   64</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(edad_alcohol, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##   0%  25%  50%  75% 100% 
+##    1   15   17   20   64</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(edad_marihuana, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##   0%  25%  50%  75% 100% 
+##    8   16   18   21   59</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Calculamos los percentiles 5 y 95
+<span class="kw">quantile</span>(edad_tabaco, <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##  5% 95% 
+##  12  25</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(edad_alcohol, <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##  5% 95% 
+##  13  26</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(edad_marihuana, <span class="kw">c</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>), <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##  5% 95% 
+##  14  30</code></pre>
+</div>
+<div id="media" class="section level3">
+<h3><span class="header-section-number">10.1.5</span> Media</h3>
+<p>Es el promedio. Se obtiene sumando todos los datos y dividiendo por el número de casos.</p>
+<p><span class="math display">\[
+\bar{x} = \frac{\displaystyle \sum_{i=1}^n x_i}{n}
+\]</span> La media, a diferencia de la mediana, es sensible a valores extremos. Observemos un ejemplo.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Cantidad de miembros en el hogar
+nhogar &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>CNTDDCOMP
+<span class="kw">range</span>(nhogar)</code></pre></div>
+<pre><code>## [1]  1 24</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Graficamos
+<span class="kw">hist</span>(nhogar)</code></pre></div>
+<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Calculamos las medidas de resumen
+<span class="kw">sum</span>(nhogar)<span class="op">/</span><span class="kw">length</span>(nhogar)</code></pre></div>
+<pre><code>## [1] 3.572751</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(nhogar)</code></pre></div>
+<pre><code>## [1] 3.572751</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(nhogar)</code></pre></div>
+<pre><code>## [1] 3</code></pre>
+</div>
+</div>
+<div id="medidas-de-dispersion" class="section level2">
+<h2><span class="header-section-number">10.2</span> Medidas de dispersión</h2>
+<p>Son medidas que nos indican el grado de agrupación de los datos</p>
+<div id="rango-o-recorrido" class="section level3">
+<h3><span class="header-section-number">10.2.1</span> Rango o recorrido</h3>
+<p>Es la distancia entre el valor máximo y el valor mínimo.</p>
+<p><span class="math display">\[
+R = x_{n} - x_{1}
+\]</span> Donde:<br />
+<span class="math inline">\(x_n\)</span> es el valor máximo<br />
+<span class="math inline">\(x_1\)</span> es el valor mínimo</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Veamos cual es el rango de la variables cantidad de miembros del hogar
+nhogar &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>CNTDDCOMP
+<span class="kw">range</span>(nhogar)</code></pre></div>
+<pre><code>## [1]  1 24</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Rango para cantidad de habitaciones del hogar
+nhabitaciones &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BHHO02
+<span class="kw">range</span>(nhabitaciones)</code></pre></div>
+<pre><code>## [1]  0 20</code></pre>
+<p>También son de utilidad el <strong>rango o recorrido intercuartilar</strong> y el <strong>rango o recorrido semi-intercuartilar</strong>.<br />
+El <strong>rango o recorrido intercuartilar</strong> se simboliza con AIQ y es la distancia entre el tercer y el primer cuartil. El <strong>rango o recorrido intercuartilar</strong> se simboliza con SRIC y es la mitad del AIQ. Calulemos estas distancias para el tiempo de consumo de tabaco, alcohol y marihuana.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos las variables de edad de inicio de consumo
+## para tabaco, alcohol y marihuana
+edad_tabaco &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BITA03[enprecosp<span class="op">$</span>BITA03 <span class="op">!=</span><span class="st"> </span><span class="dv">99</span>]
+edad_alcohol &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BIBA03[enprecosp<span class="op">$</span>BIBA03 <span class="op">!=</span><span class="st"> </span><span class="dv">99</span>]
+edad_marihuana &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BIMA03[enprecosp<span class="op">$</span>BIMA03 <span class="op">!=</span><span class="st"> </span><span class="dv">99</span>]
+
+## Calculamos los cuantiles
+q_tabaco &lt;-<span class="st"> </span><span class="kw">quantile</span>(edad_tabaco, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+q_alcohol &lt;-<span class="st"> </span><span class="kw">quantile</span>(edad_alcohol, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+q_marihuana &lt;-<span class="st"> </span><span class="kw">quantile</span>(edad_marihuana, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)
+
+## Calculamos el rango intercuartilar
+aiq_t &lt;-<span class="st"> </span>q_tabaco[<span class="dv">4</span>] <span class="op">-</span><span class="st"> </span>q_tabaco[<span class="dv">2</span>]; aiq_t</code></pre></div>
+<pre><code>## 75% 
+##   3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aiq_al &lt;-<span class="st"> </span>q_alcohol[<span class="dv">4</span>] <span class="op">-</span><span class="st"> </span>q_alcohol[<span class="dv">2</span>]; aiq_al</code></pre></div>
+<pre><code>## 75% 
+##   5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aiq_ma &lt;-<span class="st"> </span>q_marihuana[<span class="dv">4</span>] <span class="op">-</span><span class="st"> </span>q_marihuana[<span class="dv">2</span>]; aiq_ma</code></pre></div>
+<pre><code>## 75% 
+##   5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Calculamos el rango semi-itercuartilar
+aiq_t<span class="op">/</span><span class="dv">2</span></code></pre></div>
+<pre><code>## 75% 
+## 1.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aiq_al<span class="op">/</span><span class="dv">2</span></code></pre></div>
+<pre><code>## 75% 
+## 2.5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">aiq_ma<span class="op">/</span><span class="dv">2</span></code></pre></div>
+<pre><code>## 75% 
+## 2.5</code></pre>
+</div>
+<div id="varianza-y-desvio-estandar" class="section level3">
+<h3><span class="header-section-number">10.2.2</span> Varianza y desvío estándar</h3>
+<p>Una de las medidas más utilizadas para medir la variabilidad cuando los datos son cuantitativos es la varianza (<span class="math inline">\(s^2\)</span>) y el desvío estándar (<span class="math inline">\(s\)</span>).</p>
+<p>Sea n la cantidad de casos. La <strong>varianza</strong> es la suma de los cuadrados de los desvíos con respecto a la media, dividido por n - 1.</p>
+<p><span class="math display">\[
+s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}
+\]</span> El <strong>desvío estándar</strong> es la raíz cuadrada de la varianza.</p>
+<p><span class="math display">\[
+s = \sqrt{s^2}
+\]</span></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Calculemos la varianza para los edad de
+## Inicio de consumo de tabaco
+## Quitamos los valores faltantes
+edad_tabaco &lt;-<span class="st"> </span>edad_tabaco[<span class="op">!</span><span class="kw">is.na</span>(edad_tabaco)]
+
+## Calculo la varianza
+n &lt;-<span class="st"> </span><span class="kw">length</span>(edad_tabaco)
+xn &lt;-<span class="st"> </span><span class="kw">mean</span>(edad_tabaco)
+s2 &lt;-<span class="st"> </span><span class="kw">sum</span>((edad_tabaco <span class="op">-</span><span class="st"> </span>xn)<span class="op">^</span><span class="dv">2</span>) <span class="op">/</span><span class="st"> </span>(n <span class="op">-</span><span class="st"> </span><span class="dv">1</span>); s2</code></pre></div>
+<pre><code>## [1] 19.81292</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Desvío estándar
+<span class="kw">sqrt</span>(s2)</code></pre></div>
+<pre><code>## [1] 4.45117</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Utilizando la función sd
+<span class="kw">var</span>(edad_tabaco)</code></pre></div>
+<pre><code>## [1] 19.81292</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(edad_tabaco)</code></pre></div>
+<pre><code>## [1] 4.45117</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Calculamos sd para alcohol y marihuana
+<span class="kw">sd</span>(edad_alcohol, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 4.705321</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(edad_marihuana, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 5.476129</code></pre>
+<p>La varianza y el desvío estandar dependen de la unidad de medida que se utilice. Por ejemplo, la varianza de la edad de inicio de consumo de alcohol se mide en años al cuadrado. Y el desvío en años. Ello hace que la medida sea diferente si utilizamos escalas diferentes. Imaginemos que medimos el peso de un grupo de personas en gramos y en kilos. La varianza, para ese grupo de personas, medida en <span class="math inline">\(gramos^2\)</span> será más grande que cuando la midamos en <span class="math inline">\(kilos^2\)</span>.<br />
+A veces, incluso, nos interesa comparar magnitudes diferentes, por ejemplo, peso y altura, y comparar la varianza de ambas variables. Para poder interpretar más facilmente el desvío estandar en términos relativos se utiliza el <strong>coeficiente de variación</strong> (CV)</p>
+<p><span class="math display">\[
+CV = \frac{s}{\bar{x}} * 100
+\]</span> El coeficiente de variación es adimensional y me permite comparar el desvío estandar en términos de porcentajes.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(edad_tabaco) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span> (edad_tabaco) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></code></pre></div>
+<pre><code>## [1] 26.02141</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sd</span>(edad_marihuana, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(edad_marihuana, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></code></pre></div>
+<pre><code>## [1] 28.00788</code></pre>
+</div>
+<div id="varibilidad-en-variables-cualitativas" class="section level3">
+<h3><span class="header-section-number">10.2.3</span> Varibilidad en variables cualitativas</h3>
+<p>Para medir la variabilidad en variables cualitatiativas podemos hacer uso de coefientes de incertidumbre. La idea es que mientras más concentrados estén los datos en una categoría, tendrán menor incertidumbre o menor variabilidad. Mientras estén repartidos más equitativamente, entonces tendremos mayor incertidumbre o mayor variabilidad.</p>
+<p>Una medida útil en estos casos en la H de <span class="citation">Shanon y Weaver (<a href="#ref-shanon1949mathematical">1949</a>)</span>.</p>
+<p><span class="math display">\[
+H(x) = -\sum_{i = 1}^k f_i&#39; * log_2 (f_i&#39;)
+\]</span> Utilizando este coeficiente, comparemos la viariabilidad para hombres y para mujeres de: ¿Cuán fácil o difícil le sería conseguir tranquilizantes sin indicación médica? (EnPreCoSP)</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos las variables
+facil_tranq &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BIAC07_<span class="dv">01</span>
+sexo &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BHCH04
+
+## Convertimos a factor
+facil_tranq &lt;-<span class="st"> </span><span class="kw">factor</span>(facil_tranq, 
+                      <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Me sería fácil&quot;</span>,
+                                 <span class="st">&quot;Me sería difícil&quot;</span>,
+                                 <span class="st">&quot;No podría consegir&quot;</span>,
+                                 <span class="st">&quot;Ns/Nc&quot;</span>))
+
+sexo &lt;-<span class="st"> </span><span class="kw">factor</span>(sexo,
+              <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Varón&quot;,</span>
+<span class="st">                         &quot;</span>Mujer<span class="st">&quot;))</span>
+
+<span class="st">## Calculamos las frecuencias relativas por sexo</span>
+<span class="st">tab &lt;- prop.table(table(facil_tranq, sexo), 2); tab</span></code></pre></div>
+<pre><code>##                     sexo
+## facil_tranq              Varón     Mujer
+##   Me sería fácil     0.2874517 0.2626644
+##   Me sería difícil   0.2714259 0.2753287
+##   No podría consegir 0.3279914 0.3616081
+##   Ns/Nc              0.1131311 0.1003988</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">phombre &lt;-<span class="st"> </span>tab[,<span class="dv">1</span>]
+pmujer &lt;-<span class="st"> </span>tab[,<span class="dv">2</span>]
+
+
+## Calculamos el coeficiente de incertidumbre
+<span class="op">-</span><span class="kw">sum</span>(phombre <span class="op">*</span><span class="st"> </span><span class="kw">log2</span>(phombre))</code></pre></div>
+<pre><code>## [1] 1.910841</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="op">-</span><span class="kw">sum</span>(pmujer <span class="op">*</span><span class="st"> </span><span class="kw">log2</span>(pmujer))</code></pre></div>
+<pre><code>## [1] 1.882528</code></pre>
+</div>
+</div>
+<div id="medidas-de-forma" class="section level2">
+<h2><span class="header-section-number">10.3</span> Medidas de forma</h2>
+<p>Con la librería <code>e1071</code> podemos calcular la simetría y la curtosis de una distribución.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(e1071)
+
+## Seleccionamos la edad y la guardamos en una nueva variable
+edad &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BHCH05
+## Simetría
+<span class="kw">skewness</span>(edad, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] 0.2444952</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Curtosis
+<span class="kw">kurtosis</span>(edad, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>## [1] -1.048094</code></pre>
+<p>La distribución normal es un concepto teórico que nos permite aproximar el comportamiento de una gran cantidad de variables. Existe una definición matemática precisa de la distribución normal. Por ahora, nos conformaremos con saber que la distribución normal tiene una forma acampanada.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(<span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">0</span>), <span class="kw">aes</span>(<span class="dt">x =</span> x)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">stat_function</span>(<span class="dt">fun =</span> dnorm, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="op">-</span><span class="dv">3</span>, <span class="dv">3</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">    </span><span class="kw">theme</span>(
+        <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),
+        <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()) <span class="op">+</span>
+<span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>)</code></pre></div>
+<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Dos medidas comunmente utilizadas son la asimetría y la curtosis. La <strong>kurtosis</strong> mide que tan coludas son las distribuciones con respecto a la normal. El 0 representa una distribución normal. Valores positivos son distribuciones más coludas (con más valores extremos) y valores negativos distribuciones menos coludas.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./img/1008px-Standard_symmetric_pdfs.png&quot;</span>)</code></pre></div>
+<p><img src="img/1008px-Standard_symmetric_pdfs.png" width="75%" style="display: block; margin: auto;" /></p>
+<ul>
+<li>Un índice entre -0.5 y 0.5 indica que la distribución es mesocúrtica.</li>
+<li>Un índice mayor a 0.5 insdica que la distribución es leptocúrtica</li>
+<li>Un índice menor a -0.5 indica que la distribución es platicúrtica</li>
+</ul>
+<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+</div>
+<div id="estandarizacion" class="section level2">
+<h2><span class="header-section-number">10.4</span> Estandarización</h2>
+<p>La estandarización mediante los procesos de <strong>centrado</strong> y <strong>escalado</strong> de los datos. Para centrar los datos, les restamos la media. Para escalarlos, los dividimos por su desvío estándar.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos la edad y la guardamos en una nueva variable
+edad &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BHCH05
+
+## Centramos
+edad_centrada &lt;-<span class="st"> </span>edad <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(edad)
+
+## Escalamos
+edad_estandarizada &lt;-<span class="st"> </span>edad_centrada <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(edad)</code></pre></div>
+<p>Los puntajes estandarizados, también llamados <strong>puntajes z</strong>, son adimensionales. Esa transformación es útil para comparar a los individuos con su grupo de referencia, y detectar, por ejemplo, valores extremos. Al ser una medida relativa, también nos sirve para comparar a un individuo en diferentes variables.<br />
+Veremos posteriormente que, en las distribuciones normales, aproximadamente el 95% de los casos se encuentra entre -2 y 2 desvíos estandar. Por lo tanto, encontrar individuos con puntajes z mayores a 2 o menores a -2 nos indica que son más bien casos atípicos.</p>
+
 
 </div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-shanon1949mathematical">
+<p>Shanon, CE, y W Weaver. 1949. «The mathematical theory of information». <em>Urbana: University of</em>.</p>
 </div>
 </div>
             </section>
@@ -325,6 +579,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
