@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="graficos-de-frecuencias.html">
-<link rel="next" href="references.html">
+<link rel="next" href="graficos-de-resumen.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -176,6 +176,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#medidas-de-forma"><i class="fa fa-check"></i><b>10.3</b> Medidas de forma</a></li>
 <li class="chapter" data-level="10.4" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#estandarizacion"><i class="fa fa-check"></i><b>10.4</b> Estandarización</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="graficos-de-resumen.html"><a href="graficos-de-resumen.html"><i class="fa fa-check"></i><b>11</b> Gráficos de Resumen</a><ul>
+<li class="chapter" data-level="11.1" data-path="graficos-de-resumen.html"><a href="graficos-de-resumen.html#graficos-de-barras"><i class="fa fa-check"></i><b>11.1</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="11.2" data-path="graficos-de-resumen.html"><a href="graficos-de-resumen.html#graficos-de-caja"><i class="fa fa-check"></i><b>11.2</b> Gráficos de caja</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -325,7 +329,7 @@ nhogar &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>CNTDDCOMP
 <pre><code>## [1]  1 24</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Graficamos
 <span class="kw">hist</span>(nhogar)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Calculamos las medidas de resumen
 <span class="kw">sum</span>(nhogar)<span class="op">/</span><span class="kw">length</span>(nhogar)</code></pre></div>
 <pre><code>## [1] 3.572751</code></pre>
@@ -494,7 +498,7 @@ edad &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BHCH05
         <span class="dt">axis.text =</span> <span class="kw">element_blank</span>(),
         <span class="dt">axis.ticks =</span> <span class="kw">element_blank</span>()) <span class="op">+</span>
 <span class="st">    </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="ot">NULL</span>, <span class="dt">y =</span> <span class="ot">NULL</span>)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
 <p>Dos medidas comunmente utilizadas son la asimetría y la curtosis. La <strong>kurtosis</strong> mide que tan coludas son las distribuciones con respecto a la normal. El 0 representa una distribución normal. Valores positivos son distribuciones más coludas (con más valores extremos) y valores negativos distribuciones menos coludas.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;./img/1008px-Standard_symmetric_pdfs.png&quot;</span>)</code></pre></div>
 <p><img src="img/1008px-Standard_symmetric_pdfs.png" width="75%" style="display: block; margin: auto;" /></p>
@@ -503,7 +507,7 @@ edad &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BHCH05
 <li>Un índice mayor a 0.5 insdica que la distribución es leptocúrtica</li>
 <li>Un índice menor a -0.5 indica que la distribución es platicúrtica</li>
 </ul>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </div>
 <div id="estandarizacion" class="section level2">
 <h2><span class="header-section-number">10.4</span> Estandarización</h2>
@@ -515,10 +519,14 @@ edad &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BHCH05
 edad_centrada &lt;-<span class="st"> </span>edad <span class="op">-</span><span class="st"> </span><span class="kw">mean</span>(edad)
 
 ## Escalamos
-edad_estandarizada &lt;-<span class="st"> </span>edad_centrada <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(edad)</code></pre></div>
+edad_estandarizada &lt;-<span class="st"> </span>edad_centrada <span class="op">/</span><span class="st"> </span><span class="kw">sd</span>(edad)
+
+<span class="kw">head</span>(edad)</code></pre></div>
+<pre><code>## [1] 16 59 65 39 19 55</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(edad_estandarizada)</code></pre></div>
+<pre><code>## [1] -1.61510952  1.49337797  1.92712041  0.04756984 -1.39823830  1.20421634</code></pre>
 <p>Los puntajes estandarizados, también llamados <strong>puntajes z</strong>, son adimensionales. Esa transformación es útil para comparar a los individuos con su grupo de referencia, y detectar, por ejemplo, valores extremos. Al ser una medida relativa, también nos sirve para comparar a un individuo en diferentes variables.<br />
 Veremos posteriormente que, en las distribuciones normales, aproximadamente el 95% de los casos se encuentra entre -2 y 2 desvíos estandar. Por lo tanto, encontrar individuos con puntajes z mayores a 2 o menores a -2 nos indica que son más bien casos atípicos.</p>
-
 
 </div>
 </div>
@@ -534,7 +542,7 @@ Veremos posteriormente que, en las distribuciones normales, aproximadamente el 9
         </div>
       </div>
 <a href="graficos-de-frecuencias.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="graficos-de-resumen.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

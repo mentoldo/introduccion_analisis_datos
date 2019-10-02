@@ -130,7 +130,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-09-10}
+    \date{2019-10-01}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -1367,8 +1367,9 @@ También podemos representar las frecuencias relativas o los porcentajes.
 
 \section{Gráfico de barras}\label{grafico-de-barras}
 
-El gráfivo de barras nos permite visualizar las frecuencias en
-\textbf{variables cualitativas}.
+El gráfico de barras nos permite visualizar las frecuencias en
+\textbf{variables cualitativas}. Para realizar un gráfico de barras
+podemo utilizar la función \texttt{barplot}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1377,7 +1378,6 @@ El gráfivo de barras nos permite visualizar las frecuencias en
 
 \NormalTok{## Convertimos a factor y etiquetamos los códigos de valores}
 \NormalTok{accidente <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(accidente,}
-                    
                    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Sí"}\NormalTok{, }\StringTok{"No"}\NormalTok{, }\StringTok{"Ns/Nc"}\NormalTok{))}
 \NormalTok{## Construimos las frecuencias para la variable accidente}
 \NormalTok{f <-}\StringTok{ }\KeywordTok{table}\NormalTok{(accidente)}
@@ -1401,9 +1401,877 @@ lugar el uso de gráfico de barras. Los gráficos de barras permiten
 visualizar más facilemente las diferencias de proporciones que los
 gráficos de barras, particularmente cuando representamos más de dos
 proporciones. Para ver una revisión acerca de la discusión de gráficos
-de barras y de torta vea \citet{spence2005no}.
+de barras y de torta vea \citet{spence2005no}. Para realizar un gráfico
+de tortas, podemos utilizar la función \texttt{pie}
 
-Entonces
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Seleccionamos BISG02 y la guardamos en una nueva variable}
+\NormalTok{accidente <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BISG02}
+
+\NormalTok{## Convertimos a factor y etiquetamos los códigos de valores}
+\NormalTok{accidente <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(accidente,}
+                   \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Sí"}\NormalTok{, }\StringTok{"No"}\NormalTok{, }\StringTok{"Ns/Nc"}\NormalTok{))}
+\NormalTok{## Construimos las frecuencias para la variable accidente}
+\NormalTok{f <-}\StringTok{ }\KeywordTok{table}\NormalTok{(accidente)}
+\NormalTok{frel <-}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(f)}
+
+\KeywordTok{pie}\NormalTok{(frel)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-34-1.pdf}
+
+Estilamos el gráfico. Agregamos los porcentajes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Cargamos librería para formatear los porcentajes}
+\KeywordTok{library}\NormalTok{(formattable)}
+
+\NormalTok{## Guardamos la tabla con porcentajes en una nueva variables}
+\NormalTok{porcentaje <-}\StringTok{ }\KeywordTok{percent}\NormalTok{(frel, }\DataTypeTok{digits =} \DecValTok{2}\NormalTok{, }\DataTypeTok{dec =} \StringTok{","}\NormalTok{)}
+
+\NormalTok{## Construimos las etiquetas}
+\NormalTok{etiq <-}\StringTok{ }\KeywordTok{paste}\NormalTok{(}\KeywordTok{names}\NormalTok{(porcentaje),}\StringTok{"; "}\NormalTok{ , }\KeywordTok{round}\NormalTok{(porcentaje, }\DecValTok{4}\NormalTok{), }\DataTypeTok{sep =} \StringTok{""}\NormalTok{)}
+
+\KeywordTok{pie}\NormalTok{(porcentaje,}
+    \DataTypeTok{labels =}\NormalTok{ etiq,}
+    \DataTypeTok{radius =} \DecValTok{1}\NormalTok{,}
+    \DataTypeTok{col =} \KeywordTok{c}\NormalTok{(}\StringTok{"tomato"}\NormalTok{, }\StringTok{"whitesmoke"}\NormalTok{, }\StringTok{"violetred"}\NormalTok{)}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-35-1.pdf}
+
+\section{Ojiva de Galton}\label{ojiva-de-galton}
+
+La ojiva de Galton nos permite graficar las \textbf{frecuencias
+relativas acumuladas} y buscar \textbf{percentiles} y \textbf{cuantiles
+empíricos}. Veamos como se distribuye la edad de inicio de consumo de
+marihuana en la muestra:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Seleccionamos la edad y la guardamos en una nueva variable}
+\NormalTok{## Quito los valores 99, que corresponden a NS/NC}
+\NormalTok{edad <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIMA03[enprecosp}\OperatorTok{$}\NormalTok{BIMA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+
+\NormalTok{f <-}\StringTok{ }\KeywordTok{table}\NormalTok{(edad)}
+\NormalTok{frel <-}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(f)}
+\NormalTok{frelcum <-}\StringTok{ }\KeywordTok{cumsum}\NormalTok{(frel)}
+
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{names}\NormalTok{(frelcum), frelcum,}
+     \DataTypeTok{type =} \StringTok{"s"}\NormalTok{,}
+     \DataTypeTok{ylab =} \StringTok{"F'"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Edad"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-36-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Realizamos un gráfico similar, pero utilizando la función}
+\NormalTok{## distribución acumulada empírica}
+\KeywordTok{plot}\NormalTok{(}\KeywordTok{ecdf}\NormalTok{(edad),}
+     \DataTypeTok{main =} \StringTok{"Ojiva de Galton"}\NormalTok{,}
+     \DataTypeTok{xlab =} \StringTok{"Edad"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-36-2.pdf}
+
+\chapter{Medidas de resumen}\label{medidas-de-resumen}
+
+\section{Medidas de posición}\label{medidas-de-posicion}
+
+Las medidas de posición nos van a dar información acerca de diferentes
+localizaciones de los datos en una variables. Pueden ser
+\textbf{centrales}, como la \emph{media}, la \emph{mediana} y la
+\emph{moda}. O \textbf{no centrales}, como los \textbf{cuartiles} y
+\textbf{percentiles}.
+
+\subsection{Proporción}\label{proporcion}
+
+Es una \textbf{frecuencia relativa}. Vimos varios ejemplos de
+proporciones cuando realizamos las tablas de distribución de frecuencia
+en el Capítulo \ref{frec}. Calculemos la proporción de personas que
+alguna vez en la vida consumieron marihuana.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Proporción de personas que consumieron marihuana alguna vez en la vida (PV_MA)}
+\NormalTok{marihuana <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{PV_MA}
+\NormalTok{marihuana <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(marihuana,}
+                    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Sí"}\NormalTok{, }\StringTok{"No"}\NormalTok{)}
+\NormalTok{                    )}
+
+\NormalTok{p <-}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(}\KeywordTok{table}\NormalTok{(marihuana))}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## marihuana
+##         Sí         No 
+## 0.07326093 0.92673907
+\end{verbatim}
+
+Entonces, el 7,33\% de los encuestados consumió alguna vez marihuana en
+la vida.
+
+\subsection{Moda}\label{moda}
+
+Es el valor de la variable que más se repite. Es el valor de la variable
+que tenga la frecuencia más alta.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## En el periodo en que usted consumía marihuana con}
+\NormalTok{## mayor frecuencia ¿cada cuánto consumía?}
+\NormalTok{fconsumo <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIMA04}
+\NormalTok{fconsumo <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(fconsumo,}
+                   \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{6}\NormalTok{, }\DecValTok{9}\NormalTok{),}
+                   \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Casi todos los días"}\NormalTok{,}
+                              \StringTok{"3 0 4 días a la semana"}\NormalTok{,}
+                              \StringTok{"1 o 2 días a la semana"}\NormalTok{,}
+                              \StringTok{"De 1 a 3 días al mes"}\NormalTok{,}
+                              \StringTok{"Menos de una vez al mes"}\NormalTok{,}
+                              \StringTok{"Una sola vez"}\NormalTok{,}
+                              \StringTok{"Ns/Nc"}\NormalTok{))}
+
+\NormalTok{## Calculamos las frecuencias absolutas}
+\NormalTok{p <-}\StringTok{ }\KeywordTok{table}\NormalTok{(fconsumo)}
+\NormalTok{p}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## fconsumo
+##     Casi todos los días  3 0 4 días a la semana  1 o 2 días a la semana 
+##                     259                     119                     267 
+##    De 1 a 3 días al mes Menos de una vez al mes            Una sola vez 
+##                     248                     485                    1120 
+##                   Ns/Nc 
+##                      18
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Buscamos el valor con la frecuencia máxima}
+\KeywordTok{which.max}\NormalTok{(p)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Una sola vez 
+##            6
+\end{verbatim}
+
+\subsection{Mediana}\label{mediana}
+
+Es el valor de la variable que deja por debajo y por arriba, el 50\% de
+los casos. Podemos calcularla a partir de variables de \textbf{nivel
+ordinal}. La podemos observar a partir de las frecuencias relativas
+acumuladas. Continuando con la frecuencia de consumo de marihuana
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## En el periodo en que usted consumía marihuana con}
+\NormalTok{## mayor frecuencia ¿cada cuánto consumía?}
+\NormalTok{fconsumo <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIMA04}
+
+\NormalTok{## Excluimos el valor 9, Ns/Nc}
+\NormalTok{fconsumo <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(fconsumo,}
+                   \DataTypeTok{levels =} \KeywordTok{c}\NormalTok{(}\DecValTok{6}\OperatorTok{:}\DecValTok{1}\NormalTok{),}
+                   \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Una sola vez"}\NormalTok{,}
+                              \StringTok{"Menos de una vez al mes"}\NormalTok{,}
+                              \StringTok{"De 1 a 3 días al mes"}\NormalTok{,}
+                              \StringTok{"1 o 2 días a la semana"}\NormalTok{,}
+                              \StringTok{"3 o 4 días a la semana"}\NormalTok{,}
+                              \StringTok{"Casi todos los días"}
+\NormalTok{                              ),}
+                   \DataTypeTok{ordered =} \OtherTok{TRUE}\NormalTok{)}
+
+\NormalTok{## Frecuencias absolutas}
+\NormalTok{frec <-}\StringTok{ }\KeywordTok{table}\NormalTok{(fconsumo)}
+\NormalTok{## Frecuencias relativas}
+\NormalTok{frel <-}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(frec)}
+\NormalTok{## Frecuencias relativas acumuladas}
+\NormalTok{cumfrel <-}\StringTok{ }\KeywordTok{cumsum}\NormalTok{(frel)}
+\NormalTok{cumfrel}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            Una sola vez Menos de una vez al mes    De 1 a 3 días al mes 
+##               0.4483587               0.6425140               0.7417934 
+##  1 o 2 días a la semana  3 o 4 días a la semana     Casi todos los días 
+##               0.8486789               0.8963171               1.0000000
+\end{verbatim}
+
+El primer valor que supera 0.5 es la mediana. En este caso, la mediana
+es \emph{menos de una vez al mes}.
+
+\subsection{Cuartiles y percentiles}\label{cuartiles-y-percentiles}
+
+Los cuartiles dividen al conjunto de datos en 4. El primer cuartil
+(\textbf{1Q}) es el valor de la variable que deja por debajo el 25\% de
+los casos. El tercer cuartil (\textbf{3er cuartil}) es el valor de la
+variable que deja por debajo el 75\% de los casos. El segundo cuartil
+(\textbf{2Q}) es el valor que deja por debajo el 25\% de los casos. Es
+la \textbf{mediana}.\\
+Si dividimos a la distribución de datos en 100, obtenemos los
+\textbf{percentiles}. El \textbf{percentil r} es el valor de la variable
+que deja el r por ciento de los casos por debajo de él. Utilicemos estas
+medidas para comparar la edad de inicio de consumo de alcohol, tabaco y
+marihuana.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Seleccionamos las variables de edad de inicio de consumo}
+\NormalTok{## para tabaco, alcohol y marihuana}
+\NormalTok{edad_tabaco <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BITA03[enprecosp}\OperatorTok{$}\NormalTok{BITA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+\NormalTok{edad_alcohol <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIBA03[enprecosp}\OperatorTok{$}\NormalTok{BIBA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+\NormalTok{edad_marihuana <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIMA03[enprecosp}\OperatorTok{$}\NormalTok{BIMA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+
+\NormalTok{## Calculamos los cuantiles}
+\KeywordTok{quantile}\NormalTok{(edad_tabaco, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   0%  25%  50%  75% 100% 
+##    3   15   16   18   64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(edad_alcohol, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   0%  25%  50%  75% 100% 
+##    1   15   17   20   64
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(edad_marihuana, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   0%  25%  50%  75% 100% 
+##    8   16   18   21   59
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Calculamos los percentiles 5 y 95}
+\KeywordTok{quantile}\NormalTok{(edad_tabaco, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.95}\NormalTok{), }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  5% 95% 
+##  12  25
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(edad_alcohol, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.95}\NormalTok{), }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  5% 95% 
+##  13  26
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{quantile}\NormalTok{(edad_marihuana, }\KeywordTok{c}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\FloatTok{0.95}\NormalTok{), }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  5% 95% 
+##  14  30
+\end{verbatim}
+
+\subsection{Media}\label{media}
+
+Es el promedio. Se obtiene sumando todos los datos y dividiendo por el
+número de casos.
+
+\[
+\bar{x} = \frac{\displaystyle \sum_{i=1}^n x_i}{n}
+\] La media, a diferencia de la mediana, es sensible a valores extremos.
+Observemos un ejemplo.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Cantidad de miembros en el hogar}
+\NormalTok{nhogar <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{CNTDDCOMP}
+\KeywordTok{range}\NormalTok{(nhogar)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  1 24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Graficamos}
+\KeywordTok{hist}\NormalTok{(nhogar)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-42-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Calculamos las medidas de resumen}
+\KeywordTok{sum}\NormalTok{(nhogar)}\OperatorTok{/}\KeywordTok{length}\NormalTok{(nhogar)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.572751
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(nhogar)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.572751
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{median}\NormalTok{(nhogar)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\section{Medidas de dispersión}\label{medidas-de-dispersion}
+
+Son medidas que nos indican el grado de agrupación de los datos
+
+\subsection{Rango o recorrido}\label{rango-o-recorrido}
+
+Es la distancia entre el valor máximo y el valor mínimo.
+
+\[
+R = x_{n} - x_{1}
+\] Donde:\\
+\(x_n\) es el valor máximo\\
+\(x_1\) es el valor mínimo
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Veamos cual es el rango de la variables cantidad de miembros del hogar}
+\NormalTok{nhogar <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{CNTDDCOMP}
+\KeywordTok{range}\NormalTok{(nhogar)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  1 24
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Rango para cantidad de habitaciones del hogar}
+\NormalTok{nhabitaciones <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BHHO02}
+\KeywordTok{range}\NormalTok{(nhabitaciones)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  0 20
+\end{verbatim}
+
+También son de utilidad el \textbf{rango o recorrido intercuartilar} y
+el \textbf{rango o recorrido semi-intercuartilar}.\\
+El \textbf{rango o recorrido intercuartilar} se simboliza con AIQ y es
+la distancia entre el tercer y el primer cuartil. El \textbf{rango o
+recorrido intercuartilar} se simboliza con SRIC y es la mitad del AIQ.
+Calulemos estas distancias para el tiempo de consumo de tabaco, alcohol
+y marihuana.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Seleccionamos las variables de edad de inicio de consumo}
+\NormalTok{## para tabaco, alcohol y marihuana}
+\NormalTok{edad_tabaco <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BITA03[enprecosp}\OperatorTok{$}\NormalTok{BITA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+\NormalTok{edad_alcohol <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIBA03[enprecosp}\OperatorTok{$}\NormalTok{BIBA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+\NormalTok{edad_marihuana <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIMA03[enprecosp}\OperatorTok{$}\NormalTok{BIMA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+
+\NormalTok{## Calculamos los cuantiles}
+\NormalTok{q_tabaco <-}\StringTok{ }\KeywordTok{quantile}\NormalTok{(edad_tabaco, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{q_alcohol <-}\StringTok{ }\KeywordTok{quantile}\NormalTok{(edad_alcohol, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\NormalTok{q_marihuana <-}\StringTok{ }\KeywordTok{quantile}\NormalTok{(edad_marihuana, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+
+\NormalTok{## Calculamos el rango intercuartilar}
+\NormalTok{aiq_t <-}\StringTok{ }\NormalTok{q_tabaco[}\DecValTok{4}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{q_tabaco[}\DecValTok{2}\NormalTok{]; aiq_t}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 75% 
+##   3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aiq_al <-}\StringTok{ }\NormalTok{q_alcohol[}\DecValTok{4}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{q_alcohol[}\DecValTok{2}\NormalTok{]; aiq_al}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 75% 
+##   5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aiq_ma <-}\StringTok{ }\NormalTok{q_marihuana[}\DecValTok{4}\NormalTok{] }\OperatorTok{-}\StringTok{ }\NormalTok{q_marihuana[}\DecValTok{2}\NormalTok{]; aiq_ma}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 75% 
+##   5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Calculamos el rango semi-itercuartilar}
+\NormalTok{aiq_t}\OperatorTok{/}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 75% 
+## 1.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aiq_al}\OperatorTok{/}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 75% 
+## 2.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{aiq_ma}\OperatorTok{/}\DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 75% 
+## 2.5
+\end{verbatim}
+
+\subsection{Varianza y desvío
+estándar}\label{varianza-y-desvio-estandar}
+
+Una de las medidas más utilizadas para medir la variabilidad cuando los
+datos son cuantitativos es la varianza (\(s^2\)) y el desvío estándar
+(\(s\)).
+
+Sea n la cantidad de casos. La \textbf{varianza} es la suma de los
+cuadrados de los desvíos con respecto a la media, dividido por n - 1.
+
+\[
+s^2 = \frac{\sum_{i=1}^n (x_i - \bar{x})^2}{n - 1}
+\] El \textbf{desvío estándar} es la raíz cuadrada de la varianza.
+
+\[
+s = \sqrt{s^2}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Calculemos la varianza para los edad de}
+\NormalTok{## Inicio de consumo de tabaco}
+\NormalTok{## Quitamos los valores faltantes}
+\NormalTok{edad_tabaco <-}\StringTok{ }\NormalTok{edad_tabaco[}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(edad_tabaco)]}
+
+\NormalTok{## Calculo la varianza}
+\NormalTok{n <-}\StringTok{ }\KeywordTok{length}\NormalTok{(edad_tabaco)}
+\NormalTok{xn <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(edad_tabaco)}
+\NormalTok{s2 <-}\StringTok{ }\KeywordTok{sum}\NormalTok{((edad_tabaco }\OperatorTok{-}\StringTok{ }\NormalTok{xn)}\OperatorTok{^}\DecValTok{2}\NormalTok{) }\OperatorTok{/}\StringTok{ }\NormalTok{(n }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{); s2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.81292
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Desvío estándar}
+\KeywordTok{sqrt}\NormalTok{(s2)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.45117
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Utilizando la función sd}
+\KeywordTok{var}\NormalTok{(edad_tabaco)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 19.81292
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(edad_tabaco)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.45117
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Calculamos sd para alcohol y marihuana}
+\KeywordTok{sd}\NormalTok{(edad_alcohol, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.705321
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(edad_marihuana, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.476129
+\end{verbatim}
+
+La varianza y el desvío estandar dependen de la unidad de medida que se
+utilice. Por ejemplo, la varianza de la edad de inicio de consumo de
+alcohol se mide en años al cuadrado. Y el desvío en años. Ello hace que
+la medida sea diferente si utilizamos escalas diferentes. Imaginemos que
+medimos el peso de un grupo de personas en gramos y en kilos. La
+varianza, para ese grupo de personas, medida en \(gramos^2\) será más
+grande que cuando la midamos en \(kilos^2\).\\
+A veces, incluso, nos interesa comparar magnitudes diferentes, por
+ejemplo, peso y altura, y comparar la varianza de ambas variables. Para
+poder interpretar más facilmente el desvío estandar en términos
+relativos se utiliza el \textbf{coeficiente de variación} (CV)
+
+\[
+CV = \frac{s}{\bar{x}} * 100
+\] El coeficiente de variación es adimensional y me permite comparar el
+desvío estandar en términos de porcentajes.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(edad_tabaco) }\OperatorTok{/}\StringTok{ }\KeywordTok{mean}\NormalTok{ (edad_tabaco) }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 26.02141
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(edad_marihuana, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{/}\StringTok{ }\KeywordTok{mean}\NormalTok{(edad_marihuana, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{) }\OperatorTok{*}\StringTok{ }\DecValTok{100}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 28.00788
+\end{verbatim}
+
+\subsection{Varibilidad en variables
+cualitativas}\label{varibilidad-en-variables-cualitativas}
+
+Para medir la variabilidad en variables cualitatiativas podemos hacer
+uso de coefientes de incertidumbre. La idea es que mientras más
+concentrados estén los datos en una categoría, tendrán menor
+incertidumbre o menor variabilidad. Mientras estén repartidos más
+equitativamente, entonces tendremos mayor incertidumbre o mayor
+variabilidad.
+
+Una medida útil en estos casos en la H de
+\citet{shanon1949mathematical}.
+
+\[
+H(x) = -\sum_{i = 1}^k f_i' * log_2 (f_i')
+\] Utilizando este coeficiente, comparemos la viariabilidad para hombres
+y para mujeres de: ¿Cuán fácil o difícil le sería conseguir
+tranquilizantes sin indicación médica? (EnPreCoSP)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Seleccionamos las variables}
+\NormalTok{facil_tranq <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIAC07_}\DecValTok{01}
+\NormalTok{sexo <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BHCH04}
+
+\NormalTok{## Convertimos a factor}
+\NormalTok{facil_tranq <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(facil_tranq, }
+                      \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Me sería fácil"}\NormalTok{,}
+                                 \StringTok{"Me sería difícil"}\NormalTok{,}
+                                 \StringTok{"No podría consegir"}\NormalTok{,}
+                                 \StringTok{"Ns/Nc"}\NormalTok{))}
+
+\NormalTok{sexo <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(sexo,}
+              \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Varón",}
+\StringTok{                         "}\NormalTok{Mujer}\StringTok{"))}
+
+\StringTok{## Calculamos las frecuencias relativas por sexo}
+\StringTok{tab <- prop.table(table(facil_tranq, sexo), 2); tab}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     sexo
+## facil_tranq              Varón     Mujer
+##   Me sería fácil     0.2874517 0.2626644
+##   Me sería difícil   0.2714259 0.2753287
+##   No podría consegir 0.3279914 0.3616081
+##   Ns/Nc              0.1131311 0.1003988
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{phombre <-}\StringTok{ }\NormalTok{tab[,}\DecValTok{1}\NormalTok{]}
+\NormalTok{pmujer <-}\StringTok{ }\NormalTok{tab[,}\DecValTok{2}\NormalTok{]}
+
+
+\NormalTok{## Calculamos el coeficiente de incertidumbre}
+\OperatorTok{-}\KeywordTok{sum}\NormalTok{(phombre }\OperatorTok{*}\StringTok{ }\KeywordTok{log2}\NormalTok{(phombre))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.910841
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\OperatorTok{-}\KeywordTok{sum}\NormalTok{(pmujer }\OperatorTok{*}\StringTok{ }\KeywordTok{log2}\NormalTok{(pmujer))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.882528
+\end{verbatim}
+
+\section{Medidas de forma}\label{medidas-de-forma}
+
+Con la librería \texttt{e1071} podemos calcular la simetría y la
+curtosis de una distribución.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(e1071)}
+
+\NormalTok{## Seleccionamos la edad y la guardamos en una nueva variable}
+\NormalTok{edad <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BHCH05}
+\NormalTok{## Simetría}
+\KeywordTok{skewness}\NormalTok{(edad, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2444952
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Curtosis}
+\KeywordTok{kurtosis}\NormalTok{(edad, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.048094
+\end{verbatim}
+
+La distribución normal es un concepto teórico que nos permite aproximar
+el comportamiento de una gran cantidad de variables. Existe una
+definición matemática precisa de la distribución normal. Por ahora, nos
+conformaremos con saber que la distribución normal tiene una forma
+acampanada.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{x =} \DecValTok{0}\NormalTok{), }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ x)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{stat_function}\NormalTok{(}\DataTypeTok{fun =}\NormalTok{ dnorm, }\DataTypeTok{col =} \StringTok{"black"}\NormalTok{, }\DataTypeTok{size =} \DecValTok{1}\NormalTok{) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{xlim}\NormalTok{(}\KeywordTok{c}\NormalTok{(}\OperatorTok{-}\DecValTok{3}\NormalTok{, }\DecValTok{3}\NormalTok{)) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme_minimal}\NormalTok{() }\OperatorTok{+}
+\StringTok{    }\KeywordTok{theme}\NormalTok{(}
+        \DataTypeTok{axis.text =} \KeywordTok{element_blank}\NormalTok{(),}
+        \DataTypeTok{axis.ticks =} \KeywordTok{element_blank}\NormalTok{()) }\OperatorTok{+}
+\StringTok{    }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \OtherTok{NULL}\NormalTok{, }\DataTypeTok{y =} \OtherTok{NULL}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-49-1.pdf}
+
+Dos medidas comunmente utilizadas son la asimetría y la curtosis. La
+\textbf{kurtosis} mide que tan coludas son las distribuciones con
+respecto a la normal. El 0 representa una distribución normal. Valores
+positivos son distribuciones más coludas (con más valores extremos) y
+valores negativos distribuciones menos coludas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{knitr}\OperatorTok{::}\KeywordTok{include_graphics}\NormalTok{(}\StringTok{"./img/1008px-Standard_symmetric_pdfs.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics[width=0.75\linewidth]{./img/1008px-Standard_symmetric_pdfs} \end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Un índice entre -0.5 y 0.5 indica que la distribución es mesocúrtica.
+\item
+  Un índice mayor a 0.5 insdica que la distribución es leptocúrtica
+\item
+  Un índice menor a -0.5 indica que la distribución es platicúrtica
+\end{itemize}
+
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-51-1.pdf}
+
+\section{Estandarización}\label{estandarizacion}
+
+La estandarización mediante los procesos de \textbf{centrado} y
+\textbf{escalado} de los datos. Para centrar los datos, les restamos la
+media. Para escalarlos, los dividimos por su desvío estándar.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Seleccionamos la edad y la guardamos en una nueva variable}
+\NormalTok{edad <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BHCH05}
+
+\NormalTok{## Centramos}
+\NormalTok{edad_centrada <-}\StringTok{ }\NormalTok{edad }\OperatorTok{-}\StringTok{ }\KeywordTok{mean}\NormalTok{(edad)}
+
+\NormalTok{## Escalamos}
+\NormalTok{edad_estandarizada <-}\StringTok{ }\NormalTok{edad_centrada }\OperatorTok{/}\StringTok{ }\KeywordTok{sd}\NormalTok{(edad)}
+
+\KeywordTok{head}\NormalTok{(edad)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 16 59 65 39 19 55
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(edad_estandarizada)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.61510952  1.49337797  1.92712041  0.04756984 -1.39823830  1.20421634
+\end{verbatim}
+
+Los puntajes estandarizados, también llamados \textbf{puntajes z}, son
+adimensionales. Esa transformación es útil para comparar a los
+individuos con su grupo de referencia, y detectar, por ejemplo, valores
+extremos. Al ser una medida relativa, también nos sirve para comparar a
+un individuo en diferentes variables.\\
+Veremos posteriormente que, en las distribuciones normales,
+aproximadamente el 95\% de los casos se encuentra entre -2 y 2 desvíos
+estandar. Por lo tanto, encontrar individuos con puntajes z mayores a 2
+o menores a -2 nos indica que son más bien casos atípicos.
+
+\chapter{Gráficos de Resumen}\label{graficos-de-resumen}
+
+\section{Gráficos de barras}\label{graficos-de-barras}
+
+Los gráficos de barras también sirven para graficar las medias. También
+podemos agregar las
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Seleccionamos las variables de edad de inicio de consumo}
+\NormalTok{## para tabaco, alcohol y marihuana}
+\NormalTok{edad_tabaco <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BITA03[enprecosp}\OperatorTok{$}\NormalTok{BITA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+\NormalTok{edad_alcohol <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIBA03[enprecosp}\OperatorTok{$}\NormalTok{BIBA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+\NormalTok{edad_marihuana <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BIMA03[enprecosp}\OperatorTok{$}\NormalTok{BIMA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
+
+\NormalTok{## Calculamos la media y el desvío estandar}
+\NormalTok{res_tabaco <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{mean}\NormalTok{(edad_tabaco, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }\KeywordTok{sd}\NormalTok{(edad_tabaco, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{res_alcohol <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{mean}\NormalTok{(edad_alcohol, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }\KeywordTok{sd}\NormalTok{(edad_alcohol, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\NormalTok{res_marihuana <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\KeywordTok{mean}\NormalTok{(edad_marihuana, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{), }\KeywordTok{sd}\NormalTok{(edad_marihuana, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+
+\NormalTok{## Construimos una matriz con los resultados}
+\NormalTok{m <-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(res_tabaco, res_alcohol, res_marihuana)}
+
+\NormalTok{## Armamos el gráfico de barras}
+\NormalTok{b <-}\StringTok{ }\KeywordTok{barplot}\NormalTok{(m[}\DecValTok{1}\NormalTok{,], }\DataTypeTok{ylim =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{25}\NormalTok{), }\DataTypeTok{col =} \StringTok{"steelblue"}\NormalTok{)}
+\CommentTok{# errbar(colnames(m), m[1,], m[1,] + m[2,], m[1,] - m[2,])}
+\KeywordTok{arrows}\NormalTok{(b, m[}\DecValTok{1}\NormalTok{,] }\OperatorTok{-}\StringTok{ }\NormalTok{m[}\DecValTok{2}\NormalTok{,], b, m[}\DecValTok{1}\NormalTok{,] }\OperatorTok{+}\StringTok{ }\NormalTok{m[}\DecValTok{2}\NormalTok{,], }\DataTypeTok{length=}\FloatTok{0.05}\NormalTok{, }\DataTypeTok{angle=}\DecValTok{90}\NormalTok{, }\DataTypeTok{code=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-55-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# x <- factor(c("tabaco", "alcohol", "marihuana"))}
+\CommentTok{# medias <- c(mean(edad_tabaco, na.rm = TRUE),}
+\CommentTok{#             mean(edad_alcohol, na.rm = TRUE),}
+\CommentTok{#             mean(edad_alcohol, na.rm = TRUE))}
+\CommentTok{# sd <- c(sd(edad_tabaco, na.rm = TRUE),}
+\CommentTok{#         sd(edad_alcohol, na.rm = TRUE),}
+\CommentTok{#         sd(edad_alcohol, na.rm = TRUE))}
+\CommentTok{# }
+\CommentTok{# barplot(height = medias, width = 1, col = "steelblue")}
+\end{Highlighting}
+\end{Shaded}
+
+\section{Gráficos de caja}\label{graficos-de-caja}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{boxplot}\NormalTok{(}\KeywordTok{list}\NormalTok{(edad_tabaco, edad_alcohol, edad_marihuana),}
+        \DataTypeTok{names =} \KeywordTok{c}\NormalTok{(}\StringTok{"tabaco"}\NormalTok{, }\StringTok{"alcohol"}\NormalTok{, }\StringTok{"marihuana"}\NormalTok{),}
+        \DataTypeTok{col =} \StringTok{"tomato"}\NormalTok{,}
+        \DataTypeTok{pch =} \DecValTok{16}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-56-1.pdf}
 
 \bibliography{book.bib,packages.bib}
 
