@@ -1,0 +1,200 @@
+```{r, echo = FALSE, comment = NULL}
+library(formattable)
+enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
+```
+# Relaciones entre variables
+
+Hasta aquí hemos venidos trabjando principalmente con medidas de resúmenes, tablas y gráficos para variables individuales. Muchas veces interesa obervar como las variables se comportan conjuntamente. Para ello, también haremos uso de tablas, gráficos y medidas de resúmenes.
+En términos técnicos, lo que nos interesesa es explicar la variabilidad. Podemos explicar parcialmente la variabilidad de una variable conociendo los valores de otras variables que estén **asociadas**.
+Diremos que existe **asociación de variables** cuando la variación de una de ellas influya en la variación de las otras. Por ejemplo, el peso y la altura son dos variables que están asociadas. Esperaríamos que las personas que son más altas sean, en promedio, mas pesadas que aquellas que son más bajas.
+Diremos que dos variables son **independientes** cuando la variación de una de ellas no afecta la variación de la otra.
+
+
+## Tablas de contingencia
+Son llamadas también **tablas de distribución conjunta**, **tablas bivariadas** o **tablas cruzadas**. Permite obervar la relación entre variables cualitativas. Se representan las categorías de una variables en las filas, y las categorías de la otra en las columnas, y se pueden calcular diferentes tipos de frecuencias absolutas o relativas.
+
+Supongamos que queremos observar la relación entre la prevalencia de consumo con el riesgo percibido para el consumo frecuente de alcohol (BIBA14_02).
+
+```{r}
+## Prevalencia de consumo del último mes y riesgo percibido
+## Alcohol
+riesgo_perc <- factor(enprecosp$BIBA14_02,
+                      labels = c("Ningún riesgo",
+                                 "Riesgo leve o moderado",
+                                 "Gran riesgo",
+                                 "No sé que riesgo corre"))
+
+
+prev_mes <- factor(enprecosp$P1M_BA,
+                labels = c("Sí",
+                           "No"))
+
+## Realizamos una tabla de frecuencias absolutas conjunta
+tc <- table(riesgo_perc, prev_mes)
+tc
+```
+
+En estas tablas también se pueden expresas las frecuencias marginales. Las **frecuencias marginales** son los totales por fila y por columna. Se corresponden con las frecuencias univariadas para cada una de las variables.
+
+```{r}
+## Frecuencias marginales
+addmargins(tc)
+
+```
+
+
+También podemos calcular las frecuencias relativas
+
+```{r}
+## Frecuencias relativas al total
+tc_tot <- prop.table(tc)
+tc_tot <- addmargins(tc_tot)
+
+format(tc_tot, digits = 0, nsmall = 4)
+
+## Frecuencias relativas por filas
+tc_fila <- addmargins(tc, 1)
+tc_fila <- prop.table(tc_fila, 1)
+
+format(tc_fila, digits = 0, nsmall = 4)
+
+## Frecuencias relativas por columna
+tc_col <- addmargins(tc, 2)
+tc_col <- prop.table(tc_col, 2)
+
+format(tc_col, digits = 0, nsmall = 4)
+
+```
+
+## Riesgo relativo
+
+|             | Enfermo | Saludable |
+|-------------|---------|-----------|
+|  Expuesto   | $$D_e$$ | $$H_n$$   |
+| No Expuesto | $$D_n$$ | $$H_n$$   |
+
+
+## Odds ratio
+
+
+## Intensidad de la asociación
+
+Las medidas de asociación nos permiten evaluar el grado o intensidad de la relación entre las variables.
+
+### Q de Kendall - Yule
+El Q de Kendall-Yule es una medida de intensidad de asociación para variables dicotómicas. 
+Supongamos que tenemos la siguiente tabla de doble entrada:
+```{r, echo = FALSE}
+tabla <- c("a", "b", "a+b", "c", "d", "c+d", "a+c", "b+d", "n")
+
+tabla <- matrix(tabla,
+                nrow = 3,
+                byrow = TRUE)
+
+
+colnames(tabla) <- c("Sí", "No", "Total")
+rownames(tabla) <- c("Positiva", "Negativa", "Total")
+
+
+kableExtra::kable(tabla)
+```
+
+El coeficiente de Q es:
+
+$$
+Q = \frac{ad - bc}{ad + bc}
+$$
+
+
+Evaluemos si el sexo está relacionado con la prevalencia mensual de consumo de alcohol.
+
+```{r}
+sexo <- factor(enprecosp$BHCH04J,
+                    labels = c("Varón",
+                               "Mujer"))
+
+prev_alcohol <- factor(enprecosp$P1M_BA,
+                    labels = c("Sí",
+                               "No"))
+
+tc <- table(sexo, prev_alcohol)
+
+tc
+## Veamos el grado de asociación
+a <- tc[1,1]
+b <- tc[1,2]
+c <- tc[2,1]
+d <- tc[2,2]
+
+
+## Calculamos el coeficiente Q de Kendall-Yule
+Q <- (a*d-b*c)/(a*d+b*c)
+Q
+```
+
+### Chi cuadrado ($\chi^2$)
+
+```{r}
+## Riesgo leve percibido
+## En su opinión, ¿cuál cree usted que es el riesgo que
+## corre una persona que toma bebidas alcohólicas de vez
+## en cuando
+
+riesgo_perc <- factor(enprecosp$BIBA14_01,
+                      labels = c("Ningún riesgo",
+                                 "Riesgo leve o moderado",
+                                 "Gran riesgo",
+                                 "No sé qué riesgo"))
+
+# prop.table(table(riesgo_perc))
+
+prev_alcohol <- factor(enprecosp$P1M_BA,
+                    labels = c("Sí",
+                               "No"))
+
+tc <- table(riesgo_perc, prev_alcohol)
+
+## Calculamos las frecuencias esperadas y observadas
+chi <- chisq.test(tc)
+chi$observed
+chi$expected
+
+chi_val <- chi$statistic
+```
+
+## Coeficiente Phi de Pearson-Yule ($\varphi$)
+
+$$
+\varphi = \sqrt{\frac{\chi^2}{n}}
+$$
+
+```{r}
+sexo <- factor(enprecosp$BHCH04J,
+                    labels = c("Varón",
+                               "Mujer"))
+
+prev_alcohol <- factor(enprecosp$P1M_BA,
+                    labels = c("Sí",
+                               "No"))
+
+tc <- table(sexo, prev_alcohol)
+
+chi <- chisq.test(tc)
+chi_val <- chi$statistic
+
+n <- sum(tc)
+phi <- sqrt(chi_val/n)
+```
+
+
+## Coeficiente de contingencia C de Pearson
+```{r}
+
+```
+
+## Coeficiente V de Cramer
+```{r}
+V <- sqrt(chi_val/(n * min(ncol(tc), nrow(tc))))
+
+
+```

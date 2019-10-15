@@ -7,9 +7,11 @@ enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
 ## Gráficos de barras
 
 Los gráficos de barras también sirven para graficar las medias. También podemos agregar las 
-```{r, comment = "", echo = FALSE}
+```{r, message=FALSE, echo = TRUE}
 library(Hmisc)
 ```
+
+
 ```{r}
 ## Seleccionamos las variables de edad de inicio de consumo
 ## para tabaco, alcohol y marihuana

@@ -24,7 +24,7 @@
 <meta name="author" content="Matías Alfonso" />
 
 
-<meta name="date" content="2019-10-01" />
+<meta name="date" content="2019-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -207,16 +207,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div id="graficos-de-barras" class="section level2">
 <h2><span class="header-section-number">11.1</span> Gráficos de barras</h2>
 <p>Los gráficos de barras también sirven para graficar las medias. También podemos agregar las</p>
-<pre><code>Loading required package: survival</code></pre>
-<pre><code>Loading required package: Formula</code></pre>
-<pre><code>
-Attaching package: &#39;Hmisc&#39;</code></pre>
-<pre><code>The following object is masked from &#39;package:e1071&#39;:
-
-    impute</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    format.pval, units</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Hmisc)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Seleccionamos las variables de edad de inicio de consumo
 ## para tabaco, alcohol y marihuana
 edad_tabaco &lt;-<span class="st"> </span>enprecosp<span class="op">$</span>BITA03[enprecosp<span class="op">$</span>BITA03 <span class="op">!=</span><span class="st"> </span><span class="dv">99</span>]
@@ -235,7 +226,7 @@ m &lt;-<span class="st"> </span><span class="kw">cbind</span>(res_tabaco, res_al
 b &lt;-<span class="st"> </span><span class="kw">barplot</span>(m[<span class="dv">1</span>,], <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">25</span>), <span class="dt">col =</span> <span class="st">&quot;steelblue&quot;</span>)
 <span class="co"># errbar(colnames(m), m[1,], m[1,] + m[2,], m[1,] - m[2,])</span>
 <span class="kw">arrows</span>(b, m[<span class="dv">1</span>,] <span class="op">-</span><span class="st"> </span>m[<span class="dv">2</span>,], b, m[<span class="dv">1</span>,] <span class="op">+</span><span class="st"> </span>m[<span class="dv">2</span>,], <span class="dt">length=</span><span class="fl">0.05</span>, <span class="dt">angle=</span><span class="dv">90</span>, <span class="dt">code=</span><span class="dv">3</span>)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-55-1.png" width="672" /></p>
+<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># x &lt;- factor(c(&quot;tabaco&quot;, &quot;alcohol&quot;, &quot;marihuana&quot;))</span>
 <span class="co"># medias &lt;- c(mean(edad_tabaco, na.rm = TRUE),</span>
 <span class="co">#             mean(edad_alcohol, na.rm = TRUE),</span>
@@ -252,7 +243,7 @@ b &lt;-<span class="st"> </span><span class="kw">barplot</span>(m[<span class="d
         <span class="dt">names =</span> <span class="kw">c</span>(<span class="st">&quot;tabaco&quot;</span>, <span class="st">&quot;alcohol&quot;</span>, <span class="st">&quot;marihuana&quot;</span>),
         <span class="dt">col =</span> <span class="st">&quot;tomato&quot;</span>,
         <span class="dt">pch =</span> <span class="dv">16</span>)</code></pre></div>
-<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-56-1.png" width="672" /></p>
+<p><img src="Introduccion_Datos_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -299,7 +290,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["Introduccion Datos.pdf", "Introduccion Datos.epub"],
+"download": ["Introduccion_Datos.pdf", "Introduccion_Datos.epub"],
 "toc": {
 "collapse": "subsection"
 }
@@ -307,19 +298,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
