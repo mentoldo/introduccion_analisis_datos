@@ -130,7 +130,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-10-01}
+    \date{2019-10-15}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -2223,6 +2223,12 @@ podemos agregar las
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(Hmisc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
 \NormalTok{## Seleccionamos las variables de edad de inicio de consumo}
 \NormalTok{## para tabaco, alcohol y marihuana}
 \NormalTok{edad_tabaco <-}\StringTok{ }\NormalTok{enprecosp}\OperatorTok{$}\NormalTok{BITA03[enprecosp}\OperatorTok{$}\NormalTok{BITA03 }\OperatorTok{!=}\StringTok{ }\DecValTok{99}\NormalTok{]}
@@ -2272,6 +2278,339 @@ podemos agregar las
 \end{Shaded}
 
 \includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-56-1.pdf}
+
+\chapter{Relaciones entre variables}\label{relaciones-entre-variables}
+
+Hasta aquí hemos venidos trabjando principalmente con medidas de
+resúmenes, tablas y gráficos para variables individuales. Muchas veces
+interesa obervar como las variables se comportan conjuntamente. Para
+ello, también haremos uso de tablas, gráficos y medidas de resúmenes. En
+términos técnicos, lo que nos interesesa es explicar la variabilidad.
+Podemos explicar parcialmente la variabilidad de una variable conociendo
+los valores de otras variables que estén \textbf{asociadas}. Diremos que
+existe \textbf{asociación de variables} cuando la variación de una de
+ellas influya en la variación de las otras. Por ejemplo, el peso y la
+altura son dos variables que están asociadas. Esperaríamos que las
+personas que son más altas sean, en promedio, mas pesadas que aquellas
+que son más bajas. Diremos que dos variables son \textbf{independientes}
+cuando la variación de una de ellas no afecta la variación de la otra.
+
+\section{Tablas de contingencia}\label{tablas-de-contingencia}
+
+Son llamadas también \textbf{tablas de distribución conjunta},
+\textbf{tablas bivariadas} o \textbf{tablas cruzadas}. Permite obervar
+la relación entre variables cualitativas. Se representan las categorías
+de una variables en las filas, y las categorías de la otra en las
+columnas, y se pueden calcular diferentes tipos de frecuencias absolutas
+o relativas.
+
+Supongamos que queremos observar la relación entre la prevalencia de
+consumo con el riesgo percibido para el consumo frecuente de alcohol
+(BIBA14\_02).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Prevalencia de consumo del último mes y riesgo percibido}
+\NormalTok{## Alcohol}
+\NormalTok{riesgo_perc <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(enprecosp}\OperatorTok{$}\NormalTok{BIBA14_}\DecValTok{02}\NormalTok{,}
+                      \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Ningún riesgo"}\NormalTok{,}
+                                 \StringTok{"Riesgo leve o moderado"}\NormalTok{,}
+                                 \StringTok{"Gran riesgo"}\NormalTok{,}
+                                 \StringTok{"No sé que riesgo corre"}\NormalTok{))}
+
+
+\NormalTok{prev_mes <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(enprecosp}\OperatorTok{$}\NormalTok{P1M_BA,}
+                \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Sí"}\NormalTok{,}
+                           \StringTok{"No"}\NormalTok{))}
+
+\NormalTok{## Realizamos una tabla de frecuencias absolutas conjunta}
+\NormalTok{tc <-}\StringTok{ }\KeywordTok{table}\NormalTok{(riesgo_perc, prev_mes)}
+\NormalTok{tc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         prev_mes
+## riesgo_perc                 Sí    No
+##   Ningún riesgo            202    61
+##   Riesgo leve o moderado  1701  1139
+##   Gran riesgo            14261 16601
+##   No sé que riesgo corre   163   215
+\end{verbatim}
+
+En estas tablas también se pueden expresas las frecuencias marginales.
+Las \textbf{frecuencias marginales} son los totales por fila y por
+columna. Se corresponden con las frecuencias univariadas para cada una
+de las variables.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Frecuencias marginales}
+\KeywordTok{addmargins}\NormalTok{(tc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         prev_mes
+## riesgo_perc                 Sí    No   Sum
+##   Ningún riesgo            202    61   263
+##   Riesgo leve o moderado  1701  1139  2840
+##   Gran riesgo            14261 16601 30862
+##   No sé que riesgo corre   163   215   378
+##   Sum                    16327 18016 34343
+\end{verbatim}
+
+También podemos calcular las frecuencias relativas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Frecuencias relativas al total}
+\NormalTok{tc_tot <-}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(tc)}
+\NormalTok{tc_tot <-}\StringTok{ }\KeywordTok{addmargins}\NormalTok{(tc_tot)}
+
+\KeywordTok{format}\NormalTok{(tc_tot, }\DataTypeTok{digits =} \DecValTok{0}\NormalTok{, }\DataTypeTok{nsmall =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         prev_mes
+## riesgo_perc              Sí       No       Sum     
+##   Ningún riesgo          "0.0059" "0.0018" "0.0077"
+##   Riesgo leve o moderado "0.0495" "0.0332" "0.0827"
+##   Gran riesgo            "0.4153" "0.4834" "0.8986"
+##   No sé que riesgo corre "0.0047" "0.0063" "0.0110"
+##   Sum                    "0.4754" "0.5246" "1.0000"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Frecuencias relativas por filas}
+\NormalTok{tc_fila <-}\StringTok{ }\KeywordTok{addmargins}\NormalTok{(tc, }\DecValTok{1}\NormalTok{)}
+\NormalTok{tc_fila <-}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(tc_fila, }\DecValTok{1}\NormalTok{)}
+
+\KeywordTok{format}\NormalTok{(tc_fila, }\DataTypeTok{digits =} \DecValTok{0}\NormalTok{, }\DataTypeTok{nsmall =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         prev_mes
+## riesgo_perc              Sí       No      
+##   Ningún riesgo          "0.7681" "0.2319"
+##   Riesgo leve o moderado "0.5989" "0.4011"
+##   Gran riesgo            "0.4621" "0.5379"
+##   No sé que riesgo corre "0.4312" "0.5688"
+##   Sum                    "0.4754" "0.5246"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Frecuencias relativas por columna}
+\NormalTok{tc_col <-}\StringTok{ }\KeywordTok{addmargins}\NormalTok{(tc, }\DecValTok{2}\NormalTok{)}
+\NormalTok{tc_col <-}\StringTok{ }\KeywordTok{prop.table}\NormalTok{(tc_col, }\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{format}\NormalTok{(tc_col, }\DataTypeTok{digits =} \DecValTok{0}\NormalTok{, }\DataTypeTok{nsmall =} \DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         prev_mes
+## riesgo_perc              Sí       No       Sum     
+##   Ningún riesgo          "0.0124" "0.0034" "0.0077"
+##   Riesgo leve o moderado "0.1042" "0.0632" "0.0827"
+##   Gran riesgo            "0.8735" "0.9215" "0.8986"
+##   No sé que riesgo corre "0.0100" "0.0119" "0.0110"
+\end{verbatim}
+
+\section{Riesgo relativo}\label{riesgo-relativo}
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule
+& Enfermo & Saludable\tabularnewline
+\midrule
+\endhead
+Expuesto & \(D_e\) & \(H_n\)\tabularnewline
+No Expuesto & \(D_n\) & \(H_n\)\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{Odds ratio}\label{odds-ratio}
+
+\section{Intensidad de la asociación}\label{intensidad-de-la-asociacion}
+
+Las medidas de asociación nos permiten evaluar el grado o intensidad de
+la relación entre las variables.
+
+\subsection{Q de Kendall - Yule}\label{q-de-kendall---yule}
+
+El Q de Kendall-Yule es una medida de intensidad de asociación para
+variables dicotómicas. Supongamos que tenemos la siguiente tabla de
+doble entrada:
+
+\begin{tabular}{l|l|l|l}
+\hline
+  & Sí & No & Total\\
+\hline
+Positiva & a & b & a+b\\
+\hline
+Negativa & c & d & c+d\\
+\hline
+Total & a+c & b+d & n\\
+\hline
+\end{tabular}
+
+El coeficiente de Q es:
+
+\[
+Q = \frac{ad - bc}{ad + bc}
+\]
+
+Evaluemos si el sexo está relacionado con la prevalencia mensual de
+consumo de alcohol.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sexo <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(enprecosp}\OperatorTok{$}\NormalTok{BHCH04J,}
+                    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Varón",}
+\StringTok{                               "}\NormalTok{Mujer}\StringTok{"))}
+
+\StringTok{prev_alcohol <- factor(enprecosp$P1M_BA,}
+\StringTok{                    labels = c("}\NormalTok{Sí}\StringTok{",}
+\StringTok{                               "}\NormalTok{No}\StringTok{"))}
+
+\StringTok{tc <- table(sexo, prev_alcohol)}
+
+\StringTok{tc}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        prev_alcohol
+## sexo       Sí    No
+##   Varón 11378 11434
+##   Mujer  4949  6582
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Veamos el grado de asociación}
+\NormalTok{a <-}\StringTok{ }\NormalTok{tc[}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{b <-}\StringTok{ }\NormalTok{tc[}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+\NormalTok{c <-}\StringTok{ }\NormalTok{tc[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{]}
+\NormalTok{d <-}\StringTok{ }\NormalTok{tc[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{]}
+
+
+\NormalTok{## Calculamos el coeficiente Q de Kendall-Yule}
+\NormalTok{Q <-}\StringTok{ }\NormalTok{(a}\OperatorTok{*}\NormalTok{d}\OperatorTok{-}\NormalTok{b}\OperatorTok{*}\NormalTok{c)}\OperatorTok{/}\NormalTok{(a}\OperatorTok{*}\NormalTok{d}\OperatorTok{+}\NormalTok{b}\OperatorTok{*}\NormalTok{c)}
+\NormalTok{Q}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1392118
+\end{verbatim}
+
+\subsection{\texorpdfstring{Chi cuadrado
+(\(\chi^2\))}{Chi cuadrado (\textbackslash{}chi\^{}2)}}\label{chi-cuadrado-chi2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Riesgo leve percibido}
+\NormalTok{## En su opinión, ¿cuál cree usted que es el riesgo que}
+\NormalTok{## corre una persona que toma bebidas alcohólicas de vez}
+\NormalTok{## en cuando}
+
+\NormalTok{riesgo_perc <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(enprecosp}\OperatorTok{$}\NormalTok{BIBA14_}\DecValTok{01}\NormalTok{,}
+                      \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Ningún riesgo"}\NormalTok{,}
+                                 \StringTok{"Riesgo leve o moderado"}\NormalTok{,}
+                                 \StringTok{"Gran riesgo"}\NormalTok{,}
+                                 \StringTok{"No sé qué riesgo"}\NormalTok{))}
+
+\CommentTok{# prop.table(table(riesgo_perc))}
+
+\NormalTok{prev_alcohol <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(enprecosp}\OperatorTok{$}\NormalTok{P1M_BA,}
+                    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Sí"}\NormalTok{,}
+                               \StringTok{"No"}\NormalTok{))}
+
+\NormalTok{tc <-}\StringTok{ }\KeywordTok{table}\NormalTok{(riesgo_perc, prev_alcohol)}
+
+\NormalTok{## Calculamos las frecuencias esperadas y observadas}
+\NormalTok{chi <-}\StringTok{ }\KeywordTok{chisq.test}\NormalTok{(tc)}
+\NormalTok{chi}\OperatorTok{$}\NormalTok{observed}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         prev_alcohol
+## riesgo_perc                Sí   No
+##   Ningún riesgo          4153 2813
+##   Riesgo leve o moderado 7432 7309
+##   Gran riesgo            4549 7622
+##   No sé qué riesgo        193  272
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi}\OperatorTok{$}\NormalTok{expected}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         prev_alcohol
+## riesgo_perc                     Sí        No
+##   Ningún riesgo          3311.7049 3654.2951
+##   Riesgo leve o moderado 7008.0164 7732.9836
+##   Gran riesgo            5786.2131 6384.7869
+##   No sé qué riesgo        221.0656  243.9344
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi_val <-}\StringTok{ }\NormalTok{chi}\OperatorTok{$}\NormalTok{statistic; chi_val}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## X-squared 
+##   967.376
+\end{verbatim}
+
+\section{\texorpdfstring{Coeficiente Phi de Pearson-Yule
+(\(\varphi\))}{Coeficiente Phi de Pearson-Yule (\textbackslash{}varphi)}}\label{coeficiente-phi-de-pearson-yule-varphi}
+
+\[
+\varphi = \sqrt{\frac{\chi^2}{n}}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sexo <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(enprecosp}\OperatorTok{$}\NormalTok{BHCH04J,}
+                    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Varón",}
+\StringTok{                               "}\NormalTok{Mujer}\StringTok{"))}
+
+\StringTok{prev_alcohol <- factor(enprecosp$P1M_BA,}
+\StringTok{                    labels = c("}\NormalTok{Sí}\StringTok{",}
+\StringTok{                               "}\NormalTok{No}\StringTok{"))}
+
+\StringTok{tc <- table(sexo, prev_alcohol)}
+
+\StringTok{chi <- chisq.test(tc)}
+\StringTok{chi_val <- chi$statistic}
+
+\StringTok{n <- sum(tc)}
+\StringTok{phi <- sqrt(chi_val/n)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Coeficiente de contingencia C de
+Pearson}\label{coeficiente-de-contingencia-c-de-pearson}
+
+\subsection{Coeficiente V de Cramer}\label{coeficiente-v-de-cramer}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{V <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(chi_val}\OperatorTok{/}\NormalTok{(n }\OperatorTok{*}\StringTok{ }\KeywordTok{min}\NormalTok{(}\KeywordTok{ncol}\NormalTok{(tc), }\KeywordTok{nrow}\NormalTok{(tc))))}
+\end{Highlighting}
+\end{Shaded}
 
 \bibliography{book.bib,packages.bib}
 

@@ -1,5 +1,7 @@
 ```{r, echo = FALSE, comment = NULL}
 library(formattable)
+library(kableExtra)
+library(dplyr)
 enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
 ```
 # Relaciones entre variables
@@ -83,7 +85,8 @@ Las medidas de asociación nos permiten evaluar el grado o intensidad de la rela
 
 ### Q de Kendall - Yule
 El Q de Kendall-Yule es una medida de intensidad de asociación para variables dicotómicas. 
-Supongamos que tenemos la siguiente tabla de doble entrada:
+Supongamos que tenemos la siguiente tabla de doble entrada:  
+
 ```{r, echo = FALSE}
 tabla <- c("a", "b", "a+b", "c", "d", "c+d", "a+c", "b+d", "n")
 
@@ -96,7 +99,8 @@ colnames(tabla) <- c("Sí", "No", "Total")
 rownames(tabla) <- c("Positiva", "Negativa", "Total")
 
 
-kableExtra::kable(tabla)
+kable(tabla) %>% 
+  kable_styling()
 ```
 
 El coeficiente de Q es:
@@ -159,7 +163,7 @@ chi <- chisq.test(tc)
 chi$observed
 chi$expected
 
-chi_val <- chi$statistic
+chi_val <- chi$statistic; chi_val
 ```
 
 ## Coeficiente Phi de Pearson-Yule ($\varphi$)
@@ -187,14 +191,62 @@ phi <- sqrt(chi_val/n)
 ```
 
 
-## Coeficiente de contingencia C de Pearson
-```{r}
+### Coeficiente de contingencia C de Pearson
+Mide el grado de asociación en tablas de contingencia con más de dos categorías.
 
+$$
+C = \sqrt{\frac{\chi^2}{\chi^2 + n}}
+$$
+
+Va de 0 a 1 y se compara con un C máximo:
+
+$$
+C_{max} = \sqrt{\frac{min(f, c) - 1}{min(f, c)}}
+$$
+Donde:
+$f$ es el número de filas
+$g$ es el número de columnas
+
+```{r}
+## Riesgo leve percibido
+## En su opinión, ¿cuál cree usted que es el riesgo que
+## corre una persona que toma bebidas alcohólicas de vez
+## en cuando
+
+riesgo_perc <- factor(enprecosp$BIBA14_01,
+                      labels = c("Ningún riesgo",
+                                 "Riesgo leve o moderado",
+                                 "Gran riesgo",
+                                 "No sé qué riesgo"))
+
+# prop.table(table(riesgo_perc))
+
+prev_alcohol <- factor(enprecosp$P1M_BA,
+                    labels = c("Sí",
+                               "No"))
+
+tc <- table(riesgo_perc, prev_alcohol)
+
+## Calculamos las frecuencias esperadas y observadas
+chi <- chisq.test(tc)
+chi$observed
+chi$expected
+
+chi_val <- chi$statistic; chi_val
+
+## Calculamos el C de Pearson
+f <- nrow(tc)
+c <- ncol(tc)
+n <- sum(tc)
+C <- sqrt(chi_val/(chi_val + n)); C
+Cmax <- sqrt((min(f, c) - 1) / min(f, c)); Cmax
 ```
 
-## Coeficiente V de Cramer
+### Coeficiente V de Cramer
+
+$$
+V = \sqrt{\frac{\chi^2}{n * min(f - 1, c-1)}}
+$$
 ```{r}
 V <- sqrt(chi_val/(n * min(ncol(tc), nrow(tc))))
-
-
 ```

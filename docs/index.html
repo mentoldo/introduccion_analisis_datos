@@ -24,7 +24,7 @@
 <meta name="author" content="Matías Alfonso" />
 
 
-<meta name="date" content="2019-10-01" />
+<meta name="date" content="2019-10-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -47,8 +47,46 @@
 
 
 
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -144,6 +182,19 @@
 <li class="chapter" data-level="11.1" data-path="graficos-de-resumen.html"><a href="graficos-de-resumen.html#graficos-de-barras"><i class="fa fa-check"></i><b>11.1</b> Gráficos de barras</a></li>
 <li class="chapter" data-level="11.2" data-path="graficos-de-resumen.html"><a href="graficos-de-resumen.html#graficos-de-caja"><i class="fa fa-check"></i><b>11.2</b> Gráficos de caja</a></li>
 </ul></li>
+<li class="chapter" data-level="12" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html"><i class="fa fa-check"></i><b>12</b> Relaciones entre variables</a><ul>
+<li class="chapter" data-level="12.1" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>12.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="12.2" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#riesgo-relativo"><i class="fa fa-check"></i><b>12.2</b> Riesgo relativo</a></li>
+<li class="chapter" data-level="12.3" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#odds-ratio"><i class="fa fa-check"></i><b>12.3</b> Odds ratio</a></li>
+<li class="chapter" data-level="12.4" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#intensidad-de-la-asociacion"><i class="fa fa-check"></i><b>12.4</b> Intensidad de la asociación</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#q-de-kendall---yule"><i class="fa fa-check"></i><b>12.4.1</b> Q de Kendall - Yule</a></li>
+<li class="chapter" data-level="12.4.2" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#chi-cuadrado-chi2"><i class="fa fa-check"></i><b>12.4.2</b> Chi cuadrado (<span class="math inline">\(\chi^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#coeficiente-phi-de-pearson-yule-varphi"><i class="fa fa-check"></i><b>12.5</b> Coeficiente Phi de Pearson-Yule (<span class="math inline">\(\varphi\)</span>)</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#coeficiente-de-contingencia-c-de-pearson"><i class="fa fa-check"></i><b>12.5.1</b> Coeficiente de contingencia C de Pearson</a></li>
+<li class="chapter" data-level="12.5.2" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#coeficiente-v-de-cramer"><i class="fa fa-check"></i><b>12.5.2</b> Coeficiente V de Cramer</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -168,7 +219,7 @@
 <div id="header">
 <h1 class="title">Introducción al Análisis de Datos</h1>
 <p class="author"><em>Matías Alfonso</em></p>
-<p class="date"><em>2019-10-01</em></p>
+<p class="date"><em>2019-10-15</em></p>
 </div>
 <div id="prelim" class="section level1">
 <h1><span class="header-section-number">Capítulo 1</span> Preliminares</h1>
@@ -248,6 +299,19 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
