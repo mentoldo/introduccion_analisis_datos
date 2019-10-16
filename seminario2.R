@@ -46,3 +46,63 @@ library(questionr)
 
 tc <- wtd.table(riesgo_perc, abuso, enprecosp$W_PERS)
 
+enprecosp <- read.table("data/enprecosp_2011.txt", header = TRUE, sep = "|")
+
+
+
+## Seleccionamos la nueva variable y la guardamos en una nueva variable
+saludsub <- enprecosp$BISG01
+
+## Vemos cuantos casos tenemos en total
+length(saludsub)
+
+## Convertimos a factor y etiquetamos los códigos de valores
+saludsub <- factor(saludsub,
+                   labels = c("Excelente", "Muy buena", "Buena", "Regular", "Mala"),
+                   ordered = TRUE)
+
+## Calculamos las frecuencias absolutas simples
+f <- table(saludsub)
+
+## Calculamos las frecuencias relativas simples
+frel <- prop.table(f)
+
+## Calculamos las frecuencias absolutas acumuladas
+fcum <- cumsum(f)
+
+## Calculamos las frecuencias relativas acumuladas
+frelcum <- cumsum(frel)
+
+## Juntamos todo y armamos una tabla de distribución de freucuencias.
+cbind(f, fcum, frel,frelcum)
+
+frecuencia <- cbind(f, fcum, frel,frelcum)
+
+print(frecuencia, digits = 2)
+
+Ahora analicemos las variables `BISG02` (Ha sufrido algún accidente el útlimo años) y `BISG03` (Ha sufrido alguna enfermedad el último año)
+
+
+## Seleccionamos BISG02 y la guardamos en una nueva variable
+accidente <- enprecosp$BISG02
+enfermedad <- enprecosp$BISG03
+
+## Convertimos a factor y etiquetamos los códigos de valores
+accidente <- factor(accidente,
+                    labels = c("Sí", "No", "Ns/Nc"))
+enfermedad <- factor(enfermedad,
+                     labels = c("Sí", "No", "Ns/Nc"))
+
+## Construimos las frecuencias para la variable accidente
+f <- table(accidente)
+frel <- prop.table(f)
+
+## Juntamos todo y armamos una tabla de distribución de freucuencias.
+cbind(f, frel)
+
+## Construimos las frecuencias para la variable enfermedad
+f <- table(enfermedad)
+frel <- prop.table(f)
+
+## Juntamos todo y armamos una tabla de distribución de freucuencias.
+cbind(f, frel)
