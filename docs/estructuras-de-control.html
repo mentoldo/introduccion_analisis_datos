@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 6 Estructuras de control | Introducción al Análisis de Datos</title>
+  <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="generator" content="bookdown 0.12 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 6 Estructuras de control | Introducción al Análisis de Datos" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  <meta name="github-repo" content="https://github.com/mentoldo/introduccion_analisis_datos" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 6 Estructuras de control | Introducción al Análisis de Datos" />
+  
+  <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
+  
+
+<meta name="author" content="Matías Alfonso" />
+
+
+<meta name="date" content="2019-10-29" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="operaciones-basicas.html">
+<link rel="next" href="estructuras-de-control-1.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Análisis de Datos con R</a></li>
+
+<li class="divider"></li>
+<li class="part"><span><b>I Programación en R</b></span></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Preliminares</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#por-que-r"><i class="fa fa-check"></i><b>1.1</b> ¿Por qué R?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#software-libre"><i class="fa fa-check"></i><b>1.2</b> Software Libre</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#sistema-de-paquetes"><i class="fa fa-check"></i><b>1.3</b> Sistema de Paquetes</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>2</b> Primeros pasos</a><ul>
+<li class="chapter" data-level="2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#asignacion-de-datos-y-evaluacion."><i class="fa fa-check"></i><b>2.1</b> Asignación de datos y evaluación.</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-pasos.html"><a href="primeros-pasos.html#working-directory"><i class="fa fa-check"></i><b>2.2</b> Working directory</a></li>
+<li class="chapter" data-level="2.3" data-path="primeros-pasos.html"><a href="primeros-pasos.html#comentarios"><i class="fa fa-check"></i><b>2.3</b> Comentarios</a></li>
+<li class="chapter" data-level="2.4" data-path="primeros-pasos.html"><a href="primeros-pasos.html#objetos-basicos-en-r"><i class="fa fa-check"></i><b>2.4</b> Objetos básicos en R</a></li>
+<li class="chapter" data-level="2.5" data-path="primeros-pasos.html"><a href="primeros-pasos.html#factores"><i class="fa fa-check"></i><b>2.5</b> Factores</a></li>
+<li class="chapter" data-level="2.6" data-path="primeros-pasos.html"><a href="primeros-pasos.html#como-buscar-ayuda"><i class="fa fa-check"></i><b>2.6</b> Cómo buscar ayuda</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html"><i class="fa fa-check"></i><b>3</b> Estructuras de datos</a><ul>
+<li class="chapter" data-level="3.1" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#vectores"><i class="fa fa-check"></i><b>3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.2" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#listas"><i class="fa fa-check"></i><b>3.2</b> Listas</a></li>
+<li class="chapter" data-level="3.3" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#matrices"><i class="fa fa-check"></i><b>3.3</b> Matrices</a></li>
+<li class="chapter" data-level="3.4" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#data-frames"><i class="fa fa-check"></i><b>3.4</b> Data frames</a></li>
+<li class="chapter" data-level="3.5" data-path="estructuras-de-datos.html"><a href="estructuras-de-datos.html#valores-faltantes"><i class="fa fa-check"></i><b>3.5</b> Valores faltantes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html"><i class="fa fa-check"></i><b>4</b> Obteniendo datos</a><ul>
+<li class="chapter" data-level="4.1" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html#datos-tabulares"><i class="fa fa-check"></i><b>4.1</b> Datos tabulares</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="obteniendo-datos.html"><a href="obteniendo-datos.html#excel"><i class="fa fa-check"></i><b>4.1.1</b> Excel</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html"><i class="fa fa-check"></i><b>5</b> Operaciones básicas</a><ul>
+<li class="chapter" data-level="5.1" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#subsetting.-seleccion-de-elementos."><i class="fa fa-check"></i><b>5.1</b> Subsetting. Selección de elementos.</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#vectores-1"><i class="fa fa-check"></i><b>5.1.1</b> Vectores</a></li>
+<li class="chapter" data-level="5.1.2" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#matrices-1"><i class="fa fa-check"></i><b>5.1.2</b> Matrices</a></li>
+<li class="chapter" data-level="5.1.3" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#listas-1"><i class="fa fa-check"></i><b>5.1.3</b> Listas</a></li>
+<li class="chapter" data-level="5.1.4" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#data-frames-1"><i class="fa fa-check"></i><b>5.1.4</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="operaciones-basicas.html"><a href="operaciones-basicas.html#operaciones-vectorizadas"><i class="fa fa-check"></i><b>5.2</b> Operaciones vectorizadas</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="estructuras-de-control.html"><a href="estructuras-de-control.html"><i class="fa fa-check"></i><b>6</b> Estructuras de control</a><ul>
+<li class="chapter" data-level="6.1" data-path="estructuras-de-control.html"><a href="estructuras-de-control.html#if-else"><i class="fa fa-check"></i><b>6.1</b> If / else</a></li>
+<li class="chapter" data-level="6.2" data-path="estructuras-de-control.html"><a href="estructuras-de-control.html#while"><i class="fa fa-check"></i><b>6.2</b> <code>while</code></a></li>
+<li class="chapter" data-level="6.3" data-path="estructuras-de-control.html"><a href="estructuras-de-control.html#for"><i class="fa fa-check"></i><b>6.3</b> <code>for</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="estructuras-de-control-1.html"><a href="estructuras-de-control-1.html"><i class="fa fa-check"></i><b>7</b> Estructuras de control</a><ul>
+<li class="chapter" data-level="7.1" data-path="estructuras-de-control-1.html"><a href="estructuras-de-control-1.html#if-else-1"><i class="fa fa-check"></i><b>7.1</b> If / else</a></li>
+<li class="chapter" data-level="7.2" data-path="estructuras-de-control-1.html"><a href="estructuras-de-control-1.html#while-1"><i class="fa fa-check"></i><b>7.2</b> <code>while</code></a></li>
+<li class="chapter" data-level="7.3" data-path="estructuras-de-control-1.html"><a href="estructuras-de-control-1.html#for-1"><i class="fa fa-check"></i><b>7.3</b> <code>for</code></a></li>
+</ul></li>
+<li class="part"><span><b>II Introducción al análisis estadístico</b></span></li>
+<li class="chapter" data-level="8" data-path="introduccion.html"><a href="introduccion.html"><i class="fa fa-check"></i><b>8</b> Introducción</a><ul>
+<li class="chapter" data-level="8.1" data-path="introduccion.html"><a href="introduccion.html#datos-primarios-y-secundarios"><i class="fa fa-check"></i><b>8.1</b> Datos primarios y secundarios</a></li>
+<li class="chapter" data-level="8.2" data-path="introduccion.html"><a href="introduccion.html#resumen-de-la-informacion"><i class="fa fa-check"></i><b>8.2</b> Resumen de la información</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="bases-de-datos.html"><a href="bases-de-datos.html"><i class="fa fa-check"></i><b>9</b> Bases de datos</a><ul>
+<li class="chapter" data-level="9.1" data-path="bases-de-datos.html"><a href="bases-de-datos.html#enprecosp"><i class="fa fa-check"></i><b>9.1</b> EnPreCoSP</a></li>
+<li class="chapter" data-level="9.2" data-path="bases-de-datos.html"><a href="bases-de-datos.html#memoria"><i class="fa fa-check"></i><b>9.2</b> Memoria</a></li>
+<li class="chapter" data-level="9.3" data-path="bases-de-datos.html"><a href="bases-de-datos.html#titanic"><i class="fa fa-check"></i><b>9.3</b> Titanic</a></li>
+<li class="chapter" data-level="9.4" data-path="bases-de-datos.html"><a href="bases-de-datos.html#base-practicos"><i class="fa fa-check"></i><b>9.4</b> Base prácticos</a></li>
+<li class="chapter" data-level="9.5" data-path="bases-de-datos.html"><a href="bases-de-datos.html#cepram"><i class="fa fa-check"></i><b>9.5</b> CEPRAM</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="frec.html"><a href="frec.html"><i class="fa fa-check"></i><b>10</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="10.1" data-path="frec.html"><a href="frec.html#definiciones"><i class="fa fa-check"></i><b>10.1</b> Definiciones</a></li>
+<li class="chapter" data-level="10.2" data-path="frec.html"><a href="frec.html#aplicaciones"><i class="fa fa-check"></i><b>10.2</b> Aplicaciones</a></li>
+<li class="chapter" data-level="10.3" data-path="frec.html"><a href="frec.html#actividades"><i class="fa fa-check"></i><b>10.3</b> Actividades</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html"><i class="fa fa-check"></i><b>11</b> Gráficos de frecuencias</a><ul>
+<li class="chapter" data-level="11.1" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html#histogramas"><i class="fa fa-check"></i><b>11.1</b> Histogramas</a></li>
+<li class="chapter" data-level="11.2" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html#grafico-de-barras"><i class="fa fa-check"></i><b>11.2</b> Gráfico de barras</a></li>
+<li class="chapter" data-level="11.3" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html#grafico-de-tortas"><i class="fa fa-check"></i><b>11.3</b> Gráfico de tortas</a></li>
+<li class="chapter" data-level="11.4" data-path="graficos-de-frecuencias.html"><a href="graficos-de-frecuencias.html#ojiva-de-galton"><i class="fa fa-check"></i><b>11.4</b> Ojiva de Galton</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html"><i class="fa fa-check"></i><b>12</b> Medidas de resumen</a><ul>
+<li class="chapter" data-level="12.1" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#medidas-de-posicion"><i class="fa fa-check"></i><b>12.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#proporcion"><i class="fa fa-check"></i><b>12.1.1</b> Proporción</a></li>
+<li class="chapter" data-level="12.1.2" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#moda"><i class="fa fa-check"></i><b>12.1.2</b> Moda</a></li>
+<li class="chapter" data-level="12.1.3" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#mediana"><i class="fa fa-check"></i><b>12.1.3</b> Mediana</a></li>
+<li class="chapter" data-level="12.1.4" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#cuartiles-y-percentiles"><i class="fa fa-check"></i><b>12.1.4</b> Cuartiles y percentiles</a></li>
+<li class="chapter" data-level="12.1.5" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#media"><i class="fa fa-check"></i><b>12.1.5</b> Media</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#medidas-de-dispersion"><i class="fa fa-check"></i><b>12.2</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#rango-o-recorrido"><i class="fa fa-check"></i><b>12.2.1</b> Rango o recorrido</a></li>
+<li class="chapter" data-level="12.2.2" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#varianza-y-desvio-estandar"><i class="fa fa-check"></i><b>12.2.2</b> Varianza y desvío estándar</a></li>
+<li class="chapter" data-level="12.2.3" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#varibilidad-en-variables-cualitativas"><i class="fa fa-check"></i><b>12.2.3</b> Varibilidad en variables cualitativas</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#medidas-de-forma"><i class="fa fa-check"></i><b>12.3</b> Medidas de forma</a></li>
+<li class="chapter" data-level="12.4" data-path="medidas-de-resumen.html"><a href="medidas-de-resumen.html#estandarizacion"><i class="fa fa-check"></i><b>12.4</b> Estandarización</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="graficos-de-resumen.html"><a href="graficos-de-resumen.html"><i class="fa fa-check"></i><b>13</b> Gráficos de Resumen</a><ul>
+<li class="chapter" data-level="13.1" data-path="graficos-de-resumen.html"><a href="graficos-de-resumen.html#graficos-de-barras"><i class="fa fa-check"></i><b>13.1</b> Gráficos de barras</a></li>
+<li class="chapter" data-level="13.2" data-path="graficos-de-resumen.html"><a href="graficos-de-resumen.html#graficos-de-caja"><i class="fa fa-check"></i><b>13.2</b> Gráficos de caja</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html"><i class="fa fa-check"></i><b>14</b> Relaciones entre variables</a><ul>
+<li class="chapter" data-level="14.1" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>14.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="14.2" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#riesgo-relativo"><i class="fa fa-check"></i><b>14.2</b> Riesgo relativo</a></li>
+<li class="chapter" data-level="14.3" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#odds-ratio"><i class="fa fa-check"></i><b>14.3</b> Odds ratio</a></li>
+<li class="chapter" data-level="14.4" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#intensidad-de-la-asociacion"><i class="fa fa-check"></i><b>14.4</b> Intensidad de la asociación</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#q-de-kendall---yule"><i class="fa fa-check"></i><b>14.4.1</b> Q de Kendall - Yule</a></li>
+<li class="chapter" data-level="14.4.2" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#chi-cuadrado-chi2"><i class="fa fa-check"></i><b>14.4.2</b> Chi cuadrado (<span class="math inline">\(\chi^2\)</span>)</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#coeficiente-phi-de-pearson-yule-varphi"><i class="fa fa-check"></i><b>14.5</b> Coeficiente Phi de Pearson-Yule (<span class="math inline">\(\varphi\)</span>)</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#coeficiente-de-contingencia-c-de-pearson"><i class="fa fa-check"></i><b>14.5.1</b> Coeficiente de contingencia C de Pearson</a></li>
+<li class="chapter" data-level="14.5.2" data-path="relaciones-entre-variables.html"><a href="relaciones-entre-variables.html#coeficiente-v-de-cramer"><i class="fa fa-check"></i><b>14.5.2</b> Coeficiente V de Cramer</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Introducción al Análisis de Datos</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estructuras-de-control" class="section level1">
+<h1><span class="header-section-number">Capítulo 6</span> Estructuras de control</h1>
+<p>Las estructuras de control son condiciones lógicas que nos permiten controlar el flujo de ejecución del código.</p>
+<ul>
+<li>if / else</li>
+<li>while</li>
+<li>for</li>
+</ul>
+<div id="if-else" class="section level2">
+<h2><span class="header-section-number">6.1</span> If / else</h2>
+<p>El <code>if</code>. Es el <strong>condicional</strong>. Si la condición es verdadera, ejecuto el código. Si no, salteo esa porción de código. Si queremos que dada la condición de <code>Falso</code> el programa realize algo en particular podemos utilizar la sentencia <code>else</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">5</span>
+
+<span class="cf">if</span>(<span class="kw">is.integer</span>(x)){
+  <span class="st">&quot;x es entero&quot;</span>
+} <span class="cf">else</span> {
+  <span class="st">&quot;x no es entero&quot;</span>
+}</code></pre></div>
+<pre><code>## [1] &quot;x no es entero&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span>(<span class="kw">is.numeric</span>(x)){
+  <span class="st">&quot;x es entero&quot;</span>
+}</code></pre></div>
+<pre><code>## [1] &quot;x es entero&quot;</code></pre>
+</div>
+<div id="while" class="section level2">
+<h2><span class="header-section-number">6.2</span> <code>while</code></h2>
+<p>Realiza un loop mientras la condición sea verdadera.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>
+
+## Le sumo 1 a x. Repito condición haste que x llege a 10
+<span class="cf">while</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>){
+  x &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+  <span class="kw">print</span>(x)
+}</code></pre></div>
+<pre><code>## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">1</span>
+
+
+## Idem utilizando un while y un if
+<span class="cf">while</span>(<span class="ot">TRUE</span>){
+  <span class="cf">if</span>(x <span class="op">&lt;</span><span class="st"> </span><span class="dv">10</span>){
+    x &lt;-<span class="st"> </span>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span>
+    <span class="kw">print</span>(x)
+    <span class="cf">next</span>
+  } <span class="cf">else</span> {
+    <span class="cf">break</span>
+  }
+}</code></pre></div>
+<pre><code>## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10</code></pre>
+</div>
+<div id="for" class="section level2">
+<h2><span class="header-section-number">6.3</span> <code>for</code></h2>
+<p>Realiza una operación para una secuencia de objetos</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">letras &lt;-<span class="st"> </span>letters[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>]
+
+<span class="cf">for</span>(i <span class="cf">in</span> letras){
+  <span class="kw">print</span>(i)
+}</code></pre></div>
+<pre><code>## [1] &quot;a&quot;
+## [1] &quot;b&quot;
+## [1] &quot;c&quot;
+## [1] &quot;d&quot;
+## [1] &quot;e&quot;
+## [1] &quot;f&quot;
+## [1] &quot;g&quot;
+## [1] &quot;h&quot;
+## [1] &quot;i&quot;
+## [1] &quot;j&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(letras)){
+  <span class="kw">print</span>(letras[i])
+}</code></pre></div>
+<pre><code>## [1] &quot;a&quot;
+## [1] &quot;b&quot;
+## [1] &quot;c&quot;
+## [1] &quot;d&quot;
+## [1] &quot;e&quot;
+## [1] &quot;f&quot;
+## [1] &quot;g&quot;
+## [1] &quot;h&quot;
+## [1] &quot;i&quot;
+## [1] &quot;j&quot;</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="operaciones-basicas.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estructuras-de-control-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/06-estructuras_de_control.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["Introduccion_Datos.pdf", "Introduccion_Datos.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

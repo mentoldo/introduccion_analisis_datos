@@ -70,14 +70,22 @@ format(tc_col, digits = 0, nsmall = 4)
 
 ## Riesgo relativo
 
-|             | Enfermo | Saludable |
-|-------------|---------|-----------|
-|  Expuesto   | $$D_e$$ | $$H_n$$   |
-| No Expuesto | $$D_n$$ | $$H_n$$   |
+|             | Enfermo | Saludable | Total     |
+|-------------|---------|-----------|-----------|
+|  Expuesto   | $$D_e$$ | $$H_e$$   | $$N_e$$   |
+| No Expuesto | $$D_n$$ | $$H_n$$   | $$N_n$$   |
+
+
+$$
+RR = \frac{D_e/N_e}{D_n/N_n}
+$$
+
 
 
 ## Odds ratio
-
+$$
+OR = \frac{D_e/H_e}{D_n/H_n}
+$$
 
 ## Intensidad de la asociación
 

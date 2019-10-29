@@ -1,0 +1,74 @@
+# Estructuras de control
+
+Las estructuras de control son condiciones lógicas que nos permiten controlar el flujo de ejecución del código. 
+
+* if / else
+* while
+* for
+
+## If / else
+
+El `if`. Es el **condicional**. Si la condición es verdadera, ejecuto el código. Si no, salteo esa porción de código. Si queremos que dada la condición de `Falso` el programa realize algo en particular podemos utilizar la sentencia `else`.
+
+
+```{r}
+x <- 5
+
+if(is.integer(x)){
+  "x es entero"
+} else {
+  "x no es entero"
+}
+
+if(is.numeric(x)){
+  "x es entero"
+}
+```
+
+## `while`
+
+Realiza un loop mientras la condición sea verdadera.
+
+```{r}
+x <- 1
+
+## Le sumo 1 a x. Repito condición haste que x llege a 10
+while(x < 10){
+  x <- x + 1
+  print(x)
+}
+
+x <- 1
+
+
+## Idem utilizando un while y un if
+while(TRUE){
+  if(x < 10){
+    x <- x + 1
+    print(x)
+    next
+  } else {
+    break
+  }
+}
+
+```
+
+## `for`
+
+Realiza una operación para una secuencia de objetos
+
+```{r}
+letras <- letters[1:10]
+
+for(i in letras){
+  print(i)
+}
+
+for(i in 1:length(letras)){
+  print(letras[i])
+}
+
+```
+
+

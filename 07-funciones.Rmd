@@ -1,0 +1,30 @@
+# Funciones
+
+Hasta ahora hemos venido utilizando varias funciones. Las funciones nos permiten encapsular el código, facilitan la lectura y ahorran trabajo. Si tenemos que ejecutar el mismo código más de dos veces, probablemente convenga definir una funcion.
+
+
+```{r}
+## Definimos una función que calcula la media
+media <- function(x){
+  sum(x)/length(x)
+}
+media(1:10)
+
+
+## Definimos una función que no devuelve ningún valor, pero imprime un
+## mensaje en pantalla
+holaMundo <- function(){
+  print("Hola Mundo!")
+}
+holaMundo()
+
+## Definimos una función que toma dos character y los une, separados por un -
+unir <- function(a, b){
+  paste(a, b, sep = '-')
+}
+unir("A", "B")
+
+class(unir)
+```
+
+

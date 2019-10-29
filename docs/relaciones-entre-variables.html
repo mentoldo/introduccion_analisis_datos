@@ -24,7 +24,7 @@
 <meta name="author" content="Matías Alfonso" />
 
 
-<meta name="date" content="2019-10-16" />
+<meta name="date" content="2019-10-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -300,24 +300,33 @@ tc_col &lt;-<span class="st"> </span><span class="kw">prop.table</span>(tc_col, 
 <th></th>
 <th>Enfermo</th>
 <th>Saludable</th>
+<th>Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>Expuesto</td>
 <td><span class="math display">\[D_e\]</span></td>
-<td><span class="math display">\[H_n\]</span></td>
+<td><span class="math display">\[H_e\]</span></td>
+<td><span class="math display">\[N_e\]</span></td>
 </tr>
 <tr class="even">
 <td>No Expuesto</td>
 <td><span class="math display">\[D_n\]</span></td>
 <td><span class="math display">\[H_n\]</span></td>
+<td><span class="math display">\[N_n\]</span></td>
 </tr>
 </tbody>
 </table>
+<p><span class="math display">\[
+RR = \frac{D_e/N_e}{D_n/N_n}
+\]</span></p>
 </div>
 <div id="odds-ratio" class="section level2">
 <h2><span class="header-section-number">12.3</span> Odds ratio</h2>
+<p><span class="math display">\[
+OR = \frac{D_e/H_e}{D_n/H_n}
+\]</span></p>
 </div>
 <div id="intensidad-de-la-asociacion" class="section level2">
 <h2><span class="header-section-number">12.4</span> Intensidad de la asociación</h2>
