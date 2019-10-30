@@ -130,7 +130,7 @@
   \postauthor{\par}
       \predate{\centering\large\emph}
   \postdate{\par}
-    \date{2019-10-15}
+    \date{2019-10-30}
 
 \usepackage{booktabs}
 \usepackage{amsthm}
@@ -140,6 +140,20 @@
   \thm@postskip=\thm@preskip
 }
 \makeatother
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
 
 \begin{document}
 \maketitle
@@ -1047,6 +1061,222 @@ También podemos realizar operaciones lógicas.
 ##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
 \end{verbatim}
 
+\chapter{Estructuras de control}\label{estructuras-de-control}
+
+Las estructuras de control son condiciones lógicas que nos permiten
+controlar el flujo de ejecución del código.
+
+\begin{itemize}
+\tightlist
+\item
+  if / else
+\item
+  while
+\item
+  for
+\end{itemize}
+
+\section{If / else}\label{if-else}
+
+El \texttt{if}. Es el \textbf{condicional}. Si la condición es
+verdadera, ejecuto el código. Si no, salteo esa porción de código. Si
+queremos que dada la condición de \texttt{Falso} el programa realize
+algo en particular podemos utilizar la sentencia \texttt{else}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{5}
+
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.integer}\NormalTok{(x))\{}
+  \StringTok{"x es entero"}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \StringTok{"x no es entero"}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x no es entero"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{(}\KeywordTok{is.numeric}\NormalTok{(x))\{}
+  \StringTok{"x es entero"}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x es entero"
+\end{verbatim}
+
+\section{\texorpdfstring{\texttt{while}}{while}}\label{while}
+
+Realiza un loop mientras la condición sea verdadera.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}
+
+\NormalTok{## Le sumo 1 a x. Repito condición haste que x llege a 10}
+\ControlFlowTok{while}\NormalTok{(x }\OperatorTok{<}\StringTok{ }\DecValTok{10}\NormalTok{)\{}
+\NormalTok{  x <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\DecValTok{1}
+
+
+\NormalTok{## Idem utilizando un while y un if}
+\ControlFlowTok{while}\NormalTok{(}\OtherTok{TRUE}\NormalTok{)\{}
+  \ControlFlowTok{if}\NormalTok{(x }\OperatorTok{<}\StringTok{ }\DecValTok{10}\NormalTok{)\{}
+\NormalTok{    x <-}\StringTok{ }\NormalTok{x }\OperatorTok{+}\StringTok{ }\DecValTok{1}
+    \KeywordTok{print}\NormalTok{(x)}
+    \ControlFlowTok{next}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+## [1] 3
+## [1] 4
+## [1] 5
+## [1] 6
+## [1] 7
+## [1] 8
+## [1] 9
+## [1] 10
+\end{verbatim}
+
+\section{\texorpdfstring{\texttt{for}}{for}}\label{for}
+
+Realiza una operación para una secuencia de objetos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{letras <-}\StringTok{ }\NormalTok{letters[}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{]}
+
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in}\NormalTok{ letras)\{}
+  \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a"
+## [1] "b"
+## [1] "c"
+## [1] "d"
+## [1] "e"
+## [1] "f"
+## [1] "g"
+## [1] "h"
+## [1] "i"
+## [1] "j"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\KeywordTok{length}\NormalTok{(letras))\{}
+  \KeywordTok{print}\NormalTok{(letras[i])}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a"
+## [1] "b"
+## [1] "c"
+## [1] "d"
+## [1] "e"
+## [1] "f"
+## [1] "g"
+## [1] "h"
+## [1] "i"
+## [1] "j"
+\end{verbatim}
+
+\chapter{Funciones}\label{funciones}
+
+Hasta ahora hemos venido utilizando varias funciones. Las funciones nos
+permiten encapsular el código, facilitan la lectura y ahorran trabajo.
+Si tenemos que ejecutar el mismo código más de dos veces, probablemente
+convenga definir una funcion.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Definimos una función que calcula la media}
+\NormalTok{media <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x)\{}
+  \KeywordTok{sum}\NormalTok{(x)}\OperatorTok{/}\KeywordTok{length}\NormalTok{(x)}
+\NormalTok{\}}
+\KeywordTok{media}\NormalTok{(}\DecValTok{1}\OperatorTok{:}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 5.5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Definimos una función que no devuelve ningún valor, pero imprime un}
+\NormalTok{## mensaje en pantalla}
+\NormalTok{holaMundo <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{()\{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"Hola Mundo!"}\NormalTok{)}
+\NormalTok{\}}
+\KeywordTok{holaMundo}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hola Mundo!"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Definimos una función que toma dos character y los une, separados por un -}
+\NormalTok{unir <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(a, b)\{}
+  \KeywordTok{paste}\NormalTok{(a, b, }\DataTypeTok{sep =} \StringTok{'-'}\NormalTok{)}
+\NormalTok{\}}
+\KeywordTok{unir}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "A-B"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(unir)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "function"
+\end{verbatim}
+
 \part{Introducción al análisis
 estadístico}\label{part-introduccion-al-analisis-estadistico}
 
@@ -1320,7 +1550,7 @@ utilizar la función \texttt{hist}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-31-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 También podemos representar las frecuencias relativas o los porcentajes.
 
@@ -1334,7 +1564,7 @@ También podemos representar las frecuencias relativas o los porcentajes.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-32-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-36-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1344,7 +1574,7 @@ También podemos representar las frecuencias relativas o los porcentajes.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-32-2.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-36-2.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1363,7 +1593,7 @@ También podemos representar las frecuencias relativas o los porcentajes.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-32-3.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-36-3.pdf}
 
 \section{Gráfico de barras}\label{grafico-de-barras}
 
@@ -1391,7 +1621,7 @@ podemo utilizar la función \texttt{barplot}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-33-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-37-1.pdf}
 
 \section{Gráfico de tortas}\label{grafico-de-tortas}
 
@@ -1420,7 +1650,7 @@ de tortas, podemos utilizar la función \texttt{pie}
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-38-1.pdf}
 
 Estilamos el gráfico. Agregamos los porcentajes.
 
@@ -1443,7 +1673,7 @@ Estilamos el gráfico. Agregamos los porcentajes.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-35-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-39-1.pdf}
 
 \section{Ojiva de Galton}\label{ojiva-de-galton}
 
@@ -1469,7 +1699,7 @@ marihuana en la muestra:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-36-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-40-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -1481,7 +1711,7 @@ marihuana en la muestra:
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-36-2.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-40-2.pdf}
 
 \chapter{Medidas de resumen}\label{medidas-de-resumen}
 
@@ -1732,7 +1962,7 @@ Observemos un ejemplo.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-42-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-46-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2141,7 +2371,7 @@ acampanada.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-49-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-53-1.pdf}
 
 Dos medidas comunmente utilizadas son la asimetría y la curtosis. La
 \textbf{kurtosis} mide que tan coludas son las distribuciones con
@@ -2167,7 +2397,7 @@ valores negativos distribuciones menos coludas.
   Un índice menor a -0.5 indica que la distribución es platicúrtica
 \end{itemize}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-51-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-55-1.pdf}
 
 \section{Estandarización}\label{estandarizacion}
 
@@ -2250,7 +2480,7 @@ podemos agregar las
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-55-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-59-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2277,7 +2507,36 @@ podemos agregar las
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-56-1.pdf}
+\includegraphics{Introduccion_Datos_files/figure-latex/unnamed-chunk-60-1.pdf}
+
+\begin{verbatim}
+
+Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+The following object is masked from 'package:kableExtra':
+
+    group_rows
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:Hmisc':
+
+    src, summarize
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:stats':
+
+    filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+The following objects are masked from 'package:base':
+
+    intersect, setdiff, setequal, union
+\end{verbatim}
 
 \chapter{Relaciones entre variables}\label{relaciones-entre-variables}
 
@@ -2423,17 +2682,25 @@ También podemos calcular las frecuencias relativas
 
 \section{Riesgo relativo}\label{riesgo-relativo}
 
-\begin{longtable}[]{@{}lll@{}}
+\begin{longtable}[]{@{}llll@{}}
 \toprule
-& Enfermo & Saludable\tabularnewline
+& Enfermo & Saludable & Total\tabularnewline
 \midrule
 \endhead
-Expuesto & \(D_e\) & \(H_n\)\tabularnewline
-No Expuesto & \(D_n\) & \(H_n\)\tabularnewline
+Expuesto & \(D_e\) & \(H_e\) & \(N_e\)\tabularnewline
+No Expuesto & \(D_n\) & \(H_n\) & \(N_n\)\tabularnewline
 \bottomrule
 \end{longtable}
 
+\[
+RR = \frac{D_e/N_e}{D_n/N_n}
+\]
+
 \section{Odds ratio}\label{odds-ratio}
+
+\[
+OR = \frac{D_e/H_e}{D_n/H_n}
+\]
 
 \section{Intensidad de la asociación}\label{intensidad-de-la-asociacion}
 
@@ -2446,6 +2713,8 @@ El Q de Kendall-Yule es una medida de intensidad de asociación para
 variables dicotómicas. Supongamos que tenemos la siguiente tabla de
 doble entrada:
 
+\begin{table}[H]
+\centering
 \begin{tabular}{l|l|l|l}
 \hline
   & Sí & No & Total\\
@@ -2457,6 +2726,7 @@ Negativa & c & d & c+d\\
 Total & a+c & b+d & n\\
 \hline
 \end{tabular}
+\end{table}
 
 El coeficiente de Q es:
 
@@ -2604,7 +2874,111 @@ consumo de alcohol.
 \subsection{Coeficiente de contingencia C de
 Pearson}\label{coeficiente-de-contingencia-c-de-pearson}
 
+Mide el grado de asociación en tablas de contingencia con más de dos
+categorías.
+
+\[
+C = \sqrt{\frac{\chi^2}{\chi^2 + n}}
+\]
+
+Va de 0 a 1 y se compara con un C máximo:
+
+\[
+C_{max} = \sqrt{\frac{min(f, c) - 1}{min(f, c)}}
+\] Donde: \(f\) es el número de filas \(g\) es el número de columnas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Riesgo leve percibido}
+\NormalTok{## En su opinión, ¿cuál cree usted que es el riesgo que}
+\NormalTok{## corre una persona que toma bebidas alcohólicas de vez}
+\NormalTok{## en cuando}
+
+\NormalTok{riesgo_perc <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(enprecosp}\OperatorTok{$}\NormalTok{BIBA14_}\DecValTok{01}\NormalTok{,}
+                      \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Ningún riesgo"}\NormalTok{,}
+                                 \StringTok{"Riesgo leve o moderado"}\NormalTok{,}
+                                 \StringTok{"Gran riesgo"}\NormalTok{,}
+                                 \StringTok{"No sé qué riesgo"}\NormalTok{))}
+
+\CommentTok{# prop.table(table(riesgo_perc))}
+
+\NormalTok{prev_alcohol <-}\StringTok{ }\KeywordTok{factor}\NormalTok{(enprecosp}\OperatorTok{$}\NormalTok{P1M_BA,}
+                    \DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"Sí"}\NormalTok{,}
+                               \StringTok{"No"}\NormalTok{))}
+
+\NormalTok{tc <-}\StringTok{ }\KeywordTok{table}\NormalTok{(riesgo_perc, prev_alcohol)}
+
+\NormalTok{## Calculamos las frecuencias esperadas y observadas}
+\NormalTok{chi <-}\StringTok{ }\KeywordTok{chisq.test}\NormalTok{(tc)}
+\NormalTok{chi}\OperatorTok{$}\NormalTok{observed}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         prev_alcohol
+## riesgo_perc                Sí   No
+##   Ningún riesgo          4153 2813
+##   Riesgo leve o moderado 7432 7309
+##   Gran riesgo            4549 7622
+##   No sé qué riesgo        193  272
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi}\OperatorTok{$}\NormalTok{expected}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         prev_alcohol
+## riesgo_perc                     Sí        No
+##   Ningún riesgo          3311.7049 3654.2951
+##   Riesgo leve o moderado 7008.0164 7732.9836
+##   Gran riesgo            5786.2131 6384.7869
+##   No sé qué riesgo        221.0656  243.9344
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chi_val <-}\StringTok{ }\NormalTok{chi}\OperatorTok{$}\NormalTok{statistic; chi_val}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## X-squared 
+##   967.376
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Calculamos el C de Pearson}
+\NormalTok{f <-}\StringTok{ }\KeywordTok{nrow}\NormalTok{(tc)}
+\NormalTok{c <-}\StringTok{ }\KeywordTok{ncol}\NormalTok{(tc)}
+\NormalTok{n <-}\StringTok{ }\KeywordTok{sum}\NormalTok{(tc)}
+\NormalTok{C <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{(chi_val}\OperatorTok{/}\NormalTok{(chi_val }\OperatorTok{+}\StringTok{ }\NormalTok{n)); C}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## X-squared 
+## 0.1655185
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Cmax <-}\StringTok{ }\KeywordTok{sqrt}\NormalTok{((}\KeywordTok{min}\NormalTok{(f, c) }\OperatorTok{-}\StringTok{ }\DecValTok{1}\NormalTok{) }\OperatorTok{/}\StringTok{ }\KeywordTok{min}\NormalTok{(f, c)); Cmax}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7071068
+\end{verbatim}
+
 \subsection{Coeficiente V de Cramer}\label{coeficiente-v-de-cramer}
+
+\[
+V = \sqrt{\frac{\chi^2}{n * min(f - 1, c-1)}}
+\]
 
 \begin{Shaded}
 \begin{Highlighting}[]
